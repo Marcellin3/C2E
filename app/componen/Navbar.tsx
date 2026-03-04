@@ -8,9 +8,9 @@ export default function Navbar() {
       <h1 className="text-2xl font-bold text-blue-600">C2E</h1>
 
       <div className="flex gap-8 font-medium">
-        <Link href="/accueil">Accueil</Link>
+        <Link href="/accueil">About</Link>
         <Link href="/services">Nos Services</Link>
-        <Link href="/realisation">Réalisations</Link>
+        <Link href="/realisation">Nos Réalisations</Link>
         <Link href="/contact">Contact</Link>
       </div>
     </nav>
