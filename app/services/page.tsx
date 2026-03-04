@@ -1,0 +1,199 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+import {
+  Compass,
+  ClipboardList,
+  Database,
+  GraduationCap,
+  Lightbulb,
+  ShieldCheck,
+  Globe,
+  Users,
+} from "lucide-react";
+
+export default function Services() {
+
+  const services = [
+    {
+      icon: <Compass size={28} />,
+      title: "Conception & Planification Stratégique",
+      text: "Analyses stratégiques, conception de politiques publiques, élaboration de projets et études d’évaluabilité pour garantir des interventions solides dès leur genèse.",
+    },
+    {
+      icon: <ClipboardList size={28} />,
+      title: "Suivi, Évaluation & Apprentissage (MEAL)",
+      text: "Conception de systèmes MEAL complets : baseline, évaluations intermédiaires et finales, intégration de l’analyse de risques et gestion de la complexité.",
+    },
+    {
+      icon: <Database size={28} />,
+      title: "Ingénierie des Données & Digitalisation",
+      text: "Mise en place de plateformes numériques (KoboCollect, REDCap) et analyse quantitative et qualitative rigoureuse.",
+    },
+    {
+      icon: <GraduationCap size={28} />,
+      title: "Renforcement des Capacités & Coaching",
+      text: "Formations spécialisées, coaching en gestion de projets et autonomisation des acteurs locaux.",
+    },
+    {
+      icon: <Lightbulb size={28} />,
+      title: "Recherche, Innovation & Partenariats",
+      text: "Méthodologies innovantes, conférences et partenariats nationaux et internationaux.",
+    },
+    {
+      icon: <ShieldCheck size={28} />,
+      title: "Expertise Transversale & Audit",
+      text: "Interventions multisectorielles et audits financiers pour garantir transparence et redevabilité.",
+    },
+  ];
+
+  const consultants = [
+    {
+      name: "Patrick MUTUTA",
+      image: "/consultants/patrick.jpg",
+      desc: "PhD en Environnement – Plus de 10 ans d’expérience en gestion et conception de projets de développement.",
+    },
+    {
+      name: "Philemon MBARAMBARA",
+      image: "/consultants/philemon.jpg",
+      desc: "PhD en Santé Communautaire – Expert en conception de plans stratégiques institutionnels.",
+    },
+    {
+      name: "Marcellin MULEZI",
+      image: "/photos/Mulezi.jpg",
+      desc: "Technicien en développement durable et Data Analyst certifié.",
+    },
+    {
+      name: "Charmant MUTUTA",
+      image: "/consultants/charmant.jpg",
+      desc: "Spécialiste en gestion et coordination de projets.",
+    },
+  ];
+
+  return (
+    <div className="bg-gray-50 text-gray-800">
+
+      {/* ================= HERO ================= */}
+      <section className="text-center py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+        <motion.h1
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="text-5xl font-bold"
+        >
+          Nos Services
+        </motion.h1>
+      </section>
+
+      {/* ================= ROADMAP ================= */}
+      <section className="relative px-8 md:px-20 py-24">
+        <div className="absolute left-1/2 top-0 h-full w-1 bg-blue-200 transform -translate-x-1/2 hidden md:block"></div>
+
+        <div className="space-y-20">
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -80 : 80 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className={`relative flex flex-col md:flex-row items-center ${
+                index % 2 === 0 ? "md:justify-start" : "md:justify-end"
+              }`}
+            >
+              <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 bg-blue-600 text-white p-4 rounded-full shadow-xl z-10">
+                {service.icon}
+              </div>
+
+              <div className="bg-white w-full md:w-5/12 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition duration-300">
+                <div className="md:hidden text-blue-600 mb-4">
+                  {service.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-blue-600">
+                  {service.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {service.text}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ================= RAYON D'ACTION AVEC IMAGE ================= */}
+      <section
+        className="relative py-28 bg-cover bg-center bg-blue-600 text-white text-center"
+        style={{ backgroundImage: "url('/images/world-map.jpg')" }}
+      >
+        <div className="absolute inset-0 bg-black/60"></div>
+
+        <div className="relative z-10 px-2">
+          <Globe size={40} className="mx-auto mb-2" />
+          <h2 className="text-4xl font-bold mb-6">Rayon d’Action</h2>
+          <p className="max-w-2xl mx-auto text-justify leading-relaxed text-gray-200">
+          Le C2E mène des actions sur toute l’étendue de la RDC et peut s’étendre à d’autres pays 
+          (Africains, Américains, Européens et Asiatiques) selon les opportunités et les besoins 
+          exprimés par les collaborateurs/partenaires et bénéficiaires. 
+          dans des secteurs clés comme la santé, l’éducation l'Environnementet la gouvernance.
+          Il accompagne institutions publiques, ONG et partenaires techniques
+          via des projets financés par des bailleurs nationaux et mondiaux.
+          </p>
+        </div>
+      </section>
+
+      {/* ================= CONSULTANTS AVEC IMAGES ================= */}
+      <section className="py-24 px-8 md:px-20 bg-gray-100">
+        <div className="text-center mb-16">
+          <Users size={40} className="mx-auto text-blue-600 mb-4" />
+          <h2 className="text-4xl font-bold">Nos Consultants</h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+          {consultants.map((consultant, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -10 }}
+              className="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition"
+            >
+              <div className="relative w-full h-60">
+                <Image
+                  src={consultant.image}
+                  alt={consultant.name}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              <div className="p-6">
+                <h3 className="text-lg font-bold text-blue-600 mb-3">
+                  {consultant.name}
+                </h3>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {consultant.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ================= FOOTER ================= */}
+      <footer className="bg-blue-600 text-white text-center py-10 space-y-2">
+        <p>
+          Centre d’Expertise et d’Evaluation – Goma, RDC
+        </p>
+        <p>
+          c2experteval@gmail.com | +243 997 674 407
+        </p>
+        <p>© 2026 C2E – Tous droits réservés</p>
+      </footer>
+
+    </div>
+  );
+}
