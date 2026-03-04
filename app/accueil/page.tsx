@@ -16,7 +16,7 @@ export default function accueil() {
     <div className="bg-gray-50 text-gray-800 overflow-hidden">
 
       {/* ================= NAVBAR ================= */}
-      <nav className="flex justify-between items-center px-12 py-6 bg-white shadow-sm sticky top-0 z-50">
+      {/* <nav className="flex justify-between items-center px-12 py-6 bg-white shadow-sm sticky top-0 z-50">
         <h1 className="text-2xl font-bold text-blue-600">C2E</h1>
         <div className="flex gap-8 font-medium">
           {["About", "Services", "Nos Réalisations", "Contact"].map((item, i) => (
@@ -28,7 +28,7 @@ export default function accueil() {
             </a>
           ))}
         </div>
-      </nav>
+      </nav> */}
 
       {/* ================= HERO ================= */}
       <section className="flex flex-col md:flex-row items-center justify-between px-16 py-24 bg-gradient-to-r from-blue-50 to-white">
