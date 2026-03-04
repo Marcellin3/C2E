@@ -61,8 +61,8 @@ export default function Services() {
     },
     {
       name: "Marcellin MULEZI",
-      image: "/photos/Mulezi.jpg",
-      desc: "Technicien en développement durable et Data Analyst certifié.",
+      image: "/photos/Mulezi.jpeg",
+      desc: "Technicien en Développement Rural|Spécialiste en conception, élaboration et Mise en oeuvre des projets de Développement|Data Analyst certifié|Web 3 Builder.",
     },
     {
       name: "Charmant MUTUTA",
