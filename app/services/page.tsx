@@ -123,7 +123,7 @@ export default function Services() {
         </div>
       </section>
 
-      {/* ================= RAYON D'ACTION AVEC IMAGE ================= */}
+      {/* ================= RAYON D'ACTION AVEC IMAGE ================= 
       <section
         className="relative py-28 bg-cover bg-center bg-blue-600 text-white text-center"
         style={{ backgroundImage: "url('/images/world-map.jpg')" }}
@@ -142,13 +142,89 @@ export default function Services() {
             via des projets financés par des bailleurs nationaux et mondiaux.
           </p>
         </div>
+      </section>*/}
+
+      {/* ================= SECTION RAYON D'ACTION - DESIGN RÉFÉRENCE ================= */}
+      <section
+        className="relative py-28 bg-blue-600 text-white"
+        style={{
+          background: "linear-gradient(135deg, #0f3c8a 0%, #1e5ed6 60%, #ffffff 130%)",
+        }}
+      >
+        {/* Superposition floue et sombre sur l'image de fond isolée (la carte du monde choisie) */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 backdrop-blur-sm"
+          style={{ backgroundImage: "url('/images/world-map-action.jpg')" }} // Carte du monde gm2157640320-578316598
+        ></div>
+        
+        {/* Superposition sombre et floue pour le fond pour améliorer le contraste du texte */}
+        <div className="absolute inset-0 bg-blue-900/60 backdrop-blur-sm"></div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 grid md:grid-cols-2 items-center gap-16">
+          
+          {/* COLONNE GAUCHE : LA CARTE INTERACTIVE (RDC) */}
+          <div className="relative flex justify-center items-center h-full">
+            <div className="relative w-full max-w-md aspect-square rounded-full border-4 border-yellow-400 p-8 bg-blue-700 shadow-2xl overflow-hidden transform hover:scale-105 transition-all">
+              {/* <Image 
+                src="/photos/bon.png"
+                alt="Carte du rayon d'action - RDC"
+                fill
+                className="object-contain p-4 filter brightness-110 drop-shadow-xl"
+              />*/}
+              
+              {/* Icônes de zoom et de sécurité (style référence) */}
+              <div className="absolute top-1/4 right-1/4 bg-white/20 p-2 rounded-full backdrop-blur-md">
+                <ShieldCheck className="text-yellow-400" size={16} />
+              </div>
+              <div className="absolute bottom-1/3 left-1/3 bg-yellow-400/20 p-3 rounded-full backdrop-blur-md">
+                <Globe className="text-white" size={20} />
+              </div>
+
+              {/* Texte du Département (style référence) */}
+              <p className="absolute bottom-10 left-10 text-xs font-semibold opacity-70">République Démocratique du</p>
+              <p className="absolute bottom-4 left-10 text-2xl font-bold">Congo</p>
+            </div>
+          </div>
+
+          {/* COLONNE DROITE : LE TEXTE */}
+          <div className="text-left">
+            <div className="flex items-center gap-4 mb-3">
+              <Globe size={40} className="text-yellow-400" />
+              <h2 className="text-5xl font-bold">Rayon d’Action</h2>
+            </div>
+            
+            {/* Ligne de titre style référence */}
+            <div className="w-24 h-1 bg-yellow-400 mb-8 rounded-full"></div>
+
+            <p className="text-lg leading-relaxed text-gray-100 mb-8 max-w-xl">
+              Le C2E mène des actions sur toute l’étendue de la RDC et peut
+              s’étendre à d’autres pays (Africains, Américains, Européens et Asiatiques)
+              selon les opportunités et les besoins exprimés par les
+              collaborateurs/partenaires et bénéficiaires.
+            </p>
+            
+            <p className="text-base leading-relaxed text-gray-200 opacity-90 mb-10 max-w-xl">
+              Intervenant dans des secteurs clés comme la santé, l’éducation,
+              l’Environnement et la gouvernance, il accompagne institutions publiques,
+              ONG et partenaires techniques via des projets financés par des
+              bailleurs nationaux et mondiaux.
+            </p>
+
+            {/* Bouton "En savoir plus" style référence */}
+            <button className="bg-yellow-400 text-blue-900 px-8 py-3 rounded-full font-bold text-lg hover:bg-white transition-all transform hover:scale-105 flex items-center gap-3">
+              En savoir plus
+              <ShieldCheck size={20} />
+            </button>
+          </div>
+
+        </div>
       </section>
 
       {/* ================= CONSULTANTS AVEC IMAGES ================= */}
       <section className="py-24 px-8 md:px-20 bg-gray-100">
         <div className="text-center mb-16">
           <Users size={40} className="mx-auto text-blue-600 mb-4" />
-          <h2 className="text-4xl font-bold">Nos Consultants</h2>
+          <h2 className="text-4xl font-bold">Notre Equipe</h2>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -184,16 +260,7 @@ export default function Services() {
         </div>
       </section>
 
-      {/* ================= FOOTER ================= 
-      <footer className="bg-blue-600 text-white text-center py-10 space-y-2">
-        <p>
-          Centre d’Expertise et d’Evaluation – Goma, RDC
-        </p>
-        <p>
-          c2experteval@gmail.com | +243 997 674 407
-        </p>
-        <p>© 2026 C2E – Tous droits réservés</p>
-      </footer>*/}
+      {/* ================= FOOTER ================= */}
 
       <footer className="relative z-10">
         <div className="bg-blue-900/90 backdrop-blur-2xl border-t border-white/10 text-white px-10 py-12">
