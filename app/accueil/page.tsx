@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 import {
   Target,
   Eye,
@@ -181,7 +183,7 @@ export default function accueil() {
         </div>
       </section>
 
-      {/* ================= FOOTER ================= */}
+      {/* ================= FOOTER ================= 
       <footer className="bg-blue-600 text-white text-center py-10 space-y-2">
         <p>
           Centre d’Expertise et d’Evaluation – Goma, RDC
@@ -190,6 +192,42 @@ export default function accueil() {
           c2experteval@gmail.com | +243 997 674 407
         </p>
         <p>© 2026 C2E – Tous droits réservés</p>
+      </footer>*/}
+
+      {/* ================= FOOTER ================= */}
+      <footer className="relative z-10">
+        <div className="bg-blue-900/90 backdrop-blur-2xl border-t border-white/10 text-white px-10 py-12">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-12">
+            <div>
+              <h3 className="text-2xl font-bold mb-4 text-yellow-400">C2E</h3>
+              <p className="text-sm opacity-80 leading-relaxed">
+                Centre d’Expertise et d’Évaluation basé à Goma. Experts en planification,
+                évaluation et recherche appliquée pour un impact durable en RDC.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Navigation</h3>
+              <ul className="space-y-2 text-sm opacity-90">
+                {["Accueil", "Réalisations", "Services", "Contact"].map((item) => (
+                  <li key={item} className="hover:text-yellow-400 cursor-pointer transition-colors w-fit">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Contact</h3>
+              <div className="space-y-4 text-sm">
+                <div className="flex items-center gap-3"><MdEmail className="text-yellow-400" size={20} /><span>c2experteval@gmail.com</span></div>
+                <div className="flex items-center gap-3"><FaWhatsapp className="text-yellow-400" size={20} /><span>+243 997 674 407</span></div>
+                <div className="flex items-center gap-3"><FaLinkedin className="text-yellow-400" size={20} /><span>LinkedIn / C2E</span></div>
+              </div>
+            </div>
+          </div>
+          <div className="text-center text-xs opacity-50 mt-12 pt-6 border-t border-white/5">
+            © 2026 Centre d’Expertise et d’Évaluation – Excellence & Rigueur
+          </div>
+        </div>
       </footer>
 
     </div>

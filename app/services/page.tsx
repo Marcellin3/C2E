@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 import {
   Compass,
   ClipboardList,
@@ -98,9 +100,8 @@ export default function Services() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className={`relative flex flex-col md:flex-row items-center ${
-                index % 2 === 0 ? "md:justify-start" : "md:justify-end"
-              }`}
+              className={`relative flex flex-col md:flex-row items-center ${index % 2 === 0 ? "md:justify-start" : "md:justify-end"
+                }`}
             >
               <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 bg-blue-600 text-white p-4 rounded-full shadow-xl z-10">
                 {service.icon}
@@ -133,12 +134,12 @@ export default function Services() {
           <Globe size={40} className="mx-auto mb-2" />
           <h2 className="text-4xl font-bold mb-6">Rayon d’Action</h2>
           <p className="max-w-2xl mx-auto text-justify leading-relaxed text-gray-200">
-          Le C2E mène des actions sur toute l’étendue de la RDC et peut s’étendre à d’autres pays 
-          (Africains, Américains, Européens et Asiatiques) selon les opportunités et les besoins 
-          exprimés par les collaborateurs/partenaires et bénéficiaires. 
-          dans des secteurs clés comme la santé, l’éducation l'Environnementet la gouvernance.
-          Il accompagne institutions publiques, ONG et partenaires techniques
-          via des projets financés par des bailleurs nationaux et mondiaux.
+            Le C2E mène des actions sur toute l’étendue de la RDC et peut s’étendre à d’autres pays
+            (Africains, Américains, Européens et Asiatiques) selon les opportunités et les besoins
+            exprimés par les collaborateurs/partenaires et bénéficiaires.
+            dans des secteurs clés comme la santé, l’éducation l'Environnementet la gouvernance.
+            Il accompagne institutions publiques, ONG et partenaires techniques
+            via des projets financés par des bailleurs nationaux et mondiaux.
           </p>
         </div>
       </section>
@@ -183,7 +184,7 @@ export default function Services() {
         </div>
       </section>
 
-      {/* ================= FOOTER ================= */}
+      {/* ================= FOOTER ================= 
       <footer className="bg-blue-600 text-white text-center py-10 space-y-2">
         <p>
           Centre d’Expertise et d’Evaluation – Goma, RDC
@@ -192,6 +193,41 @@ export default function Services() {
           c2experteval@gmail.com | +243 997 674 407
         </p>
         <p>© 2026 C2E – Tous droits réservés</p>
+      </footer>*/}
+
+      <footer className="relative z-10">
+        <div className="bg-blue-900/90 backdrop-blur-2xl border-t border-white/10 text-white px-10 py-12">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-12">
+            <div>
+              <h3 className="text-2xl font-bold mb-4 text-yellow-400">C2E</h3>
+              <p className="text-sm opacity-80 leading-relaxed">
+                Centre d’Expertise et d’Évaluation basé à Goma. Experts en planification,
+                évaluation et recherche appliquée pour un impact durable en RDC.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Navigation</h3>
+              <ul className="space-y-2 text-sm opacity-90">
+                {["Accueil", "Réalisations", "Services", "Contact"].map((item) => (
+                  <li key={item} className="hover:text-yellow-400 cursor-pointer transition-colors w-fit">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Contact</h3>
+              <div className="space-y-4 text-sm">
+                <div className="flex items-center gap-3"><MdEmail className="text-yellow-400" size={20} /><span>c2experteval@gmail.com</span></div>
+                <div className="flex items-center gap-3"><FaWhatsapp className="text-yellow-400" size={20} /><span>+243 997 674 407</span></div>
+                <div className="flex items-center gap-3"><FaLinkedin className="text-yellow-400" size={20} /><span>LinkedIn / C2E</span></div>
+              </div>
+            </div>
+          </div>
+          <div className="text-center text-xs opacity-50 mt-12 pt-6 border-t border-white/5">
+            © 2026 Centre d’Expertise et d’Évaluation – Excellence & Rigueur
+          </div>
+        </div>
       </footer>
 
     </div>
