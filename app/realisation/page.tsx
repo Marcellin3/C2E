@@ -14,31 +14,31 @@ export default function Realisation() {
             titre: "Plan stratégique – Action Solidaire pour la Paix",
             description: "Élaboration du plan stratégique (2023-2027) pour renforcer les actions de paix et de développement.",
             date: "Mars 2023",
-            image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac"
+            image: "/photos/image 01.jpg"
         },
         {
             titre: "Étude de base – Programme Bois Énergie (PNUD)",
             description: "Étude de base pour le programme de substitution partielle au bois énergie à Kinshasa.",
             date: "Décembre 2023",
-            image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+            image: "/photos/image 02.jpg"
         },
         {
             titre: "Évaluation – Heal Africa & Ephphatha",
             description: "Évaluation organisationnelle et formation en gestion de projets et mobilisation des ressources.",
             date: "Février 2024",
-            image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+            image: "/photos/image 03.jpg"
         },
         {
             titre: "Plan stratégique – CR-OLK",
             description: "Plan stratégique 2024-2028 du Centre de Recherche des Écosystèmes Lacustres du Kivu.",
             date: "2024",
-            image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470"
+            image: "/photos/image 04.jpg"
         },
         {
             titre: "Méta-évaluation – World Vision",
             description: "Analyse de l’approche 'Voix et Action Citoyennes' en RDC.",
             date: "2024",
-            image: "https://images.unsplash.com/photo-1492724441997-5dc865305da7"
+            image: "/photos/image 05.jpg"
         }
     ];
 

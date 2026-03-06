@@ -68,8 +68,18 @@ export default function Services() {
     },
     {
       name: "Charmant MUTUTA",
-      image: "/consultants/charmant.jpg",
+      image: "/photos/Charmant.jpg",
       desc: "Spécialiste en gestion et coordination de projets.",
+    },
+    {
+      name: "Prince BITAKI",
+      image: "/consultants/charmant.jpg",
+      desc: "Specialiste en logique et en gestions des Equipe.",
+    },
+    {
+      name: "Ethienne MUKENYIRE",
+      image: "/photos/Ethienne 01.jpg",
+      desc: "Economiste",
     },
   ];
 
@@ -77,15 +87,86 @@ export default function Services() {
     <div className="bg-gray-50 text-gray-800">
 
       {/* ================= HERO ================= */}
-      <section className="text-center py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-        <motion.h1
-          initial={{ opacity: 0, y: -40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-5xl font-bold"
-        >
-          Nos Services
-        </motion.h1>
+      <section
+        className="relative py-16 bg-cover bg-center text-white"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80')",
+        }}
+      >
+        {/* Overlay sombre */}
+        <div className="absolute inset-0 bg-blue-900/70 backdrop-blur-sm"></div>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+
+          {/* TITRE */}
+          <motion.h1
+            initial={{ opacity: 0, y: -40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-5xl font-bold mb-6"
+          >
+            Nos Services
+          </motion.h1>
+
+          {/* SOUS TEXTE */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="max-w-2xl mx-auto text-lg text-gray-200 mb-16"
+          >
+            Le Centre d’Expertise et d’Évaluation (C2E) accompagne les ONG,
+            institutions et partenaires techniques dans la recherche, la
+            planification stratégique, l’évaluation et le suivi des projets de
+            développement.
+          </motion.p>
+
+          {/* STATISTIQUES */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20"
+            >
+              <h3 className="text-4xl font-bold text-yellow-400">50+</h3>
+              <p className="text-sm mt-2">Projets réalisés</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20"
+            >
+              <h3 className="text-4xl font-bold text-yellow-400">30+</h3>
+              <p className="text-sm mt-2">Organisations accompagnées</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20"
+            >
+              <h3 className="text-4xl font-bold text-yellow-400">15+</h3>
+              <p className="text-sm mt-2">Experts mobilisés</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20"
+            >
+              <h3 className="text-4xl font-bold text-yellow-400">10+</h3>
+              <p className="text-sm mt-2">Années d'expérience</p>
+            </motion.div>
+
+          </div>
+        </div>
       </section>
 
       {/* ================= ROADMAP ================= */}
@@ -123,99 +204,70 @@ export default function Services() {
         </div>
       </section>
 
-      {/* ================= RAYON D'ACTION AVEC IMAGE ================= 
-      <section
-        className="relative py-28 bg-cover bg-center bg-blue-600 text-white text-center"
-        style={{ backgroundImage: "url('/images/world-map.jpg')" }}
-      >
-        <div className="absolute inset-0 bg-black/60"></div>
+      {/* ================= RAYON D'ACTION AVEC IMAGE ================= */}
 
-        <div className="relative z-10 px-2">
-          <Globe size={40} className="mx-auto mb-2" />
-          <h2 className="text-4xl font-bold mb-6">Rayon d’Action</h2>
-          <p className="max-w-2xl mx-auto text-justify leading-relaxed text-gray-200">
-            Le C2E mène des actions sur toute l’étendue de la RDC et peut s’étendre à d’autres pays
-            (Africains, Américains, Européens et Asiatiques) selon les opportunités et les besoins
-            exprimés par les collaborateurs/partenaires et bénéficiaires.
-            dans des secteurs clés comme la santé, l’éducation l'Environnementet la gouvernance.
-            Il accompagne institutions publiques, ONG et partenaires techniques
-            via des projets financés par des bailleurs nationaux et mondiaux.
-          </p>
-        </div>
-      </section>*/}
+      <section className="py-28 bg-gray-50">
 
-      {/* ================= SECTION RAYON D'ACTION - DESIGN RÉFÉRENCE ================= */}
-      <section
-        className="relative py-28 bg-blue-600 text-white"
-        style={{
-          background: "linear-gradient(135deg, #0f3c8a 0%, #1e5ed6 60%, #ffffff 130%)",
-        }}
-      >
-        {/* Superposition floue et sombre sur l'image de fond isolée (la carte du monde choisie) */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 backdrop-blur-sm"
-          style={{ backgroundImage: "url('/images/world-map-action.jpg')" }} // Carte du monde gm2157640320-578316598
-        ></div>
-        
-        {/* Superposition sombre et floue pour le fond pour améliorer le contraste du texte */}
-        <div className="absolute inset-0 bg-blue-900/60 backdrop-blur-sm"></div>
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 grid md:grid-cols-2 items-center gap-16">
-          
-          {/* COLONNE GAUCHE : LA CARTE INTERACTIVE (RDC) */}
-          <div className="relative flex justify-center items-center h-full">
-            <div className="relative w-full max-w-md aspect-square rounded-full border-4 border-yellow-400 p-8 bg-blue-700 shadow-2xl overflow-hidden transform hover:scale-105 transition-all">
-              {/* <Image 
-                src="/photos/bon.png"
-                alt="Carte du rayon d'action - RDC"
-                fill
-                className="object-contain p-4 filter brightness-110 drop-shadow-xl"
-              />*/}
-              
-              {/* Icônes de zoom et de sécurité (style référence) */}
-              <div className="absolute top-1/4 right-1/4 bg-white/20 p-2 rounded-full backdrop-blur-md">
-                <ShieldCheck className="text-yellow-400" size={16} />
-              </div>
-              <div className="absolute bottom-1/3 left-1/3 bg-yellow-400/20 p-3 rounded-full backdrop-blur-md">
-                <Globe className="text-white" size={20} />
-              </div>
+          {/* ================= MAP ================= */}
+          <motion.div
+            initial={{ opacity: 0, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative"
+          >
+            <img
+              src="/photos/super.png"
+              alt="Carte du monde"
+              className="w-full opacity-80"
+            />
 
-              {/* Texte du Département (style référence) */}
-              <p className="absolute bottom-10 left-10 text-xs font-semibold opacity-70">République Démocratique du</p>
-              <p className="absolute bottom-4 left-10 text-2xl font-bold">Congo</p>
-            </div>
-          </div>
+            {/* avion animation */}
+            <motion.div
+              animate={{ x: [0, 80, 160, 240, 320] }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              className="absolute top-[45%] left-[20%]"
+            >
+              ✈️
+            </motion.div>
+          </motion.div>
 
-          {/* COLONNE DROITE : LE TEXTE */}
-          <div className="text-left">
-            <div className="flex items-center gap-4 mb-3">
-              <Globe size={40} className="text-yellow-400" />
-              <h2 className="text-5xl font-bold">Rayon d’Action</h2>
-            </div>
-            
-            {/* Ligne de titre style référence */}
-            <div className="w-24 h-1 bg-yellow-400 mb-8 rounded-full"></div>
+          {/* ================= TEXT ================= */}
+          <motion.div
+            initial={{ opacity: 0, x: 80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl font-bold text-gray-800 leading-snug">
+              Notre <span className="text-blue-700">Rayon d’Action</span>
+            </h2>
 
-            <p className="text-lg leading-relaxed text-gray-100 mb-8 max-w-xl">
-              Le C2E mène des actions sur toute l’étendue de la RDC et peut
-              s’étendre à d’autres pays (Africains, Américains, Européens et Asiatiques)
-              selon les opportunités et les besoins exprimés par les
-              collaborateurs/partenaires et bénéficiaires.
-            </p>
-            
-            <p className="text-base leading-relaxed text-gray-200 opacity-90 mb-10 max-w-xl">
-              Intervenant dans des secteurs clés comme la santé, l’éducation,
-              l’Environnement et la gouvernance, il accompagne institutions publiques,
-              ONG et partenaires techniques via des projets financés par des
-              bailleurs nationaux et mondiaux.
+            <div className="w-14 h-1 bg-yellow-400 my-6"></div>
+
+            <p className="text-gray-600 leading-relaxed mb-6">
+              Le <strong>C2E</strong> intervient sur toute l’étendue de la
+              République Démocratique du Congo et peut étendre ses activités
+              à d’autres régions du monde selon les opportunités et les besoins
+              des partenaires.
             </p>
 
-            {/* Bouton "En savoir plus" style référence */}
-            <button className="bg-yellow-400 text-blue-900 px-8 py-3 rounded-full font-bold text-lg hover:bg-white transition-all transform hover:scale-105 flex items-center gap-3">
-              En savoir plus
-              <ShieldCheck size={20} />
+            <p className="text-gray-600 leading-relaxed mb-8">
+              Nos interventions couvrent plusieurs secteurs stratégiques
+              notamment la santé, l’éducation, l’environnement et la gouvernance.
+              Nous accompagnons les ONG, institutions publiques et partenaires
+              techniques à travers des études, évaluations et projets
+              financés par des bailleurs nationaux et internationaux.
+            </p>
+
+            <button className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-6 py-3 rounded-lg shadow-md transition">
+              Voir nos zones d’intervention →
             </button>
-          </div>
+          </motion.div>
 
         </div>
       </section>
@@ -227,7 +279,7 @@ export default function Services() {
           <h2 className="text-4xl font-bold">Notre Equipe</h2>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-20">
           {consultants.map((consultant, index) => (
             <motion.div
               key={index}
