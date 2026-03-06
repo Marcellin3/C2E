@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { FaWhatsapp, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaLinkedin } from "react-icons/fa";
 import { Send } from "lucide-react";
+import { MdEmail } from "react-icons/md";
 
 export default function Contact () {
   const containerVariants = {
