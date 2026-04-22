@@ -15,10 +15,10 @@ import {
 import Footer from "../componen/Footer";
 
 const impactStats = [
-  { value: "8+", label: "Projets réalisés" },
-  { value: "6+", label: "Organisations accompagnées" },
-  { value: "2", label: "Provinces couvertes" },
-  { value: "500+", label: "Bénéficiaires indirects" },
+  { value: "+10", label: "Projets réalisés dans la communauté" },
+  { value: "+6", label: "Organisations accompagnées dans leurs actions" },
+  { value: "20", label: "Provinces couvertes par nos projets en RDC" },
+  { value: "+500", label: "Bénéficiaires indirects par nos action" },
 ];
 
 const projects = [
@@ -190,7 +190,7 @@ export default function Realisation() {
                   className={impactCardClass}
                 >
                   <div className="space-y-2">
-                    <div className="text-3xl font-bold tracking-tight md:text-[2.1rem]">
+                    <div className="text-3xl font-bold text-blue-900 tracking-tight md:text-[2.1rem]">
                       {stat.value}
                     </div>
                     <p className="max-w-[10rem] text-sm leading-5 text-slate-500">
@@ -209,7 +209,7 @@ export default function Realisation() {
                   className={impactCardClass}
                 >
                   <div className="space-y-2">
-                    <div className="text-3xl font-bold tracking-tight md:text-[2.1rem]">
+                    <div className="text-3xl font-bold text-blue-900 tracking-tight md:text-[2.1rem]">
                       {stat.value}
                     </div>
                     <p className="max-w-[10rem] text-sm leading-5 text-slate-500">
