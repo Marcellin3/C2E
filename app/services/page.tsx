@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import {
   Compass,
@@ -81,6 +82,46 @@ export default function Services() {
       desc: "Economiste et Spécialiste en Administration et finance, Plus de 10 ans d’expérience dans la gestion administrative financière et budgétaire de projet humanitaires et développement. Avec une expertise solide en gestion des subventions, Contrôle interne, Conformité aux exigences des baileurs, reporting financier et Supervision Comptable.",
     },
   ];
+
+  const testimonials = [
+    {
+      quote:
+        "Ce programme m'a permis de comprendre enfin ce qu'est la blockchain et comment Cardano peut servir nos projets locaux. Accessible, concret, motivant.",
+      author: "Participant·e",
+      role: "Promotion Onboarding - Goma",
+      accent: "bg-[linear-gradient(135deg,#eaf7ff_0%,#d8efff_100%)]",
+      image: "/photos/téléchargé 4.jpg",
+    },
+    {
+      quote:
+        "L'accompagnement du C2E nous a aidés à mieux structurer notre projet, poser des indicateurs utiles et renforcer la qualité de notre suivi sur le terrain.",
+      author: "Responsable de projet",
+      role: "Organisation partenaire - Nord-Kivu",
+      accent: "bg-[linear-gradient(135deg,#edf8ff_0%,#dcefff_100%)]",
+      image: "/photos/Prince.jpg",
+    },
+    {
+      quote:
+        "Une équipe disponible, méthodique et ancrée dans le terrain. Les recommandations formulées étaient claires, utiles et directement applicables à notre contexte.",
+      author: "Coordonnateur",
+      role: "Programme communautaire - RDC",
+      accent: "bg-[linear-gradient(135deg,#eef8ff_0%,#d7f0ff_100%)]",
+      image: "/photos/Charmant.jpg",
+    },
+  ];
+
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const currentTestimonial = testimonials[activeTestimonial];
+
+  const showPreviousTestimonial = () => {
+    setActiveTestimonial((current) =>
+      current === 0 ? testimonials.length - 1 : current - 1
+    );
+  };
+
+  const showNextTestimonial = () => {
+    setActiveTestimonial((current) => (current + 1) % testimonials.length);
+  };
 
   return (
     <div className="bg-gray-50 text-gray-800">
@@ -215,7 +256,7 @@ export default function Services() {
 
       <section id="services-grid" className="relative overflow-hidden bg-gray-50 px-4 py-16 md:px-20">
         <div className="relative mx-auto max-w-6xl">
-          <div className="grid gap-7 md:grid-cols-2">
+          <div className="grid gap-7 md:grid-cols-3 items-center">
             {services.map((service, index) => {
               const highlighted = index === 0 || index === 4;
 
@@ -227,7 +268,7 @@ export default function Services() {
                   transition={{ duration: 0.7, delay: index * 0.08 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -6 }}
-                  className={`relative overflow-hidden rounded-[2rem] px-8 py-8 shadow-[0_20px_45px_rgba(15,23,42,0.08)] transition duration-300 hover:shadow-[0_24px_55px_rgba(15,23,42,0.12)] ${highlighted
+                  className={`relative overflow-hidden rounded-xl px-8 py-8 shadow-[0_20px_45px_rgba(15,23,42,0.08)] transition duration-300 hover:shadow-[0_24px_55px_rgba(15,23,42,0.12)] ${highlighted
                     ? "border border-sky-200 bg-[linear-gradient(135deg,#8fe3ff_0%,#68cfff_35%,#84ddff_100%)]"
                     : "border border-white/80 bg-white"
                     }`}
@@ -350,6 +391,94 @@ export default function Services() {
               </div>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      <section className="bg-white px-4 py-10 md:px-10">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center">
+            <h2 className="font-display text-xl font-sm text-blue-950 md:text-6xl">
+              Ce qu&apos;ils en disent de nous
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-lg text-slate-500 md:text-xl">
+              Une communauté qui grandit à Goma autour de nos programmes, de
+              nos partenaires et de notre accompagnement.
+            </p>
+          </div>
+
+          <div className="relative mx-auto mt-16 max-w-[1120px] px-0 md:px-14">
+            <button
+              type="button"
+              onClick={showPreviousTestimonial}
+              aria-label="Témoignage précédent"
+              className="absolute left-0 top-1/2 z-20 flex h-16 w-16 -translate-y-1/2 items-center justify-center rounded-full bg-[#1459a7] text-white shadow-[0_18px_36px_rgba(20,89,167,0.28)] transition hover:bg-[#0f4c90] md:-left-8"
+            >
+              <FaChevronLeft size={18} />
+            </button>
+
+            <button
+              type="button"
+              onClick={showNextTestimonial}
+              aria-label="Témoignage suivant"
+              className="absolute right-0 top-1/2 z-20 flex h-16 w-16 -translate-y-1/2 items-center justify-center rounded-full bg-[#1459a7] text-white shadow-[0_18px_36px_rgba(20,89,167,0.28)] transition hover:bg-[#0f4c90] md:-right-8"
+            >
+              <FaChevronRight size={18} />
+            </button>
+
+            <motion.div
+              key={currentTestimonial.author}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45 }}
+              className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-[0_28px_70px_rgba(15,23,42,0.10)]"
+            >
+              <div className="grid md:grid-cols-[0.85fr_1.15fr]">
+                <div className="relative min-h-[300px] overflow-hidden rounded-t-[2.5rem] md:min-h-[430px] md:rounded-l-[2.5rem] md:rounded-tr-none">
+                  <div className={`absolute inset-0 ${currentTestimonial.accent}`} />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(126,196,255,0.42)_0%,rgba(255,255,255,0)_62%)]" />
+                  <div className="absolute left-1/2 top-1/2 h-[150px] w-[150px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-[6px] border-white bg-white shadow-[0_16px_34px_rgba(14,116,219,0.14)] md:h-[190px] md:w-[190px]">
+                    <Image
+                      src={currentTestimonial.image}
+                      alt={currentTestimonial.author}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+
+                <div className="px-2 py-2 md:px-4 md:py-4">
+                  <p className="text-6xl leading-none text-slate-200">&ldquo;</p>
+                  <p className="mt-4 text-sm text-slate-700 md:text-[1.60rem]">
+                    {currentTestimonial.quote}
+                  </p>
+                  <div className="mt-12">
+                    <p className="text-2xl font-semibold text-blue-950">
+                      {currentTestimonial.author}
+                    </p>
+                    <p className="mt-2 text-xl text-slate-500">
+                      {currentTestimonial.role}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            <div className="mt-8 flex items-center justify-center gap-3">
+              {testimonials.map((testimonial, index) => (
+                <button
+                  key={testimonial.author}
+                  type="button"
+                  onClick={() => setActiveTestimonial(index)}
+                  aria-label={`Afficher le témoignage ${index + 1}`}
+                  className={`h-3 rounded-full transition-all ${
+                    activeTestimonial === index
+                      ? "w-10 bg-[#1459a7]"
+                      : "w-3 bg-slate-300 hover:bg-slate-400"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

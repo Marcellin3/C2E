@@ -6,12 +6,16 @@ import { motion } from "framer-motion";
 import { FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import {
+  ArrowRight,
   BarChart3,
+  BriefcaseBusiness,
   GraduationCap,
+  Handshake,
   Lightbulb,
   ShieldCheck,
   Target,
   Globe2,
+  Users,
 } from "lucide-react";
 
 const objectives = [
@@ -84,6 +88,50 @@ const reasons = [
   },
 ];
 
+const partners = [
+  {
+    name: "Collaboration",
+    icon: Handshake,
+    description:
+      "Nous collaborons avec des organisations de confiance qui partagent nos valeurs et notre engagement envers l’impact positif et durable.",
+  },
+  {
+    name: "Qualité",
+    icon: ShieldCheck,
+    description:
+      "Nos partenaires sont rigoureusement sélectionnés pour leur expertise, leur professionnalisme et leur capacité à fournir des services d’excellence.",
+  },
+  {
+    name: "Engagement",
+    icon: Users,
+    description:
+      "Nous nous entourons de partenaires engagés qui placent l’humain et le développement des communautés au coeur de leurs actions.",
+  },
+  {
+    name: "Expertise",
+    icon: BriefcaseBusiness,
+    description:
+      "Nous travaillons avec des experts reconnus dans leurs domaines pour garantir des solutions innovantes, adaptées et durables.",
+  },
+  {
+    name: "Impact",
+    icon: Globe2,
+    description:
+      "Ensemble, nous créons des initiatives à fort impact, visant à améliorer durablement la qualité de vie et à construire un avenir meilleur.",
+  },
+];
+
+// Nouveaux partenaires basés sur votre image
+const actualPartners = [
+  { name: "Ephphatha", logo: "/photos/ephaphatha.jpg" },
+  { name: "Heal Africa", logo: "/photos/heal.png" },
+  { name: "wold vision", logo: "/photos/world.jpg" },
+  { name: "Goma Actif", logo: "/photos/logo ok.png" },
+  { name: "Institut Français", logo: "/photos/logo ok.png" },
+  { name: "Mulezi RDC", logo: "/photos/Mulezi.jpeg" },
+  { name: "360 Congo Invest", logo: "/photos/logo ok.png" },
+];
+
 export default function Accueil() {
   const heroImages = [
     "/photos/téléchargé 1.jpg",
@@ -106,9 +154,8 @@ export default function Accueil() {
         {heroImages.map((image, index) => (
           <div
             key={image}
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
-              activeImage === index ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${activeImage === index ? "opacity-100" : "opacity-0"
+              }`}
             style={{
               backgroundImage: `linear-gradient(90deg, rgba(4,16,37,0.94) 0%, rgba(4,16,37,0.86) 34%, rgba(4,16,37,0.46) 70%, rgba(4,16,37,0.76) 100%), url('${image}')`,
             }}
@@ -158,11 +205,10 @@ export default function Accueil() {
                   type="button"
                   onClick={() => setActiveImage(index)}
                   aria-label={`Afficher l'image ${index + 1}`}
-                  className={`h-2.5 rounded-full transition-all ${
-                    activeImage === index
+                  className={`h-2.5 rounded-full transition-all ${activeImage === index
                       ? "w-10 bg-white"
                       : "w-2.5 bg-white/45 hover:bg-white/70"
-                  }`}
+                    }`}
                 />
               ))}
             </div>
@@ -357,24 +403,21 @@ export default function Accueil() {
                   <motion.div
                     key={item.title}
                     whileHover={{ y: -6 }}
-                    className={`rounded-[2rem] px-7 py-8 md:px-8 md:py-9 ${
-                      isBlue
+                    className={`rounded-[2rem] px-7 py-8 md:px-8 md:py-9 ${isBlue
                         ? "bg-[linear-gradient(135deg,#0f79ff_0%,#123f87_100%)] text-white shadow-[0_24px_55px_rgba(15,121,255,0.22)]"
                         : "border border-slate-100 bg-white text-slate-900 shadow-[0_18px_38px_rgba(15,23,42,0.08)]"
-                    }`}
+                      }`}
                   >
                     <Icon
-                      className={`mb-6 h-10 w-10 ${
-                        isBlue ? "text-white/85" : "text-sky-600"
-                      }`}
+                      className={`mb-6 h-10 w-10 ${isBlue ? "text-white/85" : "text-sky-600"
+                        }`}
                     />
                     <h3 className="text-[1.45rem] font-semibold leading-tight">
                       {item.title}
                     </h3>
                     <p
-                      className={`mt-4 text-sm leading-7 ${
-                        isBlue ? "text-white/80" : "text-slate-500"
-                      }`}
+                      className={`mt-4 text-sm leading-7 ${isBlue ? "text-white/80" : "text-slate-500"
+                        }`}
                     >
                       {item.description}
                     </p>
@@ -420,6 +463,119 @@ export default function Accueil() {
                 </p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Nos Partenaires*/}
+      <section className="bg-white py-16 overflow-hidden border-t border-slate-50">
+        <div className="mx-auto max-w-7xl px-6 mb-10">
+          <p className="text-center text-sm font-bold uppercase tracking-[0.24em] text-slate-400">
+            Nos Partenaires
+          </p>
+        </div>
+
+        <div className="relative flex overflow-x-hidden group">
+          <div className="flex animate-marquee whitespace-nowrap py-2">
+            {[...actualPartners, ...actualPartners].map((partner, index) => (
+              <div
+                key={index}
+                className="mx-5 flex h-[78px] w-[250px] shrink-0 items-center gap-3 overflow-hidden rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm transition-shadow hover:shadow-md"
+              >
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="h-10 w-16 shrink-0 object-contain grayscale transition-all group-hover:grayscale-0"
+                />
+                <span className="block min-w-0 text-sm font-semibold leading-5 text-slate-700 whitespace-normal break-words">
+                  {partner.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Style pour l'animation de défilement infini */}
+        <style jsx>{`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee {
+            display: flex;
+            animation: marquee 30s linear infinite;
+          }
+        `}</style>
+      </section>
+
+      <section className="overflow-hidden bg-[#fefefe] px-16 py-18 text-blue-900">
+        <div className="relative mx-auto max-w-7xl">
+          <Globe2
+            aria-hidden="true"
+            className="pointer-events-none absolute -bottom-56 right-[-7rem] hidden h-[36rem] w-[36rem] text-[#021332] opacity-[0.18] xl:block"
+            strokeWidth={1}
+          />
+
+          <div className="relative grid gap-10 xl:grid-cols-3 xl:grid-rows-2 xl:gap-x-10 xl:gap-y-12">
+            <div className="relative flex min-h-[320px] flex-col xl:pr-10">
+              <h2 className="mt-5 max-w-[22rem] text-[2.55rem] font-semibold leading-[1.18] text-[#053692] md:text-[3.15rem] xl:text-[3.55rem]">
+                Des relations de confiance au service d&apos;un impact durable
+              </h2>
+
+              <motion.div
+                whileHover={{ x: 3 }}
+                className="mt-10 flex h-10 w-1 items-center justify-center rounded-full bg-white text-[#062764] xl:absolute xl:bottom-6 xl:left-[21.5rem]"
+              >
+                <ArrowRight className="h-5 w-5" />
+              </motion.div>
+            </div>
+
+            {partners.slice(0, 2).map((partner, index) => {
+              const Icon = partner.icon;
+
+              return (
+                <motion.div
+                  key={partner.name}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.55, delay: index * 0.08 }}
+                  viewport={{ once: true }}
+                  className="min-h-[310px] rounded-[4px] border-2 border-blue-900 bg-transparent px-6 pb-4 pt-4"
+                >
+                  <Icon className="h-14 w-14 text-[#0623c6]" strokeWidth={1.7} />
+                  <h3 className="mt-10 text-[2.1rem] font-semibold leading-none text-yellow-500">
+                    {partner.name}
+                  </h3>
+                  <p className="mt-6 max-w-[20rem] text-[1.05rem] leading-[1.9] text-[#0623c6]">
+                    {partner.description}
+                  </p>
+                </motion.div>
+              );
+            })}
+
+            {partners.slice(2).map((partner, index) => {
+              const Icon = partner.icon;
+
+              return (
+                <motion.div
+                  key={partner.name}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.55, delay: 0.16 + index * 0.08 }}
+                  viewport={{ once: true }}
+                  className={`min-h-[310px] rounded-[4px] border-2 border-blue-900 bg-transparent px-9 pb-10 pt-8 ${partner.name === "Impact" ? "relative overflow-hidden" : ""
+                    }`}
+                >
+                  <Icon className="relative z-10 h-14 w-14 text-[#0623c6]" strokeWidth={1.7} />
+                  <h3 className="relative z-10 mt-10 text-[2.1rem] font-semibold leading-none text-yellow-500">
+                    {partner.name}
+                  </h3>
+                  <p className="relative z-10 mt-6 max-w-[20rem] text-[1.05rem] leading-[1.9] text-[#0623c6]">
+                    {partner.description}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
