@@ -1,18 +1,24 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone } from "lucide-react";
-
-const menuItems = [
-  { name: "Home", link: "/accueil" },
-  { name: "About", link: "/accueil#about" },
-  { name: "Services", link: "/services" },
-  { name: "Realisations", link: "/realisation" },
-  { name: "Contact", link: "/Contact" },
-];
+import { Globe, Mail, MapPin, Menu, Phone, X } from "lucide-react";
+import { useTranslation } from "../i18n/TranslationProvider";
+import type { Locale } from "../i18n/translations";
 
 export default function Navbar() {
+  const { locale, setLocale, t } = useTranslation();
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const menuItems = [
+    { name: t.nav.home, link: "/accueil" },
+    { name: t.nav.about, link: "/accueil#about" },
+    { name: t.nav.services, link: "/services" },
+    { name: t.nav.realisations, link: "/realisation" },
+    { name: t.nav.contact, link: "/Contact" },
+  ];
+
   return (
     <header className="relative z-50 bg-white">
       <motion.div
@@ -34,7 +40,7 @@ export default function Navbar() {
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-50 text-sky-600">
                 <MapPin className="h-4 w-4" />
               </div>
-              <p className="font-semibold text-slate-900">Goma, RDC</p>
+              <p className="font-semibold text-slate-900">{t.nav.location}</p>
             </div>
 
             <div className="hidden items-center gap-3 lg:flex">
@@ -55,33 +61,109 @@ export default function Navbar() {
         transition={{ duration: 0.55, delay: 0.08 }}
         className="px-4 pb-4 md:px-6"
       >
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 rounded-3xl bg-blue-900/90 px-4 py-3 text-white shadow-[0_20px_40px_rgba(8,118,239,0.22)] md:px-6">
-          <Link href="/accueil" className="interactive-lift flex items-center gap-3">
+        <div className="mx-auto max-w-7xl rounded-3xl bg-blue-900/90 px-4 py-3 text-white shadow-[0_20px_40px_rgba(8,118,239,0.22)] md:px-6">
+          <div className="flex items-center justify-between gap-4">
+          <Link
+            href="/accueil"
+            className="interactive-lift flex items-center gap-3"
+            onClick={() => setMobileOpen(false)}
+          >
             <img
               src="/photos/logo ok.png"
               alt="Logo C2E"
-              width={60}
-              height={60}
-              className="object-contain"
+              width={52}
+              height={52}
+              className="object-contain md:h-[60px] md:w-[60px]"
             />
-            <p className="text-[2rem] font-semibold leading-none text-white">
-              C2E
+            <p className="text-[1.7rem] font-semibold leading-none text-white md:text-[2rem]">
+              {t.common.brand}
             </p>
           </Link>
 
-          <nav className="flex flex-wrap items-center gap-7 text-xl font-bold tracking-[0.01em]">
+          <nav className="hidden flex-wrap items-center gap-5 text-base tracking-[0.01em] lg:flex xl:gap-7 xl:text-xl">
             {menuItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.link}
                 className="interactive-lift transition hover:text-sky-200"
+                onClick={() => setMobileOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
           </nav>
 
-          <div />
+          <div className="hidden lg:flex">
+            <label className="flex items-center gap-3 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white">
+            <Globe className="h-4 w-4 text-sky-200" />
+            <span className="hidden md:inline">{t.common.languageLabel}</span>
+            <select
+              value={locale}
+              onChange={(event) => setLocale(event.target.value as Locale)}
+              aria-label={t.common.languageLabel}
+              className="bg-transparent text-sm text-white outline-none"
+            >
+              <option value="fr" className="text-slate-900">
+                {t.common.languages.fr}
+              </option>
+              <option value="en" className="text-slate-900">
+                {t.common.languages.en}
+              </option>
+              <option value="sw" className="text-slate-900">
+                {t.common.languages.sw}
+              </option>
+            </select>
+            </label>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setMobileOpen((current) => !current)}
+            aria-expanded={mobileOpen}
+            aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10 lg:hidden"
+          >
+            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+          </div>
+
+          {mobileOpen && (
+            <div className="mt-4 space-y-4 border-t border-white/10 pt-4 lg:hidden">
+              <nav className="flex flex-col gap-3 text-base font-medium">
+                {menuItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.link}
+                    className="rounded-2xl bg-white/8 px-4 py-3 transition hover:bg-white/12"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </nav>
+
+              <label className="flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-semibold text-white">
+                <Globe className="h-4 w-4 text-sky-200" />
+                <span>{t.common.languageLabel}</span>
+                <select
+                  value={locale}
+                  onChange={(event) => setLocale(event.target.value as Locale)}
+                  aria-label={t.common.languageLabel}
+                  className="ml-auto bg-transparent text-sm text-white outline-none"
+                >
+                  <option value="fr" className="text-slate-900">
+                    {t.common.languages.fr}
+                  </option>
+                  <option value="en" className="text-slate-900">
+                    {t.common.languages.en}
+                  </option>
+                  <option value="sw" className="text-slate-900">
+                    {t.common.languages.sw}
+                  </option>
+                </select>
+              </label>
+            </div>
+          )}
         </div>
       </motion.div>
     </header>

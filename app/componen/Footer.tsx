@@ -3,15 +3,18 @@
 import Link from "next/link";
 import { FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-
-const footerLinks = [
-  { name: "Accueil", href: "/accueil" },
-  { name: "Réalisations", href: "/realisation" },
-  { name: "Services", href: "/services" },
-  { name: "Contact", href: "/Contact" },
-];
+import { useTranslation } from "../i18n/TranslationProvider";
 
 export default function Footer() {
+  const { t } = useTranslation();
+
+  const footerLinks = [
+    { name: t.nav.home, href: "/accueil" },
+    { name: t.nav.realisations, href: "/realisation" },
+    { name: t.nav.services, href: "/services" },
+    { name: t.nav.contact, href: "/Contact" },
+  ];
+
   return (
     <footer className="relative z-10 motion-fade-up">
       <div className="border-t border-white/10 bg-blue-900/90 px-10 py-12 text-white backdrop-blur-2xl">
@@ -19,14 +22,14 @@ export default function Footer() {
           <div>
             <h3 className="mb-4 text-4xl font-semibold text-yellow-400">C2E</h3>
             <p className="text-sm leading-relaxed opacity-80">
-              Centre d&apos;Expertise et d&apos;Évaluation basé à Goma. Experts en
-              planification, évaluation et recherche appliquée pour un impact
-              durable en RDC.
+              {t.footer.description}
             </p>
           </div>
 
           <div>
-            <h3 className="mb-4 text-[1.7rem] font-semibold">Navigation</h3>
+            <h3 className="mb-4 text-[1.7rem] font-semibold">
+              {t.footer.navigation}
+            </h3>
             <ul className="space-y-2 text-sm opacity-90">
               {footerLinks.map((item) => (
                 <li key={item.name}>
@@ -42,7 +45,9 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-4 text-[1.7rem] font-semibold">Contact</h3>
+            <h3 className="mb-4 text-[1.7rem] font-semibold">
+              {t.footer.contact}
+            </h3>
             <div className="space-y-4 text-sm">
               <a
                 href="mailto:c2experteval@gmail.com"
@@ -67,15 +72,14 @@ export default function Footer() {
                 className="interactive-lift flex items-center gap-3 transition-colors hover:text-yellow-400"
               >
                 <FaLinkedin className="text-yellow-400" size={20} />
-                <span>LinkedIn / C2E</span>
+                <span>{t.common.linkedin}</span>
               </a>
             </div>
           </div>
         </div>
 
         <div className="mt-12 border-t border-white/5 pt-6 text-center text-xs opacity-50">
-          © 2026 Centre d&apos;Expertise et d&apos;Évaluation - Excellence &
-          Rigueur
+          {t.footer.copyright}
         </div>
       </div>
     </footer>

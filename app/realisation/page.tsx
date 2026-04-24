@@ -1,146 +1,81 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
-  Zap,
-  Users,
-  Search,
   Filter,
   LayoutGrid,
   List,
+  Search,
+  Users,
+  Zap,
 } from "lucide-react";
 import Footer from "../componen/Footer";
-
-const impactStats = [
-  { value: "+10", label: "Projets réalisés dans la communauté" },
-  { value: "+6", label: "Organisations accompagnées dans leurs actions" },
-  { value: "20", label: "Provinces couvertes par nos projets en RDC" },
-  { value: "+500", label: "Bénéficiaires indirects par nos action" },
-];
-
-const projects = [
-  {
-    title: "Plan stratégique ONG Action Solidaire pour la Paix",
-    category: "Planification",
-    client: "ONG ASP",
-    date: "Mars 2023",
-    description: "Élaboration du plan stratégique 2023-2027.",
-    image: "/photos/plant.jpg",
-  },
-  {
-    title: "Étude de base PNUD Kinshasa",
-    category: "Étude",
-    client: "PNUD",
-    date: "Décembre 2023",
-    description: "Programme de substitution partielle au bois énergie en RDC.",
-    image: "/photos/etude de base.jpg",
-  },
-  {
-    title: "Évaluation Heal Africa & Ephphatha",
-    category: "Évaluation",
-    client: "WorldShare",
-    date: "Février 2024",
-    description:
-      "Évaluation organisationnelle et formation en gestion de projet.",
-    image: "/photos/evaluation.jpg",
-  },
-  {
-    title: "Plan stratégique CR-OLK",
-    category: "Planification",
-    client: "CR-OLK",
-    date: "2024",
-    description: "Plan stratégique 2024-2028 du centre de recherche lacustre.",
-    image: "/photos/evaluation.jpg",
-  },
-  {
-    title: "Meta-évaluation CVA",
-    category: "Évaluation",
-    client: "World Vision",
-    date: "2024",
-    description: "Analyse de l’approche Citizen Voice and Action en RDC.",
-    image: "/photos/téléchargé 1.jpg",
-  },
-  {
-    title: "Projet Empowered 2 Protect",
-    category: "Évaluation",
-    client: "Help a Child",
-    date: "2024",
-    description:
-      "Évaluation finale du projet de lutte contre les violences basées sur le genre.",
-    image: "/photos/image 03.jpg",
-  },
-  {
-    title: "Projet GPSA - Cordaid",
-    category: "Redevabilité",
-    client: "Cordaid",
-    date: "2024",
-    description: "Évaluation du projet de redevabilité sociale au Sud-Kivu.",
-    image: "/photos/projet.jpg",
-  },
-  {
-    title: "Caravane interreligieuse",
-    category: "Recherche",
-    client: "Faith to Action",
-    date: "2024",
-    description:
-      "Étude de cas sur un projet d’apprentissage interreligieux.",
-    image: "/photos/téléchargé 2.jpg",
-  },
-];
+import { useTranslation } from "../i18n/TranslationProvider";
 
 export default function Realisation() {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState(
-    "Toutes les catégories"
-  );
-  const [viewMode, setViewMode] = useState("grille");
+  const [selectedCategory, setSelectedCategory] = useState(t.realisation.allCategories);
+  const [viewMode, setViewMode] = useState("grid");
   const [sortOrder, setSortOrder] = useState("recent");
 
+  const projects = t.realisation.projects.map((project) => ({
+    ...project,
+    category: t.realisation.categories[project.categoryKey],
+  }));
+
   const categories = [
-    "Toutes les catégories",
+    t.realisation.allCategories,
     ...new Set(projects.map((project) => project.category)),
   ];
 
-  const leftImpactStats = [impactStats[0], impactStats[2]];
-  const rightImpactStats = [impactStats[1], impactStats[3]];
+  useEffect(() => {
+    setSelectedCategory((current) =>
+      categories.includes(current) ? current : t.realisation.allCategories
+    );
+  }, [categories, t.realisation.allCategories]);
 
   const handleReset = () => {
     setSearchTerm("");
-    setSelectedCategory("Toutes les catégories");
+    setSelectedCategory(t.realisation.allCategories);
     setSortOrder("recent");
-    setViewMode("grille");
+    setViewMode("grid");
   };
 
   const filteredProjects = projects
     .filter((project) => {
+      const query = searchTerm.toLowerCase();
       const matchesSearch =
-        project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        project.client.toLowerCase().includes(searchTerm.toLowerCase());
+        project.title.toLowerCase().includes(query) ||
+        project.description.toLowerCase().includes(query) ||
+        project.client.toLowerCase().includes(query);
 
       const matchesCategory =
-        selectedCategory === "Toutes les catégories" ||
+        selectedCategory === t.realisation.allCategories ||
         project.category === selectedCategory;
 
       return matchesSearch && matchesCategory;
     })
     .sort((a, b) => {
-      if (sortOrder === "ancien") {
+      if (sortOrder === "oldest") {
         return a.date.localeCompare(b.date);
       }
 
       return b.date.localeCompare(a.date);
     });
 
+  const leftImpactStats = [t.realisation.impactStats[0], t.realisation.impactStats[2]];
+  const rightImpactStats = [t.realisation.impactStats[1], t.realisation.impactStats[3]];
+
   const impactCardClass =
     "group flex min-h-[155px] flex-col items-center justify-center rounded-sm border border-black/5 bg-white px-5 py-6 text-center text-slate-900 shadow-[0_10px_28px_rgba(15,23,42,0.08)] transition-all duration-300 hover:shadow-[0_14px_34px_rgba(15,23,42,0.12)] md:min-h-[170px] md:px-6";
 
   return (
     <main className="bg-[#f6f8ff] font-sans text-slate-900">
-      <section className="bg-gradient-to-br from-[#f2f3f3] to-blue-400 px-6 py-20 text-white">
+      <section className="bg-gradient-to-br from-[#f2f3f3] to-blue-400 px-4 py-14 text-white sm:px-6 sm:py-20">
         <div className="mx-auto grid max-w-7xl items-center gap-16 md:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -149,15 +84,13 @@ export default function Realisation() {
           >
             <div className="space-y-4">
               <h4 className="text-sm font-bold uppercase tracking-widest text-blue-900">
-                Solutions en Action
+                {t.realisation.eyebrow}
               </h4>
-              <h1 className="text-4xl font-bold leading-tight md:text-6xl">
-                Acquérez une expertise avec C2E
+              <h1 className="text-[2.35rem] font-bold leading-tight sm:text-[3rem] md:text-6xl">
+                {t.realisation.title}
               </h1>
               <p className="max-w-lg text-lg leading-relaxed text-blue-50/90">
-                Des missions concrètes au service du développement durable en
-                RDC. Profitez d&apos;un accompagnement rigoureux pour transformer
-                vos visions en impacts mesurables.
+                {t.realisation.intro}
               </p>
             </div>
 
@@ -166,13 +99,13 @@ export default function Realisation() {
                 href="/realisation#projects-section"
                 className="flex items-center gap-2 rounded-2xl bg-yellow-400 px-8 py-4 font-bold text-white shadow-lg transition-all hover:bg-white hover:text-[#1965b5]"
               >
-                Explorer nos projets
+                {t.realisation.projectsCta}
               </Link>
               <Link
                 href="/Contact"
                 className="rounded-2xl border-2 border-white/30 px-8 py-4 font-bold text-white transition-all hover:border-white"
               >
-                Parlons-en
+                {t.realisation.talkCta}
               </Link>
             </div>
           </motion.div>
@@ -180,7 +113,7 @@ export default function Realisation() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mx-auto flex max-w-[420px] items-start gap-5 md:mx-0 md:gap-6"
+            className="mx-auto flex w-full max-w-[420px] items-start gap-4 md:mx-0 md:gap-6"
           >
             <div className="flex flex-1 flex-col gap-5 md:-translate-y-6 md:gap-6">
               {leftImpactStats.map((stat) => (
@@ -190,7 +123,7 @@ export default function Realisation() {
                   className={impactCardClass}
                 >
                   <div className="space-y-2">
-                    <div className="text-3xl font-bold text-blue-900 tracking-tight md:text-[2.1rem]">
+                    <div className="text-3xl font-bold tracking-tight text-blue-900 md:text-[2.1rem]">
                       {stat.value}
                     </div>
                     <p className="max-w-[10rem] text-sm leading-5 text-slate-500">
@@ -209,7 +142,7 @@ export default function Realisation() {
                   className={impactCardClass}
                 >
                   <div className="space-y-2">
-                    <div className="text-3xl font-bold text-blue-900 tracking-tight md:text-[2.1rem]">
+                    <div className="text-3xl font-bold tracking-tight text-blue-900 md:text-[2.1rem]">
                       {stat.value}
                     </div>
                     <p className="max-w-[10rem] text-sm leading-5 text-slate-500">
@@ -223,7 +156,7 @@ export default function Realisation() {
         </div>
       </section>
 
-      <section id="projects-section" className="scroll-mt-32 px-6 py-16">
+      <section id="projects-section" className="scroll-mt-32 px-4 py-12 sm:px-6 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-4">
           <div className="lg:col-span-3">
             <div className="mb-8 rounded-xl border border-gray-100 bg-white p-6 shadow-sm">
@@ -235,35 +168,35 @@ export default function Realisation() {
                   />
                   <input
                     type="text"
-                    placeholder="Rechercher un projet, une catégorie ou un créateur..."
+                    placeholder={t.realisation.searchPlaceholder}
                     className="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-3 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onChange={(event) => setSearchTerm(event.target.value)}
                   />
                 </div>
 
                 <div className="flex self-start rounded-xl bg-gray-100 p-1">
                   <button
                     type="button"
-                    onClick={() => setViewMode("grille")}
+                    onClick={() => setViewMode("grid")}
                     className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all ${
-                      viewMode === "grille"
+                      viewMode === "grid"
                         ? "bg-white text-blue-600 shadow"
                         : "text-gray-500"
                     }`}
                   >
-                    <LayoutGrid size={16} /> Grille
+                    <LayoutGrid size={16} /> {t.realisation.grid}
                   </button>
                   <button
                     type="button"
-                    onClick={() => setViewMode("liste")}
+                    onClick={() => setViewMode("list")}
                     className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all ${
-                      viewMode === "liste"
+                      viewMode === "list"
                         ? "bg-white text-blue-600 shadow"
                         : "text-gray-500"
                     }`}
                   >
-                    <List size={16} /> Liste
+                    <List size={16} /> {t.realisation.list}
                   </button>
                 </div>
               </div>
@@ -271,13 +204,13 @@ export default function Realisation() {
               <div className="flex flex-wrap items-center justify-between gap-4 border-t border-gray-50 pt-4">
                 <div className="flex flex-wrap items-center gap-4">
                   <div className="flex items-center gap-2 text-sm font-medium text-gray-500">
-                    <Filter size={16} /> Filtres :
+                    <Filter size={16} /> {t.realisation.filters}
                   </div>
 
                   <select
                     className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:outline-none"
                     value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    onChange={(event) => setSelectedCategory(event.target.value)}
                   >
                     {categories.map((category) => (
                       <option key={category} value={category}>
@@ -289,10 +222,10 @@ export default function Realisation() {
                   <select
                     className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:outline-none"
                     value={sortOrder}
-                    onChange={(e) => setSortOrder(e.target.value)}
+                    onChange={(event) => setSortOrder(event.target.value)}
                   >
-                    <option value="recent">Plus récents</option>
-                    <option value="ancien">Plus anciens</option>
+                    <option value="recent">{t.realisation.recent}</option>
+                    <option value="oldest">{t.realisation.oldest}</option>
                   </select>
 
                   <button
@@ -300,22 +233,22 @@ export default function Realisation() {
                     onClick={handleReset}
                     className="text-sm font-medium text-gray-500 hover:text-blue-600"
                   >
-                    Réinitialiser
+                    {t.realisation.reset}
                   </button>
                 </div>
 
                 <div className="text-sm font-medium text-gray-400">
                   {filteredProjects.length}{" "}
                   {filteredProjects.length > 1
-                    ? "projets trouvés"
-                    : "projet trouvé"}
+                    ? t.realisation.projectsFoundPlural
+                    : t.realisation.projectsFoundSingular}
                 </div>
               </div>
             </div>
 
             <div
               className={
-                viewMode === "grille"
+                viewMode === "grid"
                   ? "grid gap-6 md:grid-cols-2 xl:grid-cols-3"
                   : "flex flex-col gap-4"
               }
@@ -325,15 +258,15 @@ export default function Realisation() {
                   <div
                     key={project.title}
                     className={`overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md ${
-                      viewMode === "liste" ? "flex h-32 items-center" : ""
+                      viewMode === "list" ? "flex flex-col sm:h-32 sm:flex-row sm:items-center" : ""
                     }`}
                   >
                     <img
                       src={project.image}
                       alt={project.title}
                       className={
-                        viewMode === "liste"
-                          ? "h-full w-48 object-cover"
+                        viewMode === "list"
+                          ? "h-40 w-full object-cover sm:h-full sm:w-48"
                           : "h-40 w-full object-cover"
                       }
                     />
@@ -343,12 +276,12 @@ export default function Realisation() {
                       </span>
                       <h3
                         className={`mt-1 font-bold leading-tight text-gray-900 ${
-                          viewMode === "liste" ? "text-base" : "text-lg"
+                          viewMode === "list" ? "text-base" : "text-lg"
                         }`}
                       >
                         {project.title}
                       </h3>
-                      {viewMode === "grille" && (
+                      {viewMode === "grid" && (
                         <p className="mt-2 line-clamp-2 text-sm text-gray-500">
                           {project.description}
                         </p>
@@ -361,9 +294,7 @@ export default function Realisation() {
                 ))
               ) : (
                 <div className="col-span-full rounded-xl border border-dashed border-gray-200 bg-white py-20 text-center">
-                  <p className="text-gray-400">
-                    Aucun projet ne correspond à votre recherche.
-                  </p>
+                  <p className="text-gray-400">{t.realisation.noResults}</p>
                 </div>
               )}
             </div>
@@ -375,18 +306,16 @@ export default function Realisation() {
                 <Zap className="text-white" fill="white" size={20} />
               </div>
               <h4 className="mb-2 text-xl font-bold text-gray-900">
-                Vous avez un projet ?
+                {t.realisation.sideTitleOne}
               </h4>
               <p className="mb-6 text-sm leading-relaxed text-orange-800">
-                Nous sommes là pour vous accompagner et toucher plus de
-                communautés, avec des impacts bien mesurables.
+                {t.realisation.sideTextOne}
               </p>
               <Link
                 href="/services"
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-yellow-400 px-4 py-3 font-bold text-white transition-colors hover:bg-orange-600"
               >
-                Découvrez ce que nous pouvons faire pour vous{" "}
-                <ArrowRight size={18} />
+                {t.realisation.sideCtaOne} <ArrowRight size={18} />
               </Link>
             </div>
 
@@ -395,32 +324,38 @@ export default function Realisation() {
                 <Users className="text-white" size={20} />
               </div>
               <h4 className="mb-2 text-xl font-bold text-gray-900">
-                Parlez à nos experts !
+                {t.realisation.sideTitleTwo}
               </h4>
               <p className="mb-6 text-sm leading-relaxed text-blue-800">
-                Laissez-nous un message pour prendre un rendez-vous avec nous.
+                {t.realisation.sideTextTwo}
               </p>
               <div className="space-y-3">
                 <Link
                   href="/Contact"
                   className="block w-full rounded-xl bg-blue-600 px-4 py-3 text-center font-bold text-white transition-colors hover:bg-blue-700"
                 >
-                  Parler de votre besoin
+                  {t.realisation.sideCtaTwo}
                 </Link>
                 <a
                   href="tel:+243997674407"
                   className="block w-full rounded-xl border-2 border-blue-900 bg-transparent px-4 py-3 text-center font-bold text-blue-900 transition-colors hover:bg-blue-50"
                 >
-                  Prendre rendez-vous
+                  {t.realisation.appointmentCta}
                 </a>
               </div>
             </div>
 
             <div className="rounded-xl bg-blue-900 p-4 text-white shadow">
-              <h4 className="mb-3 font-semibold">Statistiques</h4>
-              <p>Projets : {projects.length}</p>
-              <p>Pays : RDC</p>
-              <p>Années : 2023 - 2024</p>
+              <h4 className="mb-3 font-semibold">{t.realisation.statsTitle}</h4>
+              <p>
+                {t.realisation.statsProjects} : {projects.length}
+              </p>
+              <p>
+                {t.realisation.statsCountry} : RDC
+              </p>
+              <p>
+                {t.realisation.statsYears} : 2023 - 2024
+              </p>
             </div>
           </div>
         </div>

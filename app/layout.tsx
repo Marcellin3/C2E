@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Merriweather } from "next/font/google";
 import "./globals.css";
 import Navbar from "./componen/Navbar";
+import { TranslationProvider } from "./i18n/TranslationProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,23 +21,25 @@ const merriweather = Merriweather({
 });
 
 export const metadata: Metadata = {
-  title: "C2E - Centre d'Éxpertise et d'Évaluation",
+  title: "C2E - Centre d'Expertise et d'Evaluation",
   description:
-    "C2E accompagne les institutions dans la planification, le suivi et l’évaluation des politiques et programmes de développement.",
+    "C2E accompagne les institutions dans la planification, le suivi et l'évaluation des politiques et programmes de développement.",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="fr">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} antialiased`}
       >
-        <Navbar />
-        {children}
+        <TranslationProvider>
+          <Navbar />
+          {children}
+        </TranslationProvider>
       </body>
     </html>
   );
