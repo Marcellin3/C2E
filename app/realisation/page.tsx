@@ -13,16 +13,57 @@ import {
   Zap,
 } from "lucide-react";
 import Footer from "../componen/Footer";
+import { getProjectsWithFeaturedStudies } from "../data/featuredStudies";
 import { useTranslation } from "../i18n/TranslationProvider";
 
+function AnimatedStatValue({ value }: { value: string }) {
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    const numericValue = Number.parseInt(value.replace(/\D/g, ""), 10);
+
+    if (Number.isNaN(numericValue)) {
+      setDisplayValue(0);
+      return;
+    }
+
+    const duration = 1400;
+    const startTime = performance.now();
+    let animationFrame = 0;
+
+    const updateValue = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+
+      setDisplayValue(Math.round(numericValue * easedProgress));
+
+      if (progress < 1) {
+        animationFrame = window.requestAnimationFrame(updateValue);
+      }
+    };
+
+    animationFrame = window.requestAnimationFrame(updateValue);
+
+    return () => window.cancelAnimationFrame(animationFrame);
+  }, [value]);
+
+  const prefix = value.startsWith("+") ? "+" : "";
+
+  return <>{`${prefix}${displayValue}`}</>;
+}
+
 export default function Realisation() {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(t.realisation.allCategories);
   const [viewMode, setViewMode] = useState("grid");
   const [sortOrder, setSortOrder] = useState("recent");
 
-  const projects = t.realisation.projects.map((project) => ({
+  const projects = getProjectsWithFeaturedStudies(
+    locale,
+    t.realisation.projects
+  ).map((project) => ({
     ...project,
     category: t.realisation.categories[project.categoryKey],
   }));
@@ -124,7 +165,7 @@ export default function Realisation() {
                 >
                   <div className="space-y-2">
                     <div className="text-3xl font-bold tracking-tight text-blue-900 md:text-[2.1rem]">
-                      {stat.value}
+                      <AnimatedStatValue value={stat.value} />
                     </div>
                     <p className="max-w-[10rem] text-sm leading-5 text-slate-500">
                       {stat.label}
@@ -143,7 +184,7 @@ export default function Realisation() {
                 >
                   <div className="space-y-2">
                     <div className="text-3xl font-bold tracking-tight text-blue-900 md:text-[2.1rem]">
-                      {stat.value}
+                      <AnimatedStatValue value={stat.value} />
                     </div>
                     <p className="max-w-[10rem] text-sm leading-5 text-slate-500">
                       {stat.label}
@@ -345,7 +386,7 @@ export default function Realisation() {
               </div>
             </div>
 
-            <div className="rounded-xl bg-blue-900 p-4 text-white shadow">
+            <div className="rounded-xl bg-blue-900/90 p-4 text-white shadow">
               <h4 className="mb-3 font-semibold">{t.realisation.statsTitle}</h4>
               <p>
                 {t.realisation.statsProjects} : {projects.length}

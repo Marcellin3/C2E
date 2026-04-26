@@ -7,6 +7,7 @@ import {
   ArrowRight,
   BarChart3,
   BriefcaseBusiness,
+  CheckCircle2,
   Globe2,
   GraduationCap,
   Handshake,
@@ -16,10 +17,11 @@ import {
   Users,
 } from "lucide-react";
 import Footer from "../componen/Footer";
+import { getProjectsWithFeaturedStudies } from "../data/featuredStudies";
 import { useTranslation } from "../i18n/TranslationProvider";
 
 export default function Accueil() {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
 
   const objectives = [
     { icon: BarChart3, ...t.accueil.objectives[0] },
@@ -41,6 +43,72 @@ export default function Accueil() {
     "/photos/téléchargé 2.jpg",
     "/photos/téléchargé 3.jpg",
   ];
+  const valuesContent = {
+    fr: {
+      label: "Nos valeurs",
+      title: "Des principes qui orientent chacune de nos interventions.",
+      text: "Au C2E, nos valeurs traduisent notre maniere de travailler avec les institutions, les partenaires et les communautes. Elles guident nos decisions, structurent nos methodes et renforcent la confiance dans chaque mission.",
+      cardLabel: "Valeurs",
+      items: [
+        "Innovation et creativite : C2E developpe des solutions originales, repense les approches classiques et favorise l'emergence de nouvelles connaissances.",
+        "Rigueur, integrite et professionnalisme : C2E garantit la qualite scientifique, l'ethique, la transparence et l'excellence dans toutes ses actions.",
+        "Responsabilite et engagement : C2E assume pleinement ses missions, respecte ses engagements et oeuvre avec serieux pour des resultats durables.",
+        "Respect, equite et inclusion : C2E valorise chaque individu, promeut la justice sociale et defend une societe inclusive.",
+        "Collaboration et cooperation : C2E privilegie le travail collectif, l'ecoute des partenaires et la solidarite pour relever les defis communautaires.",
+      ],
+    },
+    en: {
+      label: "Our values",
+      title: "Principles that guide each of our interventions.",
+      text: "At C2E, our values shape how we work with institutions, partners, and communities. They guide our decisions, structure our methods, and strengthen trust in every mission.",
+      cardLabel: "Values",
+      items: [
+        "Innovation and creativity: C2E develops original solutions, rethinks conventional approaches, and encourages the emergence of new knowledge.",
+        "Rigor, integrity, and professionalism: C2E ensures scientific quality, ethics, transparency, and excellence in all its actions.",
+        "Responsibility and commitment: C2E fully assumes its missions, honors its commitments, and works seriously for sustainable results.",
+        "Respect, equity, and inclusion: C2E values every individual, promotes social justice, and stands for an inclusive society.",
+        "Collaboration and cooperation: C2E prioritizes teamwork, partner listening, and solidarity to address community challenges.",
+      ],
+    },
+    sw: {
+      label: "Maadili yetu",
+      title: "Misingi inayoongoza kila hatua ya kazi yetu.",
+      text: "Katika C2E, maadili yetu yanaelekeza namna tunavyofanya kazi na taasisi, washirika na jamii. Yanaongoza maamuzi yetu, yanaimarisha mbinu zetu na kujenga uaminifu katika kila jukumu.",
+      cardLabel: "Maadili",
+      items: [
+        "Ubunifu na uhalisia mpya: C2E hubuni suluhisho za kipekee, hufikiria upya mbinu za kawaida na kuhamasisha maarifa mapya.",
+        "Umakini, uadilifu na taaluma: C2E huhakikisha ubora wa kisayansi, maadili, uwazi na ubora katika kila hatua.",
+        "Uwajibikaji na kujitolea: C2E hubeba wajibu wa kazi zake kikamilifu, hutimiza ahadi zake na kufanya kazi kwa umakini kwa matokeo ya kudumu.",
+        "Heshima, usawa na ujumuishi: C2E humthamini kila mtu, huendeleza haki ya kijamii na kutetea jamii jumuishi.",
+        "Ushirikiano na umoja: C2E hupendelea kazi ya pamoja, kusikiliza washirika na mshikamano katika kukabili changamoto za jamii.",
+      ],
+    },
+  }[locale];
+
+  const recentStudiesContent = {
+    fr: {
+      label: "Nos recentes",
+      title: "Des missions recentes qui illustrent notre expertise de terrain.",
+      cta: "Voir plus",
+    },
+    en: {
+      label: "Our recent studies",
+      title: "Recent assignments that reflect our field expertise.",
+      cta: "View all",
+    },
+    sw: {
+      label: "Tafiti zetu za karibuni",
+      title: "Majukumu ya karibuni yanayoonesha utaalamu wetu wa uwanjani.",
+      cta: "Tazama zaidi",
+    },
+  }[locale];
+
+  const recentStudies = getProjectsWithFeaturedStudies(
+    locale,
+    t.realisation.projects
+  ).slice(0, 4);
+ 
+  const [activeStudy, setActiveStudy] = useState(0);
   const [activeImage, setActiveImage] = useState(0);
 
   useEffect(() => {
@@ -50,6 +118,14 @@ export default function Accueil() {
 
     return () => window.clearInterval(interval);
   }, [heroImages.length]);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveStudy((current) => (current + 1) % recentStudies.length);
+    }, 4200);
+
+    return () => window.clearInterval(interval);
+  }, [recentStudies.length]);
 
   return (
     <main className="overflow-hidden bg-[#eef4fb] text-slate-900">
@@ -382,6 +458,143 @@ export default function Accueil() {
             animation: marquee 30s linear infinite;
           }
         `}</style>
+      </section>
+
+      <section className="bg-[#f7fbff] px-4 py-20 sm:px-6 lg:px-20">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+          <div className="max-w-xl">
+            <p className="text-sm font-bold uppercase tracking-[0.24em] text-sky-600">
+              {valuesContent.label}
+            </p>
+            <h2 className="mt-4 text-[2.2rem] font-semibold leading-[1.08] text-slate-900 md:text-[3rem]">
+              {valuesContent.title}
+            </h2>
+            <p className="mt-6 text-[17px] leading-8 text-slate-600 md:text-[18px]">
+              {valuesContent.text}
+            </p>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="relative rounded-[2.2rem] border border-sky-100 bg-white px-5 pb-6 pt-12 shadow-[0_24px_60px_rgba(34,120,255,0.12)] sm:px-8 sm:pb-8 sm:pt-14"
+          >
+            <div className="absolute left-6 top-0 -translate-y-1/2 rounded-full bg-[linear-gradient(135deg,#0666db_0%,#1495ff_100%)] px-6 py-3 text-base font-semibold text-white shadow-[0_12px_28px_rgba(6,102,219,0.28)]">
+              {valuesContent.cardLabel}
+            </div>
+
+            <div className="space-y-6">
+              {valuesContent.items.map((item) => (
+                <div
+                  key={item}
+                  className="flex items-start gap-4 rounded-[1.5rem] px-2 py-1 sm:gap-5"
+                >
+                  <div className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sky-50 text-sky-700">
+                    <CheckCircle2 className="h-6 w-6" />
+                  </div>
+                  <p className="text-[15px] leading-7 text-slate-700 sm:text-base">
+                    {item}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="overflow-hidden bg-white px-4 py-20 sm:px-6 lg:px-20">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
+          <div className="max-w-md">
+            <p className="text-sm font-bold uppercase tracking-[0.24em] text-sky-600">
+              {recentStudiesContent.label}
+            </p>
+            <h2 className="mt-4 text-[2.8rem] font-semibold leading-[0.95] text-slate-900 sm:text-[3.5rem] md:text-[4.4rem]">
+              Etudes
+            </h2>
+            <p className="mt-5 text-[16px] leading-7 text-slate-600">
+              {recentStudiesContent.title}
+            </p>
+
+            <Link
+              href="/realisation"
+              className="mt-7 inline-flex items-center rounded-[0.6rem] bg-slate-900 px-5 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:bg-slate-800"
+            >
+              {recentStudiesContent.cta}
+            </Link>
+
+            <div className="mt-8 flex items-center gap-3">
+              {recentStudies.map((study, index) => (
+                <button
+                  key={study.title}
+                  type="button"
+                  onClick={() => setActiveStudy(index)}
+                  aria-label={`${recentStudiesContent.label} ${index + 1}`}
+                  className={`h-2.5 rounded-full transition-all ${
+                    activeStudy === index
+                      ? "w-10 bg-slate-900"
+                      : "w-2.5 bg-slate-400 hover:bg-slate-600"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="relative overflow-hidden">
+            <div className="flex items-stretch gap-4 sm:gap-5">
+              {recentStudies.map((_, offset) => {
+                const study =
+                  recentStudies[(activeStudy + offset) % recentStudies.length];
+                const isActive = offset === 0;
+
+                return (
+                  <motion.article
+                    key={`${study.title}-${offset}`}
+                    className={`relative shrink-0 overflow-hidden rounded-[1.6rem] bg-white ${
+                      isActive
+                        ? "h-[25rem] w-[18rem] sm:h-[28rem] sm:w-[20rem]"
+                        : "mt-6 h-[20rem] w-[13rem] sm:mt-8 sm:h-[23rem] sm:w-[15rem]"
+                    }`}
+                    initial={{ opacity: 0.7, y: 18 }}
+                    animate={{
+                      opacity: isActive ? 1 : 0.82,
+                      scale: isActive ? 1 : 0.96,
+                      y: isActive ? 0 : 18,
+                    }}
+                    transition={{ duration: 0.45, ease: "easeOut" }}
+                  >
+                    <div
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{
+                        backgroundImage: `linear-gradient(180deg, rgba(15,23,42,0.04) 0%, rgba(15,23,42,0.18) 35%, rgba(15,23,42,0.88) 100%), url('${study.image}')`,
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(15,23,42,0.05)_48%,rgba(15,23,42,0.90)_100%)]" />
+
+                    <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-6">
+                      <div className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/75">
+                        <span>{study.client}</span>
+                        <span className="h-1 w-1 rounded-full bg-white/45" />
+                        <span>{study.date}</span>
+                      </div>
+
+                      <h3 className="mt-3 text-[1.2rem] font-semibold leading-tight sm:text-[1.45rem]">
+                        {study.title}
+                      </h3>
+
+                      {isActive ? (
+                        <p className="mt-3 text-sm leading-7 text-white/78">
+                          {study.description}
+                        </p>
+                      ) : null}
+                    </div>
+                  </motion.article>
+                );
+              })}
+            </div>
+          </div>
+        </div>
       </section>
 {/* STATS 
       <section className="overflow-hidden bg-[#fefefe] px-4 py-14 text-blue-900 sm:px-6 lg:px-16">

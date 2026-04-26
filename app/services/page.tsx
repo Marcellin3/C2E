@@ -207,17 +207,17 @@ export default function Services() {
       </section>
 
       <section className="bg-gray-50 py-28">
-        <div className="mx-auto grid max-w-7xl items-center gap-16 px-6 md:grid-cols-2">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-20 md:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -80 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="relative"
+            className="order-2 relative md:justify-self-end"
           >
             <img
               src="/photos/super.png"
               alt="Carte du monde"
-              className="w-full opacity-80"
+              className="w-full max-w-[520px] opacity-80"
             />
           </motion.div>
 
@@ -225,6 +225,7 @@ export default function Services() {
             initial={{ opacity: 0, x: 80 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
+            className="order-1"
           >
             <h2 className="font-display text-4xl font-semibold leading-snug text-gray-800 md:text-[3.2rem]">
               {t.servicesPage.actionTitle}
@@ -293,31 +294,31 @@ export default function Services() {
       <section className="bg-white px-4 py-10 md:px-10">
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
-            <h2 className="font-display text-xl text-blue-950 md:text-6xl">
+            <h2 className="font-display text-xl text-blue-950 md:text-5xl">
               {t.servicesPage.testimonialsTitle}
             </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-lg text-slate-500 md:text-xl">
+            <p className="mx-auto mt-4 max-w-xl text-base text-slate-500 md:text-lg">
               {t.servicesPage.testimonialsText}
             </p>
           </div>
 
-          <div className="relative mx-auto mt-16 max-w-[1120px] px-0 pb-20 md:px-14 md:pb-0">
+          <div className="relative mx-auto mt-12 max-w-[940px] px-0 pb-18 md:px-12 md:pb-0">
             <button
               type="button"
               onClick={showPreviousTestimonial}
               aria-label={t.servicesPage.previousTestimonial}
-              className="absolute left-2 top-[calc(100%+1rem)] z-20 flex h-12 w-12 items-center justify-center rounded-full bg-[#1459a7] text-white shadow-[0_18px_36px_rgba(20,89,167,0.28)] transition hover:bg-[#0f4c90] md:left-0 md:top-1/2 md:h-16 md:w-16 md:-translate-y-1/2 md:-left-8"
+              className="absolute left-2 top-[calc(100%+0.8rem)] z-20 flex h-10 w-10 items-center justify-center rounded-full bg-[#1459a7] text-white shadow-[0_14px_28px_rgba(20,89,167,0.24)] transition hover:bg-[#0f4c90] md:left-0 md:top-1/2 md:h-12 md:w-12 md:-translate-y-1/2 md:-left-6"
             >
-              <FaChevronLeft size={18} />
+              <FaChevronLeft size={15} />
             </button>
 
             <button
               type="button"
               onClick={showNextTestimonial}
               aria-label={t.servicesPage.nextTestimonial}
-              className="absolute right-2 top-[calc(100%+1rem)] z-20 flex h-12 w-12 items-center justify-center rounded-full bg-[#1459a7] text-white shadow-[0_18px_36px_rgba(20,89,167,0.28)] transition hover:bg-[#0f4c90] md:right-0 md:top-1/2 md:h-16 md:w-16 md:-translate-y-1/2 md:-right-8"
+              className="absolute right-2 top-[calc(100%+0.8rem)] z-20 flex h-10 w-10 items-center justify-center rounded-full bg-[#1459a7] text-white shadow-[0_14px_28px_rgba(20,89,167,0.24)] transition hover:bg-[#0f4c90] md:right-0 md:top-1/2 md:h-12 md:w-12 md:-translate-y-1/2 md:-right-6"
             >
-              <FaChevronRight size={18} />
+              <FaChevronRight size={15} />
             </button>
 
             <motion.div
@@ -325,13 +326,13 @@ export default function Services() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45 }}
-              className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-[0_28px_70px_rgba(15,23,42,0.10)]"
+              className="relative overflow-hidden rounded-[2rem] bg-white shadow-[0_22px_52px_rgba(15,23,42,0.08)]"
             >
               <div className="grid md:grid-cols-[0.85fr_1.15fr]">
-                <div className="relative min-h-[300px] overflow-hidden rounded-t-[2.5rem] md:min-h-[430px] md:rounded-l-[2.5rem] md:rounded-tr-none">
+                <div className="relative min-h-[240px] overflow-hidden rounded-t-[2rem] md:min-h-[340px] md:rounded-l-[2rem] md:rounded-tr-none">
                   <div className={`absolute inset-0 ${currentTestimonial.accent}`} />
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(126,196,255,0.42)_0%,rgba(255,255,255,0)_62%)]" />
-                  <div className="absolute left-1/2 top-1/2 h-[150px] w-[150px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-[6px] border-white bg-white shadow-[0_16px_34px_rgba(14,116,219,0.14)] md:h-[190px] md:w-[190px]">
+                  <div className="absolute left-1/2 top-1/2 h-[118px] w-[118px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-[5px] border-white bg-white shadow-[0_14px_28px_rgba(14,116,219,0.12)] md:h-[150px] md:w-[150px]">
                     <Image
                       src={currentTestimonial.image}
                       alt={currentTestimonial.author}
@@ -341,16 +342,16 @@ export default function Services() {
                   </div>
                 </div>
 
-                <div className="px-2 py-2 md:px-4 md:py-4">
-                  <p className="text-6xl leading-none text-slate-200">&ldquo;</p>
-                  <p className="mt-4 text-sm text-slate-700 md:text-[1.60rem]">
+                <div className="px-4 py-4 md:px-6 md:py-6">
+                  <p className="text-4xl leading-none text-slate-200 md:text-5xl">&ldquo;</p>
+                  <p className="mt-3 text-sm leading-7 text-slate-700 md:text-[1.2rem] md:leading-8">
                     {currentTestimonial.quote}
                   </p>
-                  <div className="mt-12">
-                    <p className="text-2xl font-semibold text-blue-950">
+                  <div className="mt-8">
+                    <p className="text-xl font-semibold text-blue-950 md:text-[1.4rem]">
                       {currentTestimonial.author}
                     </p>
-                    <p className="mt-2 text-xl text-slate-500">
+                    <p className="mt-1 text-sm text-slate-500 md:text-base">
                       {currentTestimonial.role}
                     </p>
                   </div>
@@ -358,17 +359,17 @@ export default function Services() {
               </div>
             </motion.div>
 
-            <div className="mt-8 flex items-center justify-center gap-3">
+            <div className="mt-6 flex items-center justify-center gap-3">
               {testimonials.map((testimonial, index) => (
                 <button
                   key={testimonial.author}
                   type="button"
                   onClick={() => setActiveTestimonial(index)}
                   aria-label={`${t.servicesPage.testimonialDotLabel} ${index + 1}`}
-                  className={`h-3 rounded-full transition-all ${
+                  className={`h-2.5 rounded-full transition-all ${
                     activeTestimonial === index
-                      ? "w-10 bg-[#1459a7]"
-                      : "w-3 bg-slate-300 hover:bg-slate-400"
+                      ? "w-8 bg-[#1459a7]"
+                      : "w-2.5 bg-slate-300 hover:bg-slate-400"
                   }`}
                 />
               ))}
