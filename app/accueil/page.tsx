@@ -107,7 +107,7 @@ export default function Accueil() {
     locale,
     t.realisation.projects
   ).slice(0, 4);
- 
+
   const [activeStudy, setActiveStudy] = useState(0);
   const [activeImage, setActiveImage] = useState(0);
 
@@ -133,9 +133,8 @@ export default function Accueil() {
         {heroImages.map((image, index) => (
           <div
             key={image}
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
-              activeImage === index ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${activeImage === index ? "opacity-100" : "opacity-0"
+              }`}
             style={{
               backgroundImage: `linear-gradient(90deg, rgba(4,16,37,0.94) 0%, rgba(4,16,37,0.86) 34%, rgba(4,16,37,0.46) 70%, rgba(4,16,37,0.76) 100%), url('${image}')`,
             }}
@@ -145,7 +144,7 @@ export default function Accueil() {
         <div className="absolute left-14 top-0 h-full w-20 bg-[linear-gradient(180deg,_rgba(89,154,255,0.46),_rgba(14,59,142,0.14))] [clip-path:polygon(0_0,100%_0,52%_100%,0_100%)]" />
         <div className="absolute right-0 top-0 hidden h-full w-[42%] bg-[linear-gradient(270deg,_rgba(58,158,255,0.18),_transparent)] md:block" />
         <div className="absolute right-[8%] top-[18%] hidden h-40 w-72 rounded-full bg-sky-400/10 blur-3xl md:block" />
-        <div className="relative mx-auto min-h-[500px] max-w-7xl px-4 py-14 sm:px-6 md:min-h-[620px] md:py-10">
+        <div className="relative mx-auto min-h-[500px] max-w-7xl px-14 py-14 sm:px-6 md:min-h-[620px] md:py-10">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
@@ -184,11 +183,10 @@ export default function Accueil() {
                   type="button"
                   onClick={() => setActiveImage(index)}
                   aria-label={`${t.accueil.aboutLabel} ${index + 1}`}
-                  className={`h-2.5 rounded-full transition-all ${
-                    activeImage === index
+                  className={`h-2.5 rounded-full transition-all ${activeImage === index
                       ? "w-10 bg-white"
                       : "w-2.5 bg-white/45 hover:bg-white/70"
-                  }`}
+                    }`}
                 />
               ))}
             </div>
@@ -208,15 +206,14 @@ export default function Accueil() {
               ].map((image, index) => (
                 <div
                   key={image}
-                  className={`bg-cover bg-center shadow-[0_16px_40px_rgba(15,23,42,0.14)] ${
-                    index === 0
+                  className={`bg-cover bg-center shadow-[0_16px_40px_rgba(15,23,42,0.14)] ${index === 0
                       ? "min-h-[180px] rounded-[1.8rem_1rem_1rem_1rem] sm:min-h-[260px] sm:rounded-[2.3rem_1.1rem_1.1rem_1.1rem]"
                       : index === 1
-                      ? "min-h-[180px] rounded-[1rem_1.8rem_1rem_1rem] sm:min-h-[260px] sm:rounded-[1.1rem_2.3rem_1.1rem_1.1rem]"
-                      : index === 2
-                      ? "min-h-[110px] rounded-[1rem_1rem_1rem_1.8rem] sm:min-h-[162px] sm:rounded-[1.1rem_1.1rem_1.1rem_2.3rem]"
-                      : "min-h-[110px] rounded-[1rem_1rem_1.8rem_1rem] sm:min-h-[162px] sm:rounded-[1.1rem_1.1rem_2.3rem_1.1rem]"
-                  }`}
+                        ? "min-h-[180px] rounded-[1rem_1.8rem_1rem_1rem] sm:min-h-[260px] sm:rounded-[1.1rem_2.3rem_1.1rem_1.1rem]"
+                        : index === 2
+                          ? "min-h-[110px] rounded-[1rem_1rem_1rem_1.8rem] sm:min-h-[162px] sm:rounded-[1.1rem_1.1rem_1.1rem_2.3rem]"
+                          : "min-h-[110px] rounded-[1rem_1rem_1.8rem_1rem] sm:min-h-[162px] sm:rounded-[1.1rem_1.1rem_2.3rem_1.1rem]"
+                    }`}
                   style={{
                     backgroundImage: `linear-gradient(180deg, rgba(11,34,82,0.06), rgba(11,34,82,0.20)), url('${image}')`,
                   }}
@@ -250,7 +247,7 @@ export default function Accueil() {
         </div>
       </section>
 
-      <section className="bg-[#f8fbff] px-6 py-24">
+      <section className="bg-[#f8fbff] px-14 py-24">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 lg:grid-cols-2">
             <motion.div
@@ -292,7 +289,7 @@ export default function Accueil() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-24">
+      <section className="bg-white px-14 py-24">
         <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div className="max-w-xl">
             <p className="text-[2.4rem] font-semibold leading-[1.08] text-blue-900 md:text-[3.2rem]">
@@ -348,24 +345,21 @@ export default function Accueil() {
                   <motion.div
                     key={item.title}
                     whileHover={{ y: -6 }}
-                    className={`rounded-[2rem] px-7 py-8 md:px-8 md:py-9 ${
-                      isBlue
+                    className={`rounded-[2rem] px-7 py-8 md:px-8 md:py-9 ${isBlue
                         ? "bg-[linear-gradient(135deg,#0f79ff_0%,#123f87_100%)] text-white shadow-[0_24px_55px_rgba(15,121,255,0.22)]"
                         : "border border-slate-100 bg-white text-slate-900 shadow-[0_18px_38px_rgba(15,23,42,0.08)]"
-                    }`}
+                      }`}
                   >
                     <Icon
-                      className={`mb-6 h-10 w-10 ${
-                        isBlue ? "text-white/85" : "text-sky-600"
-                      }`}
+                      className={`mb-6 h-10 w-10 ${isBlue ? "text-white/85" : "text-sky-600"
+                        }`}
                     />
                     <h3 className="text-[1.45rem] font-semibold leading-tight">
                       {item.title}
                     </h3>
                     <p
-                      className={`mt-4 text-sm leading-7 ${
-                        isBlue ? "text-white/80" : "text-slate-500"
-                      }`}
+                      className={`mt-4 text-sm leading-7 ${isBlue ? "text-white/80" : "text-slate-500"
+                        }`}
                     >
                       {item.description}
                     </p>
@@ -531,11 +525,10 @@ export default function Accueil() {
                   type="button"
                   onClick={() => setActiveStudy(index)}
                   aria-label={`${recentStudiesContent.label} ${index + 1}`}
-                  className={`h-2.5 rounded-full transition-all ${
-                    activeStudy === index
+                  className={`h-2.5 rounded-full transition-all ${activeStudy === index
                       ? "w-10 bg-slate-900"
                       : "w-2.5 bg-slate-400 hover:bg-slate-600"
-                  }`}
+                    }`}
                 />
               ))}
             </div>
@@ -551,11 +544,10 @@ export default function Accueil() {
                 return (
                   <motion.article
                     key={`${study.title}-${offset}`}
-                    className={`relative shrink-0 overflow-hidden rounded-[1.6rem] bg-white ${
-                      isActive
+                    className={`relative shrink-0 overflow-hidden rounded-[1.6rem] bg-white ${isActive
                         ? "h-[25rem] w-[18rem] sm:h-[28rem] sm:w-[20rem]"
                         : "mt-6 h-[20rem] w-[13rem] sm:mt-8 sm:h-[23rem] sm:w-[15rem]"
-                    }`}
+                      }`}
                     initial={{ opacity: 0.7, y: 18 }}
                     animate={{
                       opacity: isActive ? 1 : 0.82,
@@ -596,7 +588,7 @@ export default function Accueil() {
           </div>
         </div>
       </section>
-{/* STATS 
+      {/* STATS 
       <section className="overflow-hidden bg-[#fefefe] px-4 py-14 text-blue-900 sm:px-6 lg:px-16">
         <div className="relative mx-auto max-w-7xl">
           <Globe2
