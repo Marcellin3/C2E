@@ -17,11 +17,13 @@ import {
   Users,
 } from "lucide-react";
 import Footer from "../componen/Footer";
+import { useAdminContent } from "../data/adminContent";
 import { getProjectsWithFeaturedStudies } from "../data/featuredStudies";
 import { useTranslation } from "../i18n/TranslationProvider";
 
 export default function Accueil() {
   const { t, locale } = useTranslation();
+  const adminContent = useAdminContent();
 
   const objectives = [
     { icon: BarChart3, ...t.accueil.objectives[0] },
@@ -184,8 +186,8 @@ export default function Accueil() {
                   onClick={() => setActiveImage(index)}
                   aria-label={`${t.accueil.aboutLabel} ${index + 1}`}
                   className={`h-2.5 rounded-full transition-all ${activeImage === index
-                      ? "w-10 bg-white"
-                      : "w-2.5 bg-white/45 hover:bg-white/70"
+                    ? "w-10 bg-white"
+                    : "w-2.5 bg-white/45 hover:bg-white/70"
                     }`}
                 />
               ))}
@@ -207,12 +209,12 @@ export default function Accueil() {
                 <div
                   key={image}
                   className={`bg-cover bg-center shadow-[0_16px_40px_rgba(15,23,42,0.14)] ${index === 0
-                      ? "min-h-[180px] rounded-[1.8rem_1rem_1rem_1rem] sm:min-h-[260px] sm:rounded-[2.3rem_1.1rem_1.1rem_1.1rem]"
-                      : index === 1
-                        ? "min-h-[180px] rounded-[1rem_1.8rem_1rem_1rem] sm:min-h-[260px] sm:rounded-[1.1rem_2.3rem_1.1rem_1.1rem]"
-                        : index === 2
-                          ? "min-h-[110px] rounded-[1rem_1rem_1rem_1.8rem] sm:min-h-[162px] sm:rounded-[1.1rem_1.1rem_1.1rem_2.3rem]"
-                          : "min-h-[110px] rounded-[1rem_1rem_1.8rem_1rem] sm:min-h-[162px] sm:rounded-[1.1rem_1.1rem_2.3rem_1.1rem]"
+                    ? "min-h-[180px] rounded-[1.8rem_1rem_1rem_1rem] sm:min-h-[260px] sm:rounded-[2.3rem_1.1rem_1.1rem_1.1rem]"
+                    : index === 1
+                      ? "min-h-[180px] rounded-[1rem_1.8rem_1rem_1rem] sm:min-h-[260px] sm:rounded-[1.1rem_2.3rem_1.1rem_1.1rem]"
+                      : index === 2
+                        ? "min-h-[110px] rounded-[1rem_1rem_1rem_1.8rem] sm:min-h-[162px] sm:rounded-[1.1rem_1.1rem_1.1rem_2.3rem]"
+                        : "min-h-[110px] rounded-[1rem_1rem_1.8rem_1rem] sm:min-h-[162px] sm:rounded-[1.1rem_1.1rem_2.3rem_1.1rem]"
                     }`}
                   style={{
                     backgroundImage: `linear-gradient(180deg, rgba(11,34,82,0.06), rgba(11,34,82,0.20)), url('${image}')`,
@@ -346,8 +348,8 @@ export default function Accueil() {
                     key={item.title}
                     whileHover={{ y: -6 }}
                     className={`rounded-[2rem] px-7 py-8 md:px-8 md:py-9 ${isBlue
-                        ? "bg-[linear-gradient(135deg,#0f79ff_0%,#123f87_100%)] text-white shadow-[0_24px_55px_rgba(15,121,255,0.22)]"
-                        : "border border-slate-100 bg-white text-slate-900 shadow-[0_18px_38px_rgba(15,23,42,0.08)]"
+                      ? "bg-[linear-gradient(135deg,#0f79ff_0%,#123f87_100%)] text-white shadow-[0_24px_55px_rgba(15,121,255,0.22)]"
+                      : "border border-slate-100 bg-white text-slate-900 shadow-[0_18px_38px_rgba(15,23,42,0.08)]"
                       }`}
                   >
                     <Icon
@@ -374,9 +376,6 @@ export default function Accueil() {
       <section className="bg-[#f8fbff] px-4 py-14 sm:px-6 lg:px-20">
         <div className="mx-auto max-w-4xl">
           <div className="text-center">
-            <p className="text-sm font-bold uppercase tracking-[0.24em] text-slate-500">
-              {t.accueil.reasonsLabel}
-            </p>
             <h2 className="mt-4 text-[2.5rem] font-semibold leading-tight text-blue-900">
               {t.accueil.reasonsTitle}
             </h2>
@@ -418,7 +417,7 @@ export default function Accueil() {
 
         <div className="group relative flex overflow-x-hidden">
           <div className="flex animate-marquee whitespace-nowrap py-2">
-            {[...t.accueil.actualPartners, ...t.accueil.actualPartners].map(
+            {[...adminContent.partners, ...t.accueil.actualPartners, ...adminContent.partners, ...t.accueil.actualPartners].map(
               (partner, index) => (
                 <div
                   key={`${partner.name}-${index}`}
@@ -526,8 +525,8 @@ export default function Accueil() {
                   onClick={() => setActiveStudy(index)}
                   aria-label={`${recentStudiesContent.label} ${index + 1}`}
                   className={`h-2.5 rounded-full transition-all ${activeStudy === index
-                      ? "w-10 bg-slate-900"
-                      : "w-2.5 bg-slate-400 hover:bg-slate-600"
+                    ? "w-10 bg-slate-900"
+                    : "w-2.5 bg-slate-400 hover:bg-slate-600"
                     }`}
                 />
               ))}
@@ -545,8 +544,8 @@ export default function Accueil() {
                   <motion.article
                     key={`${study.title}-${offset}`}
                     className={`relative shrink-0 overflow-hidden rounded-[1.6rem] bg-white ${isActive
-                        ? "h-[25rem] w-[18rem] sm:h-[28rem] sm:w-[20rem]"
-                        : "mt-6 h-[20rem] w-[13rem] sm:mt-8 sm:h-[23rem] sm:w-[15rem]"
+                      ? "h-[25rem] w-[18rem] sm:h-[28rem] sm:w-[20rem]"
+                      : "mt-6 h-[20rem] w-[13rem] sm:mt-8 sm:h-[23rem] sm:w-[15rem]"
                       }`}
                     initial={{ opacity: 0.7, y: 18 }}
                     animate={{
@@ -588,7 +587,7 @@ export default function Accueil() {
           </div>
         </div>
       </section>
-      {/* STATS 
+      {/*
       <section className="overflow-hidden bg-[#fefefe] px-4 py-14 text-blue-900 sm:px-6 lg:px-16">
         <div className="relative mx-auto max-w-7xl">
           <Globe2

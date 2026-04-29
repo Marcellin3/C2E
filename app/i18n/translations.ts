@@ -25,6 +25,10 @@ type Translations = {
     about: string;
     services: string;
     realisations: string;
+    resources: string;
+    blogNews: string;
+    mediaGallery: string;
+    opportunitiesCareers: string;
     contact: string;
     location: string;
   };
@@ -209,6 +213,10 @@ export const translations: Record<Locale, Translations> = {
       about: "À propos",
       services: "Services",
       realisations: "Réalisations",
+      resources: "Ressources",
+      blogNews: "Blog & Actualités",
+      mediaGallery: "Galerie",
+      opportunitiesCareers: "Opportunités & Carrières",
       contact: "Contact",
       location: "Goma, RDC",
     },
@@ -624,6 +632,10 @@ export const translations: Record<Locale, Translations> = {
       about: "About",
       services: "Services",
       realisations: "Projects",
+      resources: "Resources",
+      blogNews: "Blog & News",
+      mediaGallery: "Gallery",
+      opportunitiesCareers: "Opportunities & Careers",
       contact: "Contact",
       location: "Goma, DRC",
     },
@@ -1036,6 +1048,10 @@ export const translations: Record<Locale, Translations> = {
       about: "Kuhusu",
       services: "Huduma",
       realisations: "Miradi",
+      resources: "Rasilimali",
+      blogNews: "Blogu na Habari",
+      mediaGallery: "Galeri",
+      opportunitiesCareers: "Fursa na Kazi",
       contact: "Mawasiliano",
       location: "Goma, DRC",
     },

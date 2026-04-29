@@ -3,20 +3,73 @@
 import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Globe, Mail, MapPin, Menu, Phone, X } from "lucide-react";
+import {
+  BriefcaseBusiness,
+  ChevronDown,
+  Globe,
+  ImageIcon,
+  Mail,
+  MapPin,
+  Menu,
+  Newspaper,
+  Phone,
+  X,
+} from "lucide-react";
 import { useTranslation } from "../i18n/TranslationProvider";
 import type { Locale } from "../i18n/translations";
 
 export default function Navbar() {
   const { locale, setLocale, t } = useTranslation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
+  const [resourcesOpen, setResourcesOpen] = useState(false);
+  const closeMenus = () => {
+    setMobileOpen(false);
+    setMobileResourcesOpen(false);
+    setResourcesOpen(false);
+  };
 
   const menuItems = [
     { name: t.nav.home, link: "/accueil" },
     { name: t.nav.about, link: "/accueil#about" },
     { name: t.nav.services, link: "/services" },
     { name: t.nav.realisations, link: "/realisation" },
-    { name: t.nav.contact, link: "/Contact" },
+  ];
+
+  const resourceItems = [
+    {
+      name: t.nav.blogNews,
+      description:
+        locale === "fr"
+          ? "Articles, analyses, publications environnementales, recherches"
+          : locale === "en"
+          ? "Articles, analyses, environmental publications, research"
+          : "Makala, uchambuzi, machapisho ya mazingira na tafiti",
+      link: "/ressources/blog-actualites",
+      icon: Newspaper,
+    },
+    {
+      name: t.nav.mediaGallery,
+      description:
+        locale === "fr"
+          ? "Photos, videos, evenements, projets terrain"
+          : locale === "en"
+          ? "Photos, videos, events, field projects"
+          : "Picha, video, matukio na miradi ya uwanjani",
+      link: "/ressources/galerie",
+      icon: ImageIcon,
+    },
+    {
+      name: t.nav.opportunitiesCareers,
+      description:
+        locale === "fr"
+          ? "Offres d'emploi, appels a candidatures, stages, consultances, candidatures en ligne"
+          : locale === "en"
+          ? "Jobs, calls for applications, internships, consultancies, online applications"
+          : "Ajira, wito wa maombi, mafunzo, ushauri na maombi mtandaoni",
+      link: "/ressources/opportunites-carrieres",
+      icon: BriefcaseBusiness,
+    },
   ];
 
   return (
@@ -61,7 +114,7 @@ export default function Navbar() {
         transition={{ duration: 0.55, delay: 0.08 }}
         className="px-4 pb-4 md:px-6"
       >
-        <div className="mx-auto max-w-7xl rounded-3xl bg-blue-900/90 px-4 py-3 text-white shadow-[0_20px_40px_rgba(8,118,239,0.22)] md:px-6">
+        <div className="mx-auto max-w-7xl rounded-3xl bg-[#327cf3] px-4 py-3 text-white shadow-[0_20px_40px_rgba(8,118,239,0.22)] md:px-6">
           <div className="flex items-center justify-between gap-4">
           <Link
             href="/accueil"
@@ -80,7 +133,7 @@ export default function Navbar() {
             </p>
           </Link>
 
-          <nav className="hidden flex-wrap items-center gap-5 text-base tracking-[0.01em] lg:flex xl:gap-7 xl:text-xl">
+          <nav className="hidden flex-wrap items-center gap-5 text-base tracking-[0.01em] lg:flex xl:gap-7 ">
             {menuItems.map((item) => (
               <Link
                 key={item.name}
@@ -91,6 +144,78 @@ export default function Navbar() {
                 {item.name}
               </Link>
             ))}
+
+            <div
+              className="relative"
+              onMouseEnter={() => setResourcesOpen(true)}
+              onMouseLeave={() => setResourcesOpen(false)}
+            >
+              <div className="flex items-center gap-1">
+                <Link
+                  href="/ressources"
+                  className="interactive-lift transition hover:text-sky-200"
+                  onClick={closeMenus}
+                >
+                  {t.nav.resources}
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setResourcesOpen((current) => !current)}
+                  aria-expanded={resourcesOpen}
+                  aria-label={`Ouvrir ${t.nav.resources}`}
+                  className="flex h-9 w-9 items-center justify-center rounded-full transition hover:bg-white/10 hover:text-sky-200"
+                >
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${
+                    resourcesOpen ? "rotate-180" : ""
+                  }`}
+                />
+                </button>
+              </div>
+
+              {resourcesOpen && (
+                <div className="absolute left-1/2 top-full z-50 w-[360px] -translate-x-1/2 pt-4">
+                  <div className="rounded-[1.6rem] border border-white/15 bg-white p-3 text-slate-900 shadow-[0_24px_60px_rgba(15,23,42,0.18)]">
+                    <div className="space-y-2">
+                    {resourceItems.map((item) => {
+                      const Icon = item.icon;
+
+                      return (
+                        <Link
+                          key={item.name}
+                          href={item.link}
+                          className="block rounded-[1.2rem] px-3 py-3 transition hover:bg-sky-50"
+                          onClick={closeMenus}
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className="mt-0.5 flex h-10 w-10 items-center justify-center rounded-full bg-sky-100 text-sky-700">
+                              <Icon className="h-4 w-4" />
+                            </div>
+                            <div>
+                              <p className="text-sm font-semibold text-slate-900">
+                                {item.name}
+                              </p>
+                              <p className="mt-1 text-xs leading-5 text-slate-500">
+                                {item.description}
+                              </p>
+                            </div>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <Link
+              href="/Contact"
+              className="interactive-lift transition hover:text-sky-200"
+              onClick={() => setMobileOpen(false)}
+            >
+              {t.nav.contact}
+            </Link>
           </nav>
 
           <div className="hidden lg:flex">
@@ -140,6 +265,70 @@ export default function Navbar() {
                     {item.name}
                   </Link>
                 ))}
+
+                <div className="overflow-hidden rounded-2xl bg-white/8">
+                  <div className="flex items-center">
+                    <Link
+                      href="/ressources"
+                      className="flex-1 px-4 py-3 text-left transition hover:bg-white/12"
+                      onClick={closeMenus}
+                    >
+                      {t.nav.resources}
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setMobileResourcesOpen((current) => !current)
+                      }
+                      aria-expanded={mobileResourcesOpen}
+                      aria-label={`Ouvrir ${t.nav.resources}`}
+                      className="flex h-[52px] w-14 items-center justify-center transition hover:bg-white/12"
+                    >
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform ${
+                          mobileResourcesOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                  </div>
+
+                  {mobileResourcesOpen && (
+                    <div className="space-y-2 px-3 pb-3">
+                      {resourceItems.map((item) => {
+                        const Icon = item.icon;
+
+                        return (
+                          <Link
+                            key={item.name}
+                            href={item.link}
+                            className="block rounded-2xl bg-white/8 px-4 py-3 transition hover:bg-white/12"
+                            onClick={closeMenus}
+                          >
+                            <div className="flex items-start gap-3">
+                              <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-white/12 text-sky-200">
+                                <Icon className="h-4 w-4" />
+                              </div>
+                              <div>
+                                <p>{item.name}</p>
+                                <p className="mt-1 text-xs font-normal leading-5 text-sky-100/85">
+                                  {item.description}
+                                </p>
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+
+                <Link
+                  href="/Contact"
+                  className="rounded-2xl bg-white/8 px-4 py-3 transition hover:bg-white/12"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {t.nav.contact}
+                </Link>
               </nav>
 
               <label className="flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-semibold text-white">

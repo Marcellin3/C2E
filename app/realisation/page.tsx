@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Footer from "../componen/Footer";
 import { getProjectsWithFeaturedStudies } from "../data/featuredStudies";
+import { useAdminContent } from "../data/adminContent";
 import { useTranslation } from "../i18n/TranslationProvider";
 
 function AnimatedStatValue({ value }: { value: string }) {
@@ -53,8 +54,73 @@ function AnimatedStatValue({ value }: { value: string }) {
   return <>{`${prefix}${displayValue}`}</>;
 }
 
+function CircularStat({
+  label,
+  value,
+  sublabel,
+  progress,
+  colorClass,
+}: {
+  label: string;
+  value: string;
+  sublabel?: string;
+  progress: number;
+  colorClass: string;
+}) {
+  const radius = 42;
+  const circumference = 2 * Math.PI * radius;
+  const safeProgress = Math.max(0, Math.min(progress, 100));
+  const dashOffset = circumference - (safeProgress / 100) * circumference;
+
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/6 p-4 backdrop-blur-sm">
+      <div className="flex items-center gap-4">
+        <div className="relative h-24 w-24 shrink-0">
+          <svg viewBox="0 0 100 100" className="h-full w-full -rotate-90">
+            <circle
+              cx="50"
+              cy="50"
+              r={radius}
+              fill="none"
+              stroke="rgba(255,255,255,0.14)"
+              strokeWidth="9"
+            />
+            <circle
+              cx="50"
+              cy="50"
+              r={radius}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="9"
+              strokeLinecap="round"
+              strokeDasharray={circumference}
+              strokeDashoffset={dashOffset}
+              className={colorClass}
+            />
+          </svg>
+          <div className="absolute inset-0 flex items-center justify-center text-center">
+            <div>
+              <p className="text-lg font-bold text-white">{value}</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-white/70">
+            {label}
+          </p>
+          {sublabel ? (
+            <p className="mt-2 text-sm leading-6 text-white/85">{sublabel}</p>
+          ) : null}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Realisation() {
   const { t, locale } = useTranslation();
+  const adminContent = useAdminContent();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(t.realisation.allCategories);
   const [viewMode, setViewMode] = useState("grid");
@@ -62,7 +128,7 @@ export default function Realisation() {
 
   const projects = getProjectsWithFeaturedStudies(
     locale,
-    t.realisation.projects
+    [...adminContent.projects, ...t.realisation.projects]
   ).map((project) => ({
     ...project,
     category: t.realisation.categories[project.categoryKey],
@@ -110,6 +176,16 @@ export default function Realisation() {
 
   const leftImpactStats = [t.realisation.impactStats[0], t.realisation.impactStats[2]];
   const rightImpactStats = [t.realisation.impactStats[1], t.realisation.impactStats[3]];
+  const projectYears = projects
+    .map((project) => {
+      const match = project.date.match(/\d{4}/);
+      return match ? Number.parseInt(match[0], 10) : null;
+    })
+    .filter((year): year is number => year !== null);
+  const minYear = projectYears.length ? Math.min(...projectYears) : 2023;
+  const maxYear = projectYears.length ? Math.max(...projectYears) : 2024;
+  const yearSpan = maxYear - minYear + 1;
+  const countryLabel = locale === "fr" ? "RDC" : "DRC";
 
   const impactCardClass =
     "group flex min-h-[155px] flex-col items-center justify-center rounded-sm border border-black/5 bg-white px-5 py-6 text-center text-slate-900 shadow-[0_10px_28px_rgba(15,23,42,0.08)] transition-all duration-300 hover:shadow-[0_14px_34px_rgba(15,23,42,0.12)] md:min-h-[170px] md:px-6";
@@ -220,22 +296,20 @@ export default function Realisation() {
                   <button
                     type="button"
                     onClick={() => setViewMode("grid")}
-                    className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all ${
-                      viewMode === "grid"
+                    className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all ${viewMode === "grid"
                         ? "bg-white text-blue-600 shadow"
                         : "text-gray-500"
-                    }`}
+                      }`}
                   >
                     <LayoutGrid size={16} /> {t.realisation.grid}
                   </button>
                   <button
                     type="button"
                     onClick={() => setViewMode("list")}
-                    className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all ${
-                      viewMode === "list"
+                    className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all ${viewMode === "list"
                         ? "bg-white text-blue-600 shadow"
                         : "text-gray-500"
-                    }`}
+                      }`}
                   >
                     <List size={16} /> {t.realisation.list}
                   </button>
@@ -298,9 +372,8 @@ export default function Realisation() {
                 filteredProjects.map((project) => (
                   <div
                     key={project.title}
-                    className={`overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md ${
-                      viewMode === "list" ? "flex flex-col sm:h-32 sm:flex-row sm:items-center" : ""
-                    }`}
+                    className={`overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md ${viewMode === "list" ? "flex flex-col sm:h-32 sm:flex-row sm:items-center" : ""
+                      }`}
                   >
                     <img
                       src={project.image}
@@ -316,9 +389,8 @@ export default function Realisation() {
                         {project.category}
                       </span>
                       <h3
-                        className={`mt-1 font-bold leading-tight text-gray-900 ${
-                          viewMode === "list" ? "text-base" : "text-lg"
-                        }`}
+                        className={`mt-1 font-bold leading-tight text-gray-900 ${viewMode === "list" ? "text-base" : "text-lg"
+                          }`}
                       >
                         {project.title}
                       </h3>
@@ -386,17 +458,31 @@ export default function Realisation() {
               </div>
             </div>
 
-            <div className="rounded-xl bg-blue-900/90 p-4 text-white shadow">
-              <h4 className="mb-3 font-semibold">{t.realisation.statsTitle}</h4>
-              <p>
-                {t.realisation.statsProjects} : {projects.length}
-              </p>
-              <p>
-                {t.realisation.statsCountry} : RDC
-              </p>
-              <p>
-                {t.realisation.statsYears} : 2023 - 2024
-              </p>
+            <div className="rounded-[1.6rem] bg-[#0c66f7] p-5 text-white shadow-[0_18px_40px_rgba(15,23,42,0.22)]">
+              <h4 className="mb-4 text-lg font-semibold">{t.realisation.statsTitle}</h4>
+              <div className="space-y-4">
+                <CircularStat
+                  label={t.realisation.statsProjects}
+                  value={String(projects.length)}
+                  sublabel={`${projects.length} ${projects.length > 1 ? t.realisation.projectsFoundPlural : t.realisation.projectsFoundSingular}`}
+                  progress={Math.min((projects.length / 20) * 100, 100)}
+                  colorClass="text-cyan-300"
+                />
+                <CircularStat
+                  label={t.realisation.statsCountry}
+                  value={countryLabel}
+                  sublabel={countryLabel}
+                  progress={100}
+                  colorClass="text-yellow-300"
+                />
+                <CircularStat
+                  label={t.realisation.statsYears}
+                  value={`${minYear}-${maxYear}`}
+                  sublabel={`${yearSpan} ${locale === "fr" ? "ans de couverture" : locale === "en" ? "years covered" : "miaka ya utekelezaji"}`}
+                  progress={Math.min((yearSpan / 5) * 100, 100)}
+                  colorClass="text-emerald-300"
+                />
+              </div>
             </div>
           </div>
         </div>
