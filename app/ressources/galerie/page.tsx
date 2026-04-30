@@ -158,8 +158,9 @@ export default function GaleriePage() {
         chipThree: "Visual archive",
         statOne: "Images",
         statTwo: "Layout",
-        sectionTitle: "Gallery",
-        sectionText: "Click an image to reveal a short description.",
+        sectionTitle: "Explore the gallery",
+        sectionText:
+          "Browse photos from our field activities, partnerships and project follow-up moments.",
       }
       : locale === "sw"
         ? {
@@ -172,8 +173,9 @@ export default function GaleriePage() {
           chipThree: "Kumbukumbu ya picha",
           statOne: "Picha",
           statTwo: "Mpangilio",
-          sectionTitle: "Galeri",
-          sectionText: "Bofya picha ili kuona maelezo mafupi.",
+          sectionTitle: "Tazama galeri",
+          sectionText:
+            "Pitia picha za shughuli zetu za uwanjani, ushirikiano na ufuatiliaji wa miradi.",
         }
         : {
           badge: "Galerie media",
@@ -185,8 +187,9 @@ export default function GaleriePage() {
           chipThree: "Memoire visuelle",
           statOne: "Images",
           statTwo: "Disposition",
-          sectionTitle: "Galerie",
-          sectionText: "Cliquez sur une image pour afficher une petite description.",
+          sectionTitle: "Explorer la galerie",
+          sectionText:
+            "Parcourez les photos de nos activites terrain, de nos partenariats et du suivi des projets.",
         };
 
   return (

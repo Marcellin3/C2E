@@ -40,6 +40,12 @@ export type AdminPartner = {
   logo: string;
 };
 
+export type AdminApplicationFile = {
+  name: string;
+  type: string;
+  dataUrl: string;
+};
+
 export type AdminApplication = {
   opportunityTitle: string;
   fullName: string;
@@ -47,6 +53,9 @@ export type AdminApplication = {
   phone: string;
   message: string;
   portfolio: string;
+  cv?: AdminApplicationFile;
+  motivationLetter?: AdminApplicationFile;
+  certificates?: AdminApplicationFile[];
   submittedAt: string;
 };
 

@@ -1,80 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, BriefcaseBusiness, Clock3, GraduationCap } from "lucide-react";
 import Footer from "../../componen/Footer";
 import { useAdminContent } from "../../data/adminContent";
+import { createOpportunitySlug, opportunities } from "../../data/opportunities";
 import { useTranslation } from "../../i18n/TranslationProvider";
-
-const opportunities = {
-  fr: [
-    {
-      title: "Consultant(e) en suivi et evaluation",
-      type: "Consultance",
-      timing: "Ouvert",
-      text: "Appui aux missions d'etudes, d'evaluation et de structuration des dispositifs de suivi.",
-    },
-    {
-      title: "Stagiaire en recherche et analyse",
-      type: "Stage",
-      timing: "Candidatures en cours",
-      text: "Participation a la collecte, a l'analyse des donnees et a la production de notes techniques.",
-    },
-    {
-      title: "Reserve de talents terrain",
-      type: "Opportunite",
-      timing: "Permanent",
-      text: "Profils mobilisables pour des missions communautaires, enquetes et accompagnement de projets.",
-    },
-  ],
-  en: [
-    {
-      title: "Monitoring and evaluation consultant",
-      type: "Consultancy",
-      timing: "Open",
-      text: "Support for studies, evaluations and the design of monitoring systems.",
-    },
-    {
-      title: "Research and analysis intern",
-      type: "Internship",
-      timing: "Applications open",
-      text: "Contribute to data collection, analysis and the drafting of technical notes.",
-    },
-    {
-      title: "Field talent pool",
-      type: "Opportunity",
-      timing: "Ongoing",
-      text: "Deployable profiles for community missions, surveys and project support.",
-    },
-  ],
-  sw: [
-    {
-      title: "Mshauri wa ufuatiliaji na tathmini",
-      type: "Ushauri",
-      timing: "Wazi",
-      text: "Msaada kwa tafiti, tathmini na uundaji wa mifumo ya ufuatiliaji.",
-    },
-    {
-      title: "Mwanafunzi wa utafiti na uchambuzi",
-      type: "Mafunzo",
-      timing: "Maombi yanaendelea",
-      text: "Kushiriki katika ukusanyaji wa data, uchambuzi na uandishi wa nyaraka za kiufundi.",
-    },
-    {
-      title: "Hifadhi ya vipaji vya uwanjani",
-      type: "Fursa",
-      timing: "Muda wote",
-      text: "Wasifu wa kuhamasishwa kwa kazi za jamii, tafiti na usaidizi wa miradi.",
-    },
-  ],
-};
 
 export default function OpportunitesCarrieresPage() {
   const { locale } = useTranslation();
   const adminContent = useAdminContent();
-  const [expandedCard, setExpandedCard] = useState<number | null>(null);
 
   const copy =
     locale === "en"
@@ -85,7 +21,6 @@ export default function OpportunitesCarrieresPage() {
             "Openings, internships, consulting calls and collaboration opportunities linked to C2E activities.",
           cta: "Apply",
           more: "See more",
-          less: "Show less",
         }
       : locale === "sw"
       ? {
@@ -95,7 +30,6 @@ export default function OpportunitesCarrieresPage() {
             "kwenye Ukurasa pata ma kazi, mafunzo, wito wa ushauri na fursa za kushirikiana na shughuli za C2E.",
           cta: "Tuma",
           more: "Tazama zaidi",
-          less: "Ficha",
         }
       : {
           badge: "Opportunites & Carrieres",
@@ -104,7 +38,6 @@ export default function OpportunitesCarrieresPage() {
             "Trouver ici nos offres, stages, consultances et opportunites de collaboration liees aux activites de C2E.",
           cta: "Postuler",
           more: "Voir plus",
-          less: "Voir moins",
         };
 
   const currentOpportunities = [
@@ -136,7 +69,7 @@ export default function OpportunitesCarrieresPage() {
       <section className="px-4 py-14 sm:px-6 sm:py-18">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-3">
           {currentOpportunities.map((item, index) => {
-            const isExpanded = expandedCard === index;
+            const detailHref = `/ressources/opportunites-carrieres/${createOpportunitySlug(item, index)}`;
 
             return (
               <motion.article
@@ -164,51 +97,13 @@ export default function OpportunitesCarrieresPage() {
                   {item.text}
                 </p>
 
-                {isExpanded ? (
-                  <div className="mt-5 rounded-2xl bg-slate-50 p-4 text-sm leading-7 text-slate-600">
-                    {"deadline" in item && item.deadline ? (
-                      <p>
-                        <span className="font-bold text-slate-900">
-                          Date limite :
-                        </span>{" "}
-                        {item.deadline}
-                      </p>
-                    ) : null}
-                    {"location" in item && item.location ? (
-                      <p>
-                        <span className="font-bold text-slate-900">Lieu :</span>{" "}
-                        {item.location}
-                      </p>
-                    ) : null}
-                    {"requirements" in item && item.requirements ? (
-                      <p className="mt-2">
-                        <span className="font-bold text-slate-900">
-                          Exigences :
-                        </span>{" "}
-                        {item.requirements}
-                      </p>
-                    ) : null}
-                    {"description" in item && item.description ? (
-                      <p className="mt-2">
-                        <span className="font-bold text-slate-900">
-                          Description :
-                        </span>{" "}
-                        {item.description}
-                      </p>
-                    ) : null}
-                  </div>
-                ) : null}
-
-                <button
-                  type="button"
-                  onClick={() => setExpandedCard(isExpanded ? null : index)}
+                <Link
+                  href={detailHref}
                   className="mt-5 inline-flex items-center gap-2 rounded-full bg-sky-50 px-5 py-2.5 text-sm font-bold text-sky-700 transition hover:bg-sky-100"
                 >
-                  {isExpanded ? copy.less : copy.more}
-                  <ArrowRight
-                    className={`h-4 w-4 transition ${isExpanded ? "rotate-90" : ""}`}
-                  />
-                </button>
+                  {copy.more}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </motion.article>
             );
           })}

@@ -29,6 +29,7 @@ import {
   saveAdminContent,
   type AdminArticle,
   type AdminApplication,
+  type AdminApplicationFile,
   type AdminContent,
   type AdminGalleryItem,
   type AdminOpportunity,
@@ -936,7 +937,45 @@ function ApplicationRow({
         {application.portfolio ? <p>{application.portfolio}</p> : null}
         <p className="line-clamp-3">{application.message}</p>
       </div>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {application.cv ? (
+          <ApplicationFileLink label="CV" file={application.cv} />
+        ) : null}
+        {application.motivationLetter ? (
+          <ApplicationFileLink
+            label="Lettre de motivation"
+            file={application.motivationLetter}
+          />
+        ) : null}
+        {application.certificates?.map((file, index) => (
+          <ApplicationFileLink
+            key={`${file.name}-${index}`}
+            label={`Certificat ${index + 1}`}
+            file={file}
+          />
+        ))}
+      </div>
     </div>
+  );
+}
+
+function ApplicationFileLink({
+  label,
+  file,
+}: {
+  label: string;
+  file: AdminApplicationFile;
+}) {
+  return (
+    <a
+      href={file.dataUrl}
+      download={file.name}
+      className="inline-flex max-w-full items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-sky-700 transition hover:bg-sky-50"
+      title={file.name}
+    >
+      <FileText className="h-3.5 w-3.5 shrink-0" />
+      <span className="truncate">{label}</span>
+    </a>
   );
 }
 
