@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Camera, ImageIcon, Sparkles } from "lucide-react";
 import { useState } from "react";
-import Footer from "../../componen/Footer";
+import Footer from "../../components/Footer";
 import { useAdminContent, type AdminGalleryItem } from "../../data/adminContent";
 import { useTranslation } from "../../i18n/TranslationProvider";
 

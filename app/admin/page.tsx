@@ -21,15 +21,18 @@ import {
   Trash2,
   Upload,
 } from "lucide-react";
-import Footer from "../componen/Footer";
+import Footer from "../components/Footer";
 import {
   adminStorageKey,
+  createAdminItem,
+  deleteAdminItem,
   emptyAdminContent,
-  loadAdminContent,
-  saveAdminContent,
+  fetchAdminContent,
+  persistAdminContent,
   type AdminArticle,
   type AdminApplication,
   type AdminApplicationFile,
+  type AdminCollectionName,
   type AdminContent,
   type AdminGalleryItem,
   type AdminOpportunity,
@@ -86,13 +89,7 @@ const initialPartner: AdminPartner = {
   logo: "",
 };
 
-type CollectionName = keyof AdminContent;
-
 const adminSessionKey = "c2e-admin-session";
-const adminCredentials = {
-  email: "admin@c2e.org",
-  password: "C2E@2026",
-};
 
 function readFileAsDataUrl(file: File) {
   return new Promise<string>((resolve, reject) => {
@@ -200,63 +197,106 @@ export default function AdminPage() {
   const [partnerForm, setPartnerForm] = useState(initialPartner);
 
   useEffect(() => {
-    setIsAuthenticated(window.localStorage.getItem(adminSessionKey) === "true");
-    setContent(loadAdminContent());
+    const initializeAdmin = async () => {
+      try {
+        const response = await fetch("/api/admin/session", {
+          cache: "no-store",
+        });
+        const session = (await response.json()) as { authenticated?: boolean };
+        setIsAuthenticated(Boolean(session.authenticated));
+        window.localStorage.setItem(
+          adminSessionKey,
+          String(Boolean(session.authenticated))
+        );
+      } catch {
+        setIsAuthenticated(
+          window.localStorage.getItem(adminSessionKey) === "true"
+        );
+      }
+
+      setContent(await fetchAdminContent());
+    };
+
+    void initializeAdmin();
   }, []);
 
-  const handleLogin = (event: FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (
-      loginForm.email.trim().toLowerCase() === adminCredentials.email &&
-      loginForm.password === adminCredentials.password
-    ) {
+    const response = await fetch("/api/admin/session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginForm),
+    });
+
+    if (response.ok) {
       window.localStorage.setItem(adminSessionKey, "true");
       setIsAuthenticated(true);
       setLoginError("");
+      setContent(await fetchAdminContent());
       return;
     }
 
     setLoginError("Email ou mot de passe incorrect.");
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await fetch("/api/admin/session", { method: "DELETE" });
     window.localStorage.removeItem(adminSessionKey);
     setIsAuthenticated(false);
     setLoginForm({ email: "", password: "" });
   };
 
-  const persist = (nextContent: AdminContent) => {
+  const persist = async (nextContent: AdminContent) => {
     setContent(nextContent);
-    saveAdminContent(nextContent);
+    setContent(await persistAdminContent(nextContent));
   };
 
-  const addItem = <T,>(
+  const addItem = async <T,>(
     event: FormEvent<HTMLFormElement>,
-    collection: CollectionName,
+    collection: AdminCollectionName,
     item: T,
     reset: () => void
   ) => {
     event.preventDefault();
 
-    persist({
+    const optimisticContent = {
       ...content,
       [collection]: [item, ...(content[collection] as T[])],
-    } as AdminContent);
-    reset();
+    } as AdminContent;
+
+    setContent(optimisticContent);
+
+    try {
+      setContent(await createAdminItem(collection, item));
+      reset();
+    } catch {
+      await persist(optimisticContent);
+      reset();
+    }
   };
 
-  const removeItem = (collection: CollectionName, index: number) => {
-    persist({
+  const removeItem = async (collection: AdminCollectionName, index: number) => {
+    const optimisticContent = {
       ...content,
       [collection]: content[collection].filter((_, itemIndex) => itemIndex !== index),
-    });
+    };
+
+    setContent(optimisticContent);
+
+    try {
+      setContent(await deleteAdminItem(collection, index));
+    } catch {
+      await persist(optimisticContent);
+    }
   };
 
-  const resetAll = () => {
+  const resetAll = async () => {
     window.localStorage.removeItem(adminStorageKey);
     window.dispatchEvent(new Event("c2e-admin-content-updated"));
-    setContent(emptyAdminContent);
+    await persist(emptyAdminContent);
   };
 
   const statCards = [
@@ -323,7 +363,7 @@ export default function AdminPage() {
                   onChange={(event) =>
                     setLoginForm({ ...loginForm, email: event.target.value })
                   }
-                  placeholder="admin@c2e.org"
+                  placeholder="c2experteval@gmail.com"
                 />
               </Field>
               <Field label="Mot de passe">

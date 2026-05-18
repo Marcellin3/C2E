@@ -16,10 +16,11 @@ import {
   MapPin,
   Upload,
 } from "lucide-react";
-import Footer from "../../../componen/Footer";
+import Footer from "../../../components/Footer";
 import {
   loadAdminContent,
   saveAdminContent,
+  submitApplication,
   type AdminApplicationFile,
   useAdminContent,
 } from "../../../data/adminContent";
@@ -227,24 +228,27 @@ export default function OpportunityDetailPage() {
     setCertificates(await Promise.all(files.map(readFileAsApplicationFile)));
   };
 
-  const handleApplicationSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleApplicationSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const currentContent = loadAdminContent();
-    saveAdminContent({
-      ...currentContent,
-      applications: [
-        {
-          opportunityTitle: opportunity.title,
-          ...applicationForm,
-          cv: cv ?? undefined,
-          motivationLetter: motivationLetter ?? undefined,
-          certificates,
-          submittedAt: new Date().toISOString(),
-        },
-        ...currentContent.applications,
-      ],
-    });
+    const application = {
+      opportunityTitle: opportunity.title,
+      ...applicationForm,
+      cv: cv ?? undefined,
+      motivationLetter: motivationLetter ?? undefined,
+      certificates,
+      submittedAt: new Date().toISOString(),
+    };
+
+    try {
+      await submitApplication(application);
+    } catch {
+      const currentContent = loadAdminContent();
+      saveAdminContent({
+        ...currentContent,
+        applications: [application, ...currentContent.applications],
+      });
+    }
 
     setApplicationForm(emptyApplicationForm);
     setCv(null);

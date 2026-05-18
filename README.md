@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# C2E Website
 
-## Getting Started
+Site Next.js pour le Centre d'Expertise et d'Evaluation (C2E).
 
-First, run the development server:
+## Structure du projet
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```text
+app/
+  accueil/                         Page d'accueil
+  admin/                           Interface d'administration locale
+  components/                      Composants partages du site
+    Footer.tsx
+    Navbar.tsx
+  Contact/                         Page de contact
+  data/                            Donnees, types et contenus reutilisables
+    adminContent.ts
+    featuredStudies.ts
+    opportunities.ts
+  i18n/                            Traductions et provider de langue
+    TranslationProvider.tsx
+    translations.ts
+  realisation/                     Page des realisations
+  ressources/                      Espace ressources
+    blog-actualites/
+    galerie/
+    opportunites-carrieres/
+      [slug]/                      Detail d'une opportunite
+  services/                        Page des services
+  globals.css                      Styles globaux
+  layout.tsx                       Layout principal
+  page.tsx                         Redirection ou entree racine
+
+public/
+  photos/                          Images utilisees par le site
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Commandes
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm.cmd run build
+npm.cmd run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Sous PowerShell, `npm.cmd` evite le blocage possible de `npm.ps1` par la politique d'execution Windows.
 
-## Learn More
+## Variables serveur
 
-To learn more about Next.js, take a look at the following resources:
+```env
+C2E_ADMIN_EMAIL=c2experteval@gmail.com
+C2E_ADMIN_PASSWORD=C2E@2026
+C2E_CONTACT_EMAIL=c2experteval@gmail.com
+C2E_SMTP_HOST=smtp.gmail.com
+C2E_SMTP_PORT=465
+C2E_SMTP_USER=c2experteval@gmail.com
+C2E_SMTP_PASSWORD=mot-de-passe-application-gmail
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Pour l'envoi direct depuis le formulaire Contact, Gmail demande un mot de passe d'application. Sans `C2E_SMTP_PASSWORD`, le site ouvre la messagerie de l'utilisateur en secours.

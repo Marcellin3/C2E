@@ -12,7 +12,7 @@ import {
   Users,
   Zap,
 } from "lucide-react";
-import Footer from "../componen/Footer";
+import Footer from "../components/Footer";
 import { getProjectsWithFeaturedStudies } from "../data/featuredStudies";
 import { useAdminContent } from "../data/adminContent";
 import { useTranslation } from "../i18n/TranslationProvider";

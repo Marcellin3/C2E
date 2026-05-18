@@ -16,7 +16,7 @@ import {
   Target,
   Users,
 } from "lucide-react";
-import Footer from "../componen/Footer";
+import Footer from "../components/Footer";
 import { useAdminContent } from "../data/adminContent";
 import { getProjectsWithFeaturedStudies } from "../data/featuredStudies";
 import { useTranslation } from "../i18n/TranslationProvider";
@@ -157,7 +157,7 @@ export default function Accueil() {
               {t.accueil.badge}
             </span>
 
-            <h1 className="mt-6 max-w-[700px] text-[2.35rem] font-black leading-[1.02] tracking-[-0.03em] sm:text-[3rem] md:text-[4.85rem]">
+            <h1 className="hero-main-title mt-6 max-w-[850px] font-sans text-[2.35rem] font-black leading-none tracking-normal text-white sm:text-[3.45rem] md:text-[4.9rem]">
               {t.accueil.heroTitle}
             </h1>
 

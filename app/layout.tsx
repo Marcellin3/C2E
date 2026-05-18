@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Merriweather } from "next/font/google";
 import "./globals.css";
-import Navbar from "./componen/Navbar";
+import Navbar from "./components/Navbar";
 import { TranslationProvider } from "./i18n/TranslationProvider";
 
 const geistSans = Geist({
@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 const merriweather = Merriweather({
-  variable: "--font-geist-mono",
+  variable: "--font-display",
   subsets: ["latin"],
   weight: ["300", "400", "700"],
 });

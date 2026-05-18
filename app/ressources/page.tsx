@@ -8,7 +8,7 @@ import {
   ImageIcon,
   Newspaper,
 } from "lucide-react";
-import Footer from "../componen/Footer";
+import Footer from "../components/Footer";
 import { useTranslation } from "../i18n/TranslationProvider";
 
 export default function RessourcesPage() {

@@ -1,4 +1,4 @@
-import type { AdminOpportunity } from "./adminContent";
+import type { AdminOpportunity } from "./adminTypes";
 import type { Locale } from "../i18n/translations";
 
 export const opportunities: Record<Locale, AdminOpportunity[]> = {

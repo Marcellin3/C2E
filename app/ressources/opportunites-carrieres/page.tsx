@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, BriefcaseBusiness, Clock3, GraduationCap } from "lucide-react";
-import Footer from "../../componen/Footer";
+import Footer from "../../components/Footer";
 import { useAdminContent } from "../../data/adminContent";
 import { createOpportunitySlug, opportunities } from "../../data/opportunities";
 import { useTranslation } from "../../i18n/TranslationProvider";

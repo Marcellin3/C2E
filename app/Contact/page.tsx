@@ -11,8 +11,10 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import { Send } from "lucide-react";
-import Footer from "../componen/Footer";
+import Footer from "../components/Footer";
 import { useTranslation } from "../i18n/TranslationProvider";
+
+const contactEmail = "c2experteval@gmail.com";
 
 export default function Contact() {
   const { t } = useTranslation();
@@ -32,6 +34,9 @@ export default function Contact() {
     subject: subjectOptions[0],
     message: "",
   });
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "sending" | "sent" | "fallback" | "error"
+  >("idle");
 
   useEffect(() => {
     setFormValues((current) => ({
@@ -52,9 +57,7 @@ export default function Contact() {
     visible: { y: 0, opacity: 1 },
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const openMailClient = () => {
     const subject = encodeURIComponent(
       `${formValues.subject} - ${formValues.fullName || "Nouveau contact"}`
     );
@@ -62,7 +65,44 @@ export default function Contact() {
       `Nom: ${formValues.fullName}\nEmail: ${formValues.email}\n\nMessage:\n${formValues.message}`
     );
 
-    window.location.href = `mailto:c2experteval@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubmitStatus("sending");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formValues),
+      });
+
+      if (response.ok) {
+        setSubmitStatus("sent");
+        setFormValues({
+          fullName: "",
+          email: "",
+          subject: subjectOptions[0],
+          message: "",
+        });
+        return;
+      }
+
+      if (response.status === 503) {
+        setSubmitStatus("fallback");
+        openMailClient();
+        return;
+      }
+
+      setSubmitStatus("error");
+    } catch {
+      setSubmitStatus("fallback");
+      openMailClient();
+    }
   };
 
   return (
@@ -82,7 +122,7 @@ export default function Contact() {
             <motion.h1
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              className="mt-4 bg-gradient-to-r from-slate-900 via-blue-800 to-slate-900 bg-clip-text font-display text-[2.4rem] font-semibold text-transparent sm:text-[3rem] md:text-[4.2rem]"
+              className="mt-4 font-display text-[2.4rem] font-semibold text-black sm:text-[3rem] md:text-[4.2rem]"
             >
               {t.contactPage.title}
             </motion.h1>
@@ -127,10 +167,10 @@ export default function Contact() {
                       {t.contactPage.officialEmail}
                     </h3>
                     <a
-                      href="mailto:c2experteval@gmail.com"
+                      href={`mailto:${contactEmail}`}
                       className="text-slate-500 transition-colors hover:text-blue-600"
                     >
-                      c2experteval@gmail.com
+                      {contactEmail}
                     </a>
                   </div>
                 </div>
@@ -205,6 +245,7 @@ export default function Contact() {
                         {t.contactPage.fullName}
                       </label>
                       <input
+                        required
                         type="text"
                         placeholder={t.contactPage.fullNamePlaceholder}
                         value={formValues.fullName}
@@ -222,6 +263,7 @@ export default function Contact() {
                         {t.contactPage.workEmail}
                       </label>
                       <input
+                        required
                         type="email"
                         placeholder={t.contactPage.workEmailPlaceholder}
                         value={formValues.email}
@@ -241,6 +283,7 @@ export default function Contact() {
                       {t.contactPage.subject}
                     </label>
                     <select
+                      required
                       value={formValues.subject}
                       onChange={(event) =>
                         setFormValues((current) => ({
@@ -263,6 +306,7 @@ export default function Contact() {
                       {t.contactPage.message}
                     </label>
                     <textarea
+                      required
                       rows={5}
                       placeholder={t.contactPage.messagePlaceholder}
                       value={formValues.message}
@@ -278,12 +322,34 @@ export default function Contact() {
 
                   <motion.button
                     type="submit"
+                    disabled={submitStatus === "sending"}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className="glass-hover interactive-lift flex w-full items-center justify-center gap-3 rounded-2xl bg-blue-600 py-5 text-lg font-bold text-white shadow-xl shadow-blue-200 hover:bg-blue-700"
                   >
-                    {t.contactPage.submit} <Send size={20} />
+                    {submitStatus === "sending"
+                      ? "Envoi en cours..."
+                      : t.contactPage.submit}{" "}
+                    <Send size={20} />
                   </motion.button>
+
+                  {submitStatus === "sent" ? (
+                    <p className="rounded-2xl bg-emerald-50 px-5 py-4 text-sm font-semibold text-emerald-700">
+                      Message envoye directement a {contactEmail}.
+                    </p>
+                  ) : null}
+
+                  {submitStatus === "fallback" ? (
+                    <p className="rounded-2xl bg-amber-50 px-5 py-4 text-sm font-semibold text-amber-700">
+                      La messagerie s'ouvre pour finaliser l'envoi a {contactEmail}.
+                    </p>
+                  ) : null}
+
+                  {submitStatus === "error" ? (
+                    <p className="rounded-2xl bg-red-50 px-5 py-4 text-sm font-semibold text-red-700">
+                      L'envoi a echoue. Veuillez reessayer ou ecrire a {contactEmail}.
+                    </p>
+                  ) : null}
                 </form>
               </div>
             </motion.div>

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, CalendarDays, Newspaper, Tag } from "lucide-react";
-import Footer from "../../componen/Footer";
+import Footer from "../../components/Footer";
 import { useAdminContent } from "../../data/adminContent";
 import { useTranslation } from "../../i18n/TranslationProvider";
 
