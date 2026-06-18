@@ -324,7 +324,6 @@ export default function Services() {
 
       <section className="bg-gray-100 px-4 py-10 sm:px-6 md:px-12 lg:px-20">
         <div className="mb-16 text-center">
-          <Users size={36} className="mx-auto mb-4 text-blue-600" />
           <h2 className="font-Montserrat text-3xl font-bold text-slate-900 sm:text-5xl">
             {t.servicesPage.teamTitle}
           </h2>
@@ -376,7 +375,7 @@ export default function Services() {
       <section className="bg-white px-4 py-10 md:px-10">
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
-            <h2 className="font-display text-2xl font-bold text-slate-900 md:text-5xl">
+            <h2 className="font-Montserrat text-2xl font-bold text-slate-900 md:text-5xl">
               {t.servicesPage.testimonialsTitle}
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-sm text-slate-500 md:text-base">

@@ -19,6 +19,9 @@ type Translations = {
     whatsapp: string;
     linkedin: string;
     interactiveMap: string;
+    themeLabel: string;
+    lightMode: string;
+    darkMode: string;
   };
   nav: {
     home: string;
@@ -207,6 +210,9 @@ export const translations: Record<Locale, Translations> = {
       whatsapp: "WhatsApp",
       linkedin: "LinkedIn / C2E",
       interactiveMap: "Carte interactive",
+      themeLabel: "Thème",
+      lightMode: "Mode clair",
+      darkMode: "Mode sombre",
     },
     nav: {
       home: "Accueil",
@@ -641,6 +647,9 @@ export const translations: Record<Locale, Translations> = {
       whatsapp: "WhatsApp",
       linkedin: "LinkedIn / C2E",
       interactiveMap: "Interactive map",
+      themeLabel: "Theme",
+      lightMode: "Light mode",
+      darkMode: "Dark mode",
     },
     nav: {
       home: "Home",
@@ -1057,6 +1066,9 @@ export const translations: Record<Locale, Translations> = {
       whatsapp: "WhatsApp",
       linkedin: "LinkedIn / C2E",
       interactiveMap: "Ramani ya moja kwa moja",
+      themeLabel: "Mandhari",
+      lightMode: "Mwonekano angavu",
+      darkMode: "Mwonekano wa giza",
     },
     nav: {
       home: "Nyumbani",

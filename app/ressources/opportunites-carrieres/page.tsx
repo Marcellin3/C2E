@@ -58,7 +58,7 @@ export default function OpportunitesCarrieresPage() {
               <BriefcaseBusiness className="h-3.5 w-3.5" />
               {copy.badge}
             </span>
-            <h1 className="font-display text-4xl font-bold text-slate-900 sm:text-5xl">{copy.title}</h1>
+            <h1 className="font-Montserrat text-4xl font-bold text-slate-900 sm:text-5xl">{copy.title}</h1>
             <p className="text-sm leading-8 text-slate-600 sm:text-base">
               {copy.intro}
             </p>
@@ -91,7 +91,7 @@ export default function OpportunitesCarrieresPage() {
                     {item.timing}
                   </span>
                 </div>
-                <h2 className="font-display mt-5 text-2xl font-bold text-slate-900 leading-tight">
+                <h2 className="font-Montserrat mt-5 text-2xl font-bold text-slate-900 leading-tight">
                   {item.title}
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-slate-500">

@@ -11,8 +11,10 @@ import {
   Mail,
   MapPin,
   Menu,
+  Moon,
   Newspaper,
   Phone,
+  Sun,
   X,
 } from "lucide-react";
 import { useTranslation } from "../i18n/TranslationProvider";
@@ -20,6 +22,7 @@ import type { Locale } from "../i18n/translations";
 
 export default function Navbar() {
   const { locale, setLocale, t } = useTranslation();
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
@@ -32,6 +35,24 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem("c2e-theme");
+    const initialTheme =
+      savedTheme === "dark" || savedTheme === "light" ? savedTheme : "light";
+
+    setTheme(initialTheme);
+    document.documentElement.dataset.theme = initialTheme;
+  }, []);
+
+  const toggleTheme = () => {
+    setTheme((current) => {
+      const nextTheme = current === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = nextTheme;
+      window.localStorage.setItem("c2e-theme", nextTheme);
+      return nextTheme;
+    });
+  };
 
   const closeMenus = () => {
     setMobileOpen(false);
@@ -81,6 +102,10 @@ export default function Navbar() {
       icon: BriefcaseBusiness,
     },
   ];
+
+  const ThemeIcon = theme === "dark" ? Sun : Moon;
+  const themeButtonLabel =
+    theme === "dark" ? t.common.lightMode : t.common.darkMode;
 
   return (
     <header className={`sticky top-0 z-50 bg-white transition-all duration-300 ${isScrolled ? "shadow-md" : ""}`}>
@@ -230,7 +255,17 @@ export default function Navbar() {
             </Link>
           </nav>
 
-          <div className="hidden lg:flex">
+          <div className="hidden items-center gap-3 lg:flex">
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={themeButtonLabel}
+              title={themeButtonLabel}
+              className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white transition hover:bg-white/18 hover:text-sky-100"
+            >
+              <ThemeIcon className="h-4 w-4 text-sky-100" />
+            </button>
+
             <label className="flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white">
             <Globe className="h-4 w-4 text-sky-200" />
             <span className="hidden md:inline">{t.common.languageLabel}</span>
@@ -363,6 +398,19 @@ export default function Navbar() {
                   </option>
                 </select>
               </label>
+
+              <button
+                type="button"
+                onClick={toggleTheme}
+                aria-label={themeButtonLabel}
+                className="flex w-full items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/12"
+              >
+                <ThemeIcon className="h-4 w-4 text-sky-200" />
+                <span>{t.common.themeLabel}</span>
+                <span className="ml-auto text-sky-100/90">
+                  {themeButtonLabel}
+                </span>
+              </button>
             </div>
           )}
         </div>

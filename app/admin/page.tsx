@@ -349,7 +349,7 @@ export default function AdminPage() {
             <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-sky-600">
               Acces admin
             </p>
-            <h1 className="font-display mt-3 text-3xl font-bold">Connexion</h1>
+            <h1 className="font-Montserrat mt-3 text-3xl font-bold">Connexion</h1>
             <p className="mt-3 text-sm leading-6 text-slate-500">
               Entrez vos identifiants pour gerer les contenus du site.
             </p>
@@ -404,7 +404,7 @@ export default function AdminPage() {
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-sky-600">
                 Administration C2E
               </p>
-              <h1 className="font-display mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
+              <h1 className="font-Montserrat mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
                 Ajouter du contenu au site
               </h1>
               <p className="mt-4 max-w-2xl text-base leading-8 text-slate-500">
@@ -446,7 +446,7 @@ export default function AdminPage() {
                   <div className={`flex h-11 w-11 items-center justify-center rounded-2xl ${card.tone}`}>
                     <Icon className="h-5 w-5" />
                   </div>
-                  <p className="font-display mt-5 text-3xl font-bold">{card.value}</p>
+                  <p className="font-Montserrat mt-5 text-3xl font-bold">{card.value}</p>
                   <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-slate-400">{card.label}</p>
                 </div>
               );
@@ -465,7 +465,7 @@ export default function AdminPage() {
             }
             className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8"
           >
-            <h2 className="font-display flex items-center gap-2 text-2xl font-bold text-slate-900">
+            <h2 className="font-Montserrat flex items-center gap-2 text-2xl font-bold text-slate-900">
               <Camera className="h-5 w-5 text-sky-700" />
               Galerie
             </h2>
@@ -513,7 +513,7 @@ export default function AdminPage() {
             }
             className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8"
           >
-            <h2 className="font-display flex items-center gap-2 text-2xl font-bold text-slate-900">
+            <h2 className="font-Montserrat flex items-center gap-2 text-2xl font-bold text-slate-900">
               <FolderKanban className="h-5 w-5 text-emerald-700" />
               Realisations
             </h2>
@@ -619,7 +619,7 @@ export default function AdminPage() {
             }
             className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8"
           >
-            <h2 className="font-display flex items-center gap-2 text-2xl font-bold text-slate-900">
+            <h2 className="font-Montserrat flex items-center gap-2 text-2xl font-bold text-slate-900">
               <FileText className="h-5 w-5 text-violet-700" />
               Blog & actualites
             </h2>
@@ -687,7 +687,7 @@ export default function AdminPage() {
             }
             className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8"
           >
-            <h2 className="font-display flex items-center gap-2 text-2xl font-bold text-slate-900">
+            <h2 className="font-Montserrat flex items-center gap-2 text-2xl font-bold text-slate-900">
               <BriefcaseBusiness className="h-5 w-5 text-amber-700" />
               Carrieres & opportunites
             </h2>
@@ -814,7 +814,7 @@ export default function AdminPage() {
             }
             className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8 lg:col-span-2"
           >
-            <h2 className="font-display flex items-center gap-2 text-2xl font-bold text-slate-900">
+            <h2 className="font-Montserrat flex items-center gap-2 text-2xl font-bold text-slate-900">
               <Building2 className="h-5 w-5 text-rose-700" />
               Partenaires
             </h2>
@@ -846,7 +846,7 @@ export default function AdminPage() {
       <section className="px-4 pb-14 sm:px-6">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-2">
           <div className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8">
-            <h2 className="font-display text-xl font-bold text-slate-900">Photos ajoutees</h2>
+            <h2 className="font-Montserrat text-xl font-bold text-slate-900">Photos ajoutees</h2>
             <div className="mt-4 space-y-3">
               {content.gallery.length ? (
                 content.gallery.map((item, index) => (
@@ -865,7 +865,7 @@ export default function AdminPage() {
           </div>
 
           <div className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8">
-            <h2 className="font-display text-xl font-bold text-slate-900">Projets ajoutes</h2>
+            <h2 className="font-Montserrat text-xl font-bold text-slate-900">Projets ajoutes</h2>
             <div className="mt-4 space-y-3">
               {content.projects.length ? (
                 content.projects.map((item, index) => (
@@ -884,7 +884,7 @@ export default function AdminPage() {
           </div>
 
           <div className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8">
-            <h2 className="font-display text-xl font-bold text-slate-900">Articles ajoutes</h2>
+            <h2 className="font-Montserrat text-xl font-bold text-slate-900">Articles ajoutes</h2>
             <div className="mt-4 space-y-3">
               {content.articles.length ? (
                 content.articles.map((item, index) => (
@@ -902,7 +902,7 @@ export default function AdminPage() {
           </div>
 
           <div className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8">
-            <h2 className="font-display text-xl font-bold text-slate-900">Offres ajoutees</h2>
+            <h2 className="font-Montserrat text-xl font-bold text-slate-900">Offres ajoutees</h2>
             <div className="mt-4 space-y-3">
               {content.opportunities.length ? (
                 content.opportunities.map((item, index) => (
@@ -920,7 +920,7 @@ export default function AdminPage() {
           </div>
 
           <div className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8 lg:col-span-2">
-            <h2 className="font-display text-xl font-bold text-slate-900">Candidatures recues</h2>
+            <h2 className="font-Montserrat text-xl font-bold text-slate-900">Candidatures recues</h2>
             <div className="mt-4 grid gap-3 md:grid-cols-2">
               {content.applications.length ? (
                 content.applications.map((item, index) => (
@@ -937,7 +937,7 @@ export default function AdminPage() {
           </div>
 
           <div className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8 lg:col-span-2">
-            <h2 className="font-display text-xl font-bold text-slate-900">Partenaires ajoutes</h2>
+            <h2 className="font-Montserrat text-xl font-bold text-slate-900">Partenaires ajoutes</h2>
             <div className="mt-4 grid gap-3 md:grid-cols-2">
               {content.partners.length ? (
                 content.partners.map((item, index) => (

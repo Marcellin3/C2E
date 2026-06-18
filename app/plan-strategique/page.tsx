@@ -674,7 +674,7 @@ export default function PlanStrategique() {
             </h1>
 
             {/* Subtitle */}
-            <p className="font-display text-lg sm:text-xl md:text-2xl text-slate-300 font-light tracking-wide max-w-2xl">
+            <p className="font-Montserrat text-lg sm:text-xl md:text-2xl text-slate-300 font-light tracking-wide max-w-2xl">
               {content.hero.subtitle}
             </p>
           </motion.div>

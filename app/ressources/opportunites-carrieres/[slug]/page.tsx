@@ -278,7 +278,7 @@ export default function OpportunityDetailPage() {
               <BriefcaseBusiness className="h-3.5 w-3.5" />
               {copy.badge}
             </span>
-            <h1 className="font-display mt-5 text-4xl font-bold leading-tight sm:text-5xl">
+            <h1 className="font-Montserrat mt-5 text-4xl font-bold leading-tight sm:text-5xl">
               {opportunity.title}
             </h1>
             <p className="mt-5 max-w-3xl text-sm leading-8 text-slate-650">
@@ -303,14 +303,14 @@ export default function OpportunityDetailPage() {
             </div>
 
             <div className="mt-8">
-              <h2 className="font-display text-2xl font-bold text-slate-900">{copy.description}</h2>
+              <h2 className="font-Montserrat text-2xl font-bold text-slate-900">{copy.description}</h2>
               <p className="mt-4 whitespace-pre-line text-sm leading-7 text-slate-600">
                 {opportunity.description || copy.fallbackDescription}
               </p>
             </div>
 
             <div className="mt-8 border-t border-slate-100 pt-8">
-              <h2 className="font-display flex items-center gap-2 text-2xl font-bold text-slate-900">
+              <h2 className="font-Montserrat flex items-center gap-2 text-2xl font-bold text-slate-900">
                 <CheckCircle2 className="h-5 w-5 text-emerald-600" />
                 {copy.requirements}
               </h2>
@@ -321,7 +321,7 @@ export default function OpportunityDetailPage() {
           </article>
 
           <aside className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.03)]">
-            <h2 className="font-display text-xl font-bold text-slate-900">{copy.badge}</h2>
+            <h2 className="font-Montserrat text-xl font-bold text-slate-900">{copy.badge}</h2>
             <div className="mt-5 grid gap-4">
               {detailItems.map((item) => {
                 const Icon = item.icon;
@@ -360,7 +360,7 @@ export default function OpportunityDetailPage() {
             onSubmit={handleApplicationSubmit}
             className="mx-auto max-w-7xl rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_12px_40px_rgba(15,23,42,0.04)] sm:p-8"
           >
-            <h2 className="font-display flex items-center gap-2 text-2xl font-bold text-slate-900">
+            <h2 className="font-Montserrat flex items-center gap-2 text-2xl font-bold text-slate-900">
               <FileText className="h-5 w-5 text-blue-600" />
               {copy.formTitle}
             </h2>

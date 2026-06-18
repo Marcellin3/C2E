@@ -244,7 +244,7 @@ export default function GaleriePage() {
               <p className="text-xs uppercase tracking-[0.18em] text-slate-500 font-semibold">
                 {copy.statOne}
               </p>
-              <p className="mt-2 text-4xl font-bold text-slate-900 font-display">
+              <p className="mt-2 text-4xl font-bold text-slate-900 font-Montserrat">
                 {galleryItems.length}
               </p>
             </div>
@@ -256,7 +256,7 @@ export default function GaleriePage() {
               <p className="text-xs uppercase tracking-[0.18em] text-white/70 font-semibold">
                 {copy.statTwo}
               </p>
-              <p className="mt-2 text-4xl font-bold font-display">Mosaic</p>
+              <p className="mt-2 text-4xl font-bold font-Montserrat">Mosaic</p>
             </div>
 
             <div className="overflow-hidden rounded-2xl sm:col-span-2">

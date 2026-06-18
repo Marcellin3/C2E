@@ -277,7 +277,7 @@ export default function ConseilAdministration() {
             </h1>
 
             {/* Subtitle */}
-            <p className="font-display text-lg sm:text-xl text-slate-300 font-light tracking-wide max-w-3xl">
+            <p className="font-Montserrat text-lg sm:text-xl text-slate-300 font-light tracking-wide max-w-3xl">
               {content.hero.subtitle}
             </p>
           </motion.div>

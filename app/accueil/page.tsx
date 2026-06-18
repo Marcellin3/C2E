@@ -20,7 +20,6 @@ import {
 } from "lucide-react";
 import Footer from "../components/Footer";
 import { useAdminContent } from "../data/adminContent";
-import { getProjectsWithFeaturedStudies } from "../data/featuredStudies";
 import { useTranslation } from "../i18n/TranslationProvider";
 
 export default function Accueil() {
@@ -91,39 +90,29 @@ export default function Accueil() {
 
   const recentStudiesContent = {
     fr: {
-      label: "Nos recentes",
-      title: "Des missions recentes qui illustrent notre expertise de terrain.",
-      cta: "Voir plus",
+      label: "Nos études récentes",
+      title: "Des projets réalisés qui traduisent notre expertise de terrain.",
+      text: "Découvrez une sélection de missions menées par le C2E auprès des institutions, organisations et partenaires de développement. Chaque intervention associe rigueur méthodologique, écoute du contexte local et recherche d'impact durable.",
+      cta: "Voir toutes les réalisations",
     },
     en: {
       label: "Our recent studies",
-      title: "Recent assignments that reflect our field expertise.",
+      title: "Completed projects that reflect our field expertise.",
+      text: "Explore a selection of assignments delivered by C2E with institutions, organizations, and development partners. Each intervention combines methodological rigor, local context awareness, and a focus on lasting impact.",
       cta: "View all",
     },
     sw: {
       label: "Tafiti zetu za karibuni",
-      title: "Majukumu ya karibuni yanayoonesha utaalamu wetu wa uwanjani.",
+      title: "Miradi iliyotekelezwa inayoonesha utaalamu wetu wa uwanjani.",
+      text: "Chunguza baadhi ya kazi zilizotekelezwa na C2E pamoja na taasisi, mashirika, na washirika wa maendeleo. Kila kazi inachanganya umakini wa mbinu, uelewa wa mazingira ya eneo, na lengo la athari endelevu.",
       cta: "Tazama zaidi",
     },
   }[locale];
 
-  const recentStudies = getProjectsWithFeaturedStudies(
-    locale,
-    t.realisation.projects
-  ).slice(0, 4);
+  const recentStudies = t.realisation.projects.slice(0, 6);
 
   const [activeStudy, setActiveStudy] = useState(0);
   const [activeImage, setActiveImage] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 640);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -140,6 +129,20 @@ export default function Accueil() {
 
     return () => window.clearInterval(interval);
   }, [recentStudies.length]);
+
+  const showPreviousStudy = () => {
+    setActiveStudy((current) =>
+      current === 0 ? recentStudies.length - 1 : current - 1
+    );
+  };
+
+  const showNextStudy = () => {
+    setActiveStudy((current) => (current + 1) % recentStudies.length);
+  };
+
+  const visibleStudies = [0, 1, 2].map(
+    (offset) => recentStudies[(activeStudy + offset) % recentStudies.length]
+  );
 
   return (
     <main className="overflow-hidden bg-[#eef4fb] text-slate-900">
@@ -158,7 +161,7 @@ export default function Accueil() {
         <div className="absolute left-14 top-0 h-full w-20 bg-[linear-gradient(180deg,_rgba(89,154,255,0.46),_rgba(14,59,142,0.14))] [clip-path:polygon(0_0,100%_0,52%_100%,0_100%)]" />
         <div className="absolute right-0 top-0 hidden h-full w-[42%] bg-[linear-gradient(270deg,_rgba(58,158,255,0.18),_transparent)] md:block" />
         <div className="absolute right-[8%] top-[18%] hidden h-40 w-72 rounded-full bg-sky-400/10 blur-3xl md:block" />
-        <div className="relative mx-auto min-h-[500px] max-w-7xl px-14 py-14 sm:px-6 md:min-h-[620px] md:py-10">
+        <div className="relative mx-auto min-h-[500px] max-w-7xl px-4 py-14 sm:px-6 md:min-h-[620px] md:py-10 lg:px-14">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
@@ -169,7 +172,7 @@ export default function Accueil() {
               {t.accueil.badge}
             </span>
 
-            <h1 className="mt-6 max-w-[850px] font-Montserrat  text-6xl tracking-normal text-white  ">
+            <h1 className="mt-6 max-w-[850px] font-Montserrat text-[2.5rem] font-bold leading-[1.08] tracking-normal text-white sm:text-5xl md:text-6xl">
               {t.accueil.heroTitle}
             </h1>
 
@@ -261,7 +264,7 @@ export default function Accueil() {
         </div>
       </section>
 
-      <section className="bg-[#f8fbff] px-14 py-24">
+      <section className="bg-[#f8fbff] px-4 py-16 sm:px-6 md:py-24 lg:px-14">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 lg:grid-cols-2">
             <motion.div
@@ -303,14 +306,14 @@ export default function Accueil() {
         </div>
       </section>
 
-      <section className="bg-white px-14 py-24">
+      <section className="bg-white px-4 py-16 sm:px-6 md:py-24 lg:px-14">
         <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div className="max-w-xl">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-600">
               {t.accueil.objectivesLabel}
             </p>
 
-            <h2 className="font-Montserrat mt-4 text-[2.4rem] font-bold leading-[1.15] text-slate-900 md:text-[3.2rem]">
+            <h2 className="font-Montserrat mt-4 text-[2rem] font-bold leading-[1.15] text-slate-900 sm:text-[2.4rem] md:text-[3.2rem]">
               {t.accueil.objectivesTitle}
             </h2>
 
@@ -319,7 +322,7 @@ export default function Accueil() {
             </p>
           </div>
 
-          <div className="mx-auto flex max-w-[620px] items-start gap-5 md:gap-6">
+          <div className="mx-auto flex max-w-[620px] flex-col items-stretch gap-5 sm:flex-row sm:items-start md:gap-6">
             <div className="flex flex-1 flex-col gap-5 md:-translate-y-8 md:gap-6">
               {[objectives[0], objectives[2]].map((item, index) => {
                 const Icon = item.icon;
@@ -465,13 +468,13 @@ export default function Accueil() {
         `}</style>
       </section>
 
-      <section className="bg-[#f7fbff] px-4 py-20 sm:px-6 lg:px-20">
+      <section className="bg-[#f7fbff] px-4 py-16 sm:px-6 md:py-20 lg:px-20">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
           <div className="max-w-xl">
             <p className="text-sm font-bold uppercase tracking-[0.24em] text-sky-600">
               {valuesContent.label}
             </p>
-            <h2 className="mt-4 text-[2.2rem] font-semibold leading-[1.08] text-slate-900 md:text-[3rem]">
+            <h2 className="mt-4 text-[2rem] font-semibold leading-[1.08] text-slate-900 sm:text-[2.2rem] md:text-[3rem]">
               {valuesContent.title}
             </h2>
             <p className="mt-6 text-[17px] leading-8 text-slate-600 md:text-[18px]">
@@ -509,135 +512,142 @@ export default function Accueil() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 px-4 py-24 sm:px-6 lg:px-20">
-        {/* Decorative background shapes */}
-        <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-blue-500/5 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-yellow-500/5 blur-3xl pointer-events-none" />
-
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.38fr_0.62fr] lg:items-center relative z-10">
-          {/* Left content block */}
-          <div className="max-w-md space-y-6">
-            <div className="space-y-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-blue-600">
-                <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
-                {recentStudiesContent.label}
-              </span>
-              <h2 className="font-Montserrat text-4xl sm:text-5xl font-extrabold leading-[1.15] text-slate-900 tracking-tight">
-                Études de <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Terrain</span>
-              </h2>
-            </div>
-            
-            <p className="text-base leading-relaxed text-slate-500 md:text-[16px]">
+      <section className="bg-white px-4 py-16 sm:px-6 md:py-20 lg:px-20">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -28 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.65, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.25 }}
+            className="max-w-xl"
+          >
+            <p className="text-sm font-bold uppercase tracking-[0.24em] text-sky-600">
+              {recentStudiesContent.label}
+            </p>
+            <h2 className="mt-4 text-[2rem] font-semibold leading-[1.08] text-slate-900 sm:text-[2.15rem] md:text-[3rem]">
               {recentStudiesContent.title}
+            </h2>
+            <p className="mt-6 text-[17px] leading-8 text-slate-600 md:text-[18px]">
+              {recentStudiesContent.text}
             </p>
 
-            <div className="pt-4 flex items-center justify-between gap-6 border-t border-slate-100">
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
                 href="/realisation"
-                className="group inline-flex items-center text-sm font-bold uppercase tracking-[0.12em] text-blue-600 hover:text-blue-700 transition-colors"
+                className="inline-flex items-center gap-2 rounded-full bg-blue-950 px-6 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(15,23,42,0.18)] transition hover:bg-blue-900"
               >
-                {recentStudiesContent.cta}{" "}
-                <ArrowRight size={16} className="ml-2 transform group-hover:translate-x-1.5 transition-transform duration-300 text-yellow-500" />
+                {recentStudiesContent.cta}
+                <ArrowRight className="h-4 w-4" />
               </Link>
-              
-              {/* Carousel controls */}
-              <div className="flex items-center gap-3">
+
+              <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  onClick={() => setActiveStudy((current) => (current === 0 ? recentStudies.length - 1 : current - 1))}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-blue-100 bg-white text-blue-600 shadow-[0_4px_12px_rgba(30,58,138,0.04)] hover:bg-blue-50 hover:border-blue-200 transition-all hover:scale-105 active:scale-95"
-                  aria-label="Étude précédente"
+                  onClick={showPreviousStudy}
+                  aria-label="Projet précédent"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-blue-200 hover:text-blue-700"
                 >
-                  <ChevronLeft size={18} />
+                  <ChevronLeft className="h-4 w-4" />
                 </button>
                 <button
                   type="button"
-                  onClick={() => setActiveStudy((current) => (current === recentStudies.length - 1 ? 0 : current + 1))}
-                  className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-[0_4px_16px_rgba(37,99,235,0.2)] hover:from-blue-700 hover:to-blue-800 transition-all hover:scale-105 active:scale-95"
-                  aria-label="Étude suivante"
+                  onClick={showNextStudy}
+                  aria-label="Projet suivant"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-blue-200 hover:text-blue-700"
                 >
-                  <ChevronRight size={18} />
+                  <ChevronRight className="h-4 w-4" />
                 </button>
               </div>
             </div>
+          </motion.div>
 
-            {/* Dots indicators */}
-            <div className="flex items-center gap-2 pt-2">
-              {recentStudies.map((_, index) => (
+          <div className="relative">
+            <div className="absolute -right-6 top-10 hidden h-48 w-48 rounded-full bg-sky-100 blur-3xl lg:block" />
+            <div className="relative grid gap-4 xl:grid-cols-[1.1fr_0.72fr]">
+              <motion.article
+                key={visibleStudies[0].title}
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45 }}
+                className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-[0_22px_55px_rgba(15,23,42,0.10)]"
+              >
+                <div
+                  className="min-h-[260px] bg-cover bg-center sm:min-h-[330px]"
+                  style={{
+                    backgroundImage: `linear-gradient(180deg,rgba(15,23,42,0.05),rgba(15,23,42,0.42)), url('${visibleStudies[0].image}')`,
+                  }}
+                />
+                <div className="p-6 sm:p-7">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-sky-700">
+                      {t.realisation.categories[visibleStudies[0].categoryKey]}
+                    </span>
+                    <span className="text-sm font-semibold text-slate-400">
+                      {visibleStudies[0].date}
+                    </span>
+                  </div>
+                  <h3 className="mt-4 text-[1.45rem] font-semibold leading-tight text-slate-900">
+                    {visibleStudies[0].title}
+                  </h3>
+                  <p className="mt-4 text-[15px] leading-7 text-slate-600">
+                    {visibleStudies[0].description}
+                  </p>
+                  <p className="mt-5 text-sm font-semibold text-blue-900">
+                    {visibleStudies[0].client}
+                  </p>
+                </div>
+              </motion.article>
+
+              <div className="grid gap-4">
+                {visibleStudies.slice(1).map((project, index) => (
+                  <button
+                    key={`${project.title}-${index}`}
+                    type="button"
+                    onClick={() =>
+                      setActiveStudy(
+                        (activeStudy + index + 1) % recentStudies.length
+                      )
+                    }
+                    className="group overflow-hidden rounded-2xl border border-slate-100 bg-white text-left shadow-[0_14px_34px_rgba(15,23,42,0.07)] transition hover:-translate-y-1 hover:shadow-[0_18px_42px_rgba(15,23,42,0.11)]"
+                  >
+                    <div
+                      className="h-32 bg-cover bg-center transition duration-300 group-hover:scale-[1.02]"
+                      style={{
+                        backgroundImage: `linear-gradient(180deg,rgba(15,23,42,0.02),rgba(15,23,42,0.32)), url('${project.image}')`,
+                      }}
+                    />
+                    <div className="p-4">
+                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-sky-600">
+                        {t.realisation.categories[project.categoryKey]}
+                      </p>
+                      <h4 className="mt-2 line-clamp-2 text-sm font-semibold leading-5 text-slate-900">
+                        {project.title}
+                      </h4>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-6 flex items-center justify-center gap-2">
+              {recentStudies.map((project, index) => (
                 <button
-                  key={index}
+                  key={`${project.title}-dot-${index}`}
                   type="button"
                   onClick={() => setActiveStudy(index)}
-                  aria-label={`${recentStudiesContent.label} ${index + 1}`}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    activeStudy === index ? "w-8 bg-blue-600" : "w-1.5 bg-slate-300 hover:bg-slate-400"
-                  }`}
+                  aria-label={`Afficher le projet ${index + 1}`}
+                  className={`h-2 rounded-full transition-all ${activeStudy === index
+                    ? "w-8 bg-blue-900"
+                    : "w-2 bg-slate-300 hover:bg-slate-400"
+                    }`}
                 />
               ))}
             </div>
           </div>
-
-          {/* Smooth Carousel Container */}
-          <div className="relative w-full px-2 py-4">
-            {/* Soft fade-out overlay on the right edge to feel endless */}
-            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white via-white/50 to-transparent pointer-events-none z-20 hidden md:block" />
-
-            <div className="overflow-hidden w-full">
-              <motion.div
-                animate={{ x: -activeStudy * (isMobile ? 312 : 344) }}
-                transition={{ type: "spring", stiffness: 180, damping: 25 }}
-                className="flex gap-6 items-center"
-              >
-                {recentStudies.map((study) => {
-                  return (
-                    <motion.article
-                      key={study.title}
-                      className="group relative shrink-0 overflow-hidden rounded-[2rem] bg-slate-900 h-[26rem] w-[18rem] sm:h-[28rem] sm:w-[20rem] shadow-[0_12px_40px_rgba(15,23,42,0.08)] hover:shadow-[0_20px_50px_rgba(15,23,42,0.18)] transition-all duration-500"
-                    >
-                      {/* Top Accent Line that lights up on hover */}
-                      <div className="absolute top-0 left-0 right-0 h-1.5 bg-yellow-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-20" />
-
-                      {/* Full card background image */}
-                      <div
-                        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out scale-100 group-hover:scale-110"
-                        style={{
-                          backgroundImage: `url('${study.image}')`,
-                        }}
-                      />
-                      {/* Overlay gradients for high-end cinematic style */}
-                      <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-slate-950/20 transition-all duration-500" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent z-10" />
-
-                      {/* Content overlay inside the card */}
-                      <div className="absolute inset-x-0 bottom-0 p-6 text-white flex flex-col justify-end min-h-[60%] z-20">
-                        {/* Client / Partner Category Pill */}
-                        <div className="flex">
-                          <span className="inline-block bg-yellow-400 text-slate-950 text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-md mb-3 shadow-sm">
-                            {study.client}
-                          </span>
-                        </div>
-                        
-                        {/* Title */}
-                        <h3 className="text-[1.2rem] font-bold leading-tight text-white group-hover:text-yellow-300 transition-colors duration-300">
-                          {study.title}
-                        </h3>
-
-                        {/* Card footer divider & date */}
-                        <div className="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-xs text-slate-300">
-                          <span>{study.date}</span>
-                          <span className="text-[10px] font-bold uppercase text-yellow-400/90 group-hover:underline">
-                            {locale === "fr" ? "Voir l'étude" : "View study"}
-                          </span>
-                        </div>
-                      </div>
-                    </motion.article>
-                  );
-                })}
-              </motion.div>
-            </div>
-          </div>
         </div>
       </section>
+
+      
       <Footer />
     </main>
   );
