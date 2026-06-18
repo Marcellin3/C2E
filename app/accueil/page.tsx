@@ -272,9 +272,7 @@ export default function Accueil() {
               className="rounded-2xl border border-slate-100 bg-white px-8 py-10 shadow-[0_12px_30px_rgba(15,23,42,0.04)]"
             >
               <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 text-blue-600">
-                  <Target className="h-6 w-6" />
-                </div>
+
                 <h3 className="font-Montserrat text-2xl font-bold text-slate-900">
                   {t.accueil.missionTitle}
                 </h3>
@@ -290,9 +288,7 @@ export default function Accueil() {
               className="rounded-2xl border border-slate-100 bg-white px-8 py-10 shadow-[0_12px_30px_rgba(15,23,42,0.04)]"
             >
               <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-50 text-amber-600">
-                  <Globe2 className="h-6 w-6" />
-                </div>
+
                 <h3 className="font-Montserrat text-2xl font-bold text-slate-900">
                   {t.accueil.visionTitle}
                 </h3>
@@ -313,7 +309,7 @@ export default function Accueil() {
               {t.accueil.objectivesLabel}
             </p>
 
-            <h2 className="font-Montserrat mt-4 text-[2rem] font-bold leading-[1.15] text-slate-900 sm:text-[2.4rem] md:text-[3.2rem]">
+            <h2 className="font-Montserrat mt-4 text-2xl font-bold leading-[1.15] text-slate-900 sm:text-[2.4rem] md:text-[3.2rem]">
               {t.accueil.objectivesTitle}
             </h2>
 
@@ -647,7 +643,7 @@ export default function Accueil() {
         </div>
       </section>
 
-      
+
       <Footer />
     </main>
   );
