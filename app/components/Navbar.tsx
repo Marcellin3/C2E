@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   BriefcaseBusiness,
@@ -23,6 +23,16 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const closeMenus = () => {
     setMobileOpen(false);
     setMobileResourcesOpen(false);
@@ -73,12 +83,14 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="relative z-50 bg-white">
+    <header className={`sticky top-0 z-50 bg-white transition-all duration-300 ${isScrolled ? "shadow-md" : ""}`}>
       <motion.div
         initial={{ y: -40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.55 }}
-        className="border-b border-slate-200"
+        className={`transition-all duration-300 overflow-hidden border-b border-slate-200 ${
+          isScrolled ? "max-h-0 opacity-0 border-none pointer-events-none py-0" : "max-h-20 opacity-100"
+        }`}
       >
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-end gap-5 px-4 py-4 text-sm text-slate-600 md:px-6 lg:gap-7">
           <div className="flex flex-wrap items-center gap-5 lg:gap-7">
@@ -112,9 +124,9 @@ export default function Navbar() {
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.55, delay: 0.08 }}
-        className="px-4 pb-4 md:px-6"
+        className={`px-4 transition-all duration-300 md:px-6 ${isScrolled ? "py-2" : "pb-4 pt-2 md:pt-4"}`}
       >
-        <div className="mx-auto max-w-7xl rounded-3xl bg-[#327cf3] px-4 py-3 text-white shadow-[0_20px_40px_rgba(8,118,239,0.22)] md:px-6">
+        <div className="mx-auto max-w-7xl rounded-2xl bg-[#327cf3] px-4 py-3 text-white shadow-[0_12px_36px_rgba(8,118,239,0.18)] md:px-6">
           <div className="flex items-center justify-between gap-4">
           <Link
             href="/accueil"
@@ -128,7 +140,7 @@ export default function Navbar() {
               height={52}
               className="object-contain md:h-[60px] md:w-[60px]"
             />
-            <p className="text-[1.7rem] font-semibold leading-none text-white md:text-[2rem]">
+            <p className="font-Montserrat text-[1.7rem] font-bold leading-none text-white md:text-[2rem]">
               {t.common.brand}
             </p>
           </Link>
@@ -175,7 +187,7 @@ export default function Navbar() {
 
               {resourcesOpen && (
                 <div className="absolute left-1/2 top-full z-50 w-[360px] -translate-x-1/2 pt-4">
-                  <div className="rounded-[1.6rem] border border-white/15 bg-white p-3 text-slate-900 shadow-[0_24px_60px_rgba(15,23,42,0.18)]">
+                  <div className="rounded-2xl border border-slate-100 bg-white p-3 text-slate-900 shadow-[0_16px_48px_rgba(15,23,42,0.12)]">
                     <div className="space-y-2">
                     {resourceItems.map((item) => {
                       const Icon = item.icon;
@@ -184,11 +196,11 @@ export default function Navbar() {
                         <Link
                           key={item.name}
                           href={item.link}
-                          className="block rounded-[1.2rem] px-3 py-3 transition hover:bg-sky-50"
+                          className="block rounded-2xl px-3 py-3 transition hover:bg-slate-50"
                           onClick={closeMenus}
                         >
                           <div className="flex items-start gap-3">
-                            <div className="mt-0.5 flex h-10 w-10 items-center justify-center rounded-full bg-sky-100 text-sky-700">
+                            <div className="mt-0.5 flex h-10 w-10 items-center justify-center rounded-full bg-sky-50 text-sky-700">
                               <Icon className="h-4 w-4" />
                             </div>
                             <div>
@@ -219,7 +231,7 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden lg:flex">
-            <label className="flex items-center gap-3 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white">
+            <label className="flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white">
             <Globe className="h-4 w-4 text-sky-200" />
             <span className="hidden md:inline">{t.common.languageLabel}</span>
             <select

@@ -403,19 +403,14 @@ export const translations: Record<Locale, Translations> = {
       ],
       consultants: [
         {
-          name: "Dr Patrick MUTUTA | PhD Sciences Environnementales",
-          image: "/photos/Patrick.jpg",
-          desc: "Expert senior avec plus de 15 ans d'expérience en évaluation d'impact, planification stratégique, gestion des organisations et conduite d'études complexes ainsi que d'évaluations finales de projets humanitaires et de développement en RDC.",
-        },
-        {
           name: "Philemon MBARAMBARA",
           image: "/photos/projet.jpg",
           desc: "Chercheur en santé communautaire et expert en conception de plans stratégiques institutionnels pour les organisations publiques et privées.",
         },
         {
-          name: "Marcellin MULEZI",
-          image: "/photos/Mulezi.jpeg",
-          desc: "Technicien en développement rural, spécialiste en conception et mise en oeuvre des projets de développement, data analyst certifié et Web3 builder.",
+          name: "Dr Patrick MUTUTA | PhD Sciences Environnementales",
+          image: "/photos/Patrick.jpg",
+          desc: "Expert senior avec plus de 15 ans d'expérience en évaluation d'impact, planification stratégique, gestion des organisations et conduite d'études complexes ainsi que d'évaluations finales de projets humanitaires et de développement en RDC.",
         },
         {
           name: "Charmant MUTUTA",
@@ -423,14 +418,34 @@ export const translations: Record<Locale, Translations> = {
           desc: "Spécialiste en gestion et coordination de projets.",
         },
         {
+          name: "Etienne BUHURU",
+          image: "/photos/Buhuru.jpg",
+          desc: "Économiste et spécialiste en administration et finance, plus de 10 ans d'expérience dans la gestion administrative financière et budgétaire de projets humanitaires et développement.Avec une expertise solide en gestion des subventions, contrôle interne, conformité aux exigences des bailleurs, reporting financier et supervision compatable.",
+        },
+        {
           name: "Prince BITAKI",
           image: "/photos/Prince.jpg",
           desc: "Économiste mathématicien et chercheur universitaire, spécialiste en logistique, supply chain, administration et ressources humaines.",
         },
         {
-          name: "Etienne BUHURU",
-          image: "/photos/Buhuru.jpg",
-          desc: "Économiste et spécialiste en administration et finance avec une solide expertise en gestion administrative, budgétaire et financière des projets.",
+          name: "Marcellin MULEZI",
+          image: "/photos/Mulezi.jpeg",
+          desc: "Technicien en développement rural, spécialiste en conception et mise en oeuvre des projets de développement, data analyst certifié et Web3 builder.",
+        },
+        {
+          name: "Maitre Gilbert CIGOLO",
+          image: "/photos/.jpeg",
+          desc: "Technicien en développement rural, spécialiste en conception et mise en oeuvre des projets de développement, data analyst certifié et Web3 builder.",
+        },
+        {
+          name: "Marcellin MULEZI",
+          image: "/photos/Mulezi.jpeg",
+          desc: "Technicien en développement rural, spécialiste en conception et mise en oeuvre des projets de développement, data analyst certifié et Web3 builder.",
+        },
+        {
+          name: "Marcellin MULEZI",
+          image: "/photos/Mulezi.jpeg",
+          desc: "Technicien en développement rural, spécialiste en conception et mise en oeuvre des projets de développement, data analyst certifié et Web3 builder.",
         },
       ],
       testimonials: [

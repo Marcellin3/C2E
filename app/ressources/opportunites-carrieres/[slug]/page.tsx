@@ -263,7 +263,7 @@ export default function OpportunityDetailPage() {
         <div className="mx-auto max-w-7xl">
           <Link
             href="/ressources/opportunites-carrieres"
-            className="inline-flex items-center gap-2 text-sm font-bold text-sky-800 hover:text-sky-950"
+            className="inline-flex items-center gap-2 text-sm font-bold text-sky-850 hover:text-sky-950"
           >
             <ArrowLeft className="h-4 w-4" />
             {copy.back}
@@ -274,14 +274,14 @@ export default function OpportunityDetailPage() {
             animate={{ opacity: 1, y: 0 }}
             className="mt-8 max-w-4xl"
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-sky-800 shadow-sm">
+            <span className="inline-flex items-center gap-2 rounded-2xl bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-sky-850 border border-slate-200/40 shadow-sm">
               <BriefcaseBusiness className="h-3.5 w-3.5" />
               {copy.badge}
             </span>
-            <h1 className="mt-5 text-4xl font-bold leading-tight sm:text-5xl">
+            <h1 className="font-display mt-5 text-4xl font-bold leading-tight sm:text-5xl">
               {opportunity.title}
             </h1>
-            <p className="mt-5 max-w-3xl text-base leading-8 text-slate-700 sm:text-lg">
+            <p className="mt-5 max-w-3xl text-sm leading-8 text-slate-650">
               {opportunity.text}
             </p>
           </motion.div>
@@ -290,38 +290,38 @@ export default function OpportunityDetailPage() {
 
       <section className="px-4 py-12 sm:px-6 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.4fr_0.8fr]">
-          <article className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+          <article className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.03)] sm:p-8">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-2 rounded-full bg-sky-50 px-3 py-1 text-sm font-semibold text-sky-700">
+              <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-600">
                 <GraduationCap className="h-4 w-4" />
                 {opportunity.type}
               </span>
-              <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-600">
+              <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-500">
                 <Clock3 className="h-4 w-4" />
                 {opportunity.timing}
               </span>
             </div>
 
             <div className="mt-8">
-              <h2 className="text-2xl font-bold">{copy.description}</h2>
-              <p className="mt-4 whitespace-pre-line text-base leading-8 text-slate-600">
+              <h2 className="font-display text-2xl font-bold text-slate-900">{copy.description}</h2>
+              <p className="mt-4 whitespace-pre-line text-sm leading-7 text-slate-600">
                 {opportunity.description || copy.fallbackDescription}
               </p>
             </div>
 
-            <div className="mt-8 border-t border-slate-200 pt-8">
-              <h2 className="flex items-center gap-2 text-2xl font-bold">
-                <CheckCircle2 className="h-5 w-5 text-emerald-700" />
+            <div className="mt-8 border-t border-slate-100 pt-8">
+              <h2 className="font-display flex items-center gap-2 text-2xl font-bold text-slate-900">
+                <CheckCircle2 className="h-5 w-5 text-emerald-600" />
                 {copy.requirements}
               </h2>
-              <p className="mt-4 whitespace-pre-line text-base leading-8 text-slate-600">
+              <p className="mt-4 whitespace-pre-line text-sm leading-7 text-slate-600">
                 {opportunity.requirements || copy.fallbackRequirements}
               </p>
             </div>
           </article>
 
-          <aside className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-            <h2 className="text-xl font-bold">{copy.badge}</h2>
+          <aside className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.03)]">
+            <h2 className="font-display text-xl font-bold text-slate-900">{copy.badge}</h2>
             <div className="mt-5 grid gap-4">
               {detailItems.map((item) => {
                 const Icon = item.icon;
@@ -329,13 +329,13 @@ export default function OpportunityDetailPage() {
                 return (
                   <div
                     key={item.label}
-                    className="rounded-lg border border-slate-200 bg-slate-50 p-4"
+                    className="rounded-2xl border border-slate-200/60 bg-slate-50/50 p-4"
                   >
-                    <div className="flex items-center gap-2 text-sm font-bold text-slate-900">
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500">
                       <Icon className="h-4 w-4 text-sky-700" />
                       {item.label}
                     </div>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                    <p className="mt-2 text-sm font-semibold text-slate-800">
                       {item.value}
                     </p>
                   </div>
@@ -345,7 +345,7 @@ export default function OpportunityDetailPage() {
             <button
               type="button"
               onClick={revealApplicationForm}
-              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#0d5fd6] px-6 py-3 font-semibold text-white shadow-[0_16px_36px_rgba(13,95,214,0.22)] hover:bg-[#0b54c0]"
+              className="glass-hover interactive-lift mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#0d5fd6] px-6 py-3.5 font-bold text-white shadow-lg shadow-blue-500/20 hover:bg-[#0b54c0]"
             >
               {copy.apply}
               <ArrowRight className="h-4 w-4" />
@@ -358,13 +358,13 @@ export default function OpportunityDetailPage() {
         <section ref={applicationRef} className="px-4 pb-16 sm:px-6">
           <form
             onSubmit={handleApplicationSubmit}
-            className="mx-auto max-w-7xl rounded-lg border border-slate-200 bg-white p-6 shadow-sm sm:p-8"
+            className="mx-auto max-w-7xl rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_12px_40px_rgba(15,23,42,0.04)] sm:p-8"
           >
-            <h2 className="flex items-center gap-2 text-2xl font-bold">
-              <FileText className="h-5 w-5 text-sky-700" />
+            <h2 className="font-display flex items-center gap-2 text-2xl font-bold text-slate-900">
+              <FileText className="h-5 w-5 text-blue-600" />
               {copy.formTitle}
             </h2>
-            <p className="mt-2 text-sm leading-6 text-slate-500">
+            <p className="mt-1.5 text-xs font-semibold text-slate-500 uppercase tracking-wider">
               {opportunity.title}
             </p>
 
@@ -383,7 +383,7 @@ export default function OpportunityDetailPage() {
                       fullName: event.target.value,
                     })
                   }
-                  className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
+                  className="mt-2 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
                 />
               </label>
               <label className="block">
@@ -401,7 +401,7 @@ export default function OpportunityDetailPage() {
                       email: event.target.value,
                     })
                   }
-                  className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
+                  className="mt-2 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
                 />
               </label>
               <label className="block">
@@ -418,7 +418,7 @@ export default function OpportunityDetailPage() {
                       phone: event.target.value,
                     })
                   }
-                  className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
+                  className="mt-2 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
                 />
               </label>
               <label className="block">
@@ -435,7 +435,7 @@ export default function OpportunityDetailPage() {
                       portfolio: event.target.value,
                     })
                   }
-                  className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
+                  className="mt-2 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
                 />
               </label>
             </div>
@@ -454,7 +454,7 @@ export default function OpportunityDetailPage() {
                     message: event.target.value,
                   })
                 }
-                className="mt-2 min-h-32 w-full resize-y rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
+                className="mt-2 min-h-32 w-full resize-y rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
               />
             </label>
 
@@ -484,12 +484,12 @@ export default function OpportunityDetailPage() {
             </div>
 
             {applicationMessage ? (
-              <p className="mt-5 rounded-lg bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
+              <p className="mt-5 rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700 border border-emerald-100">
                 {applicationMessage}
               </p>
             ) : null}
 
-            <button className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#0d5fd6] px-6 py-3 font-semibold text-white shadow-[0_16px_36px_rgba(13,95,214,0.22)] hover:bg-[#0b54c0]">
+            <button className="glass-hover interactive-lift mt-6 inline-flex items-center justify-center gap-2 rounded-2xl bg-[#0d5fd6] px-6 py-3.5 font-bold text-white shadow-lg shadow-blue-500/20 hover:bg-[#0b54c0]">
               {copy.submit}
               <ArrowRight className="h-4 w-4" />
             </button>
@@ -518,12 +518,12 @@ function ApplicationFileInput({
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
-    <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+    <div className="rounded-2xl border border-slate-200 bg-slate-50/50 p-5">
       <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
         {label}
         {required ? <span className="text-red-600"> *</span> : null}
       </p>
-      <label className="mt-3 inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">
+      <label className="mt-3 inline-flex cursor-pointer items-center justify-center gap-2 rounded-2xl border border-slate-250 bg-white px-4 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-100">
         <Upload className="h-4 w-4" />
         {buttonLabel}
         <input
@@ -536,7 +536,7 @@ function ApplicationFileInput({
         />
       </label>
       {fileNames.length ? (
-        <div className="mt-3 space-y-1 text-xs leading-5 text-slate-600">
+        <div className="mt-3 space-y-1 text-xs leading-5 text-slate-500">
           {fileNames.map((name) => (
             <p key={name} className="truncate">
               {name}

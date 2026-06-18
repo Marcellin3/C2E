@@ -17,17 +17,17 @@ export default function Footer() {
 
   return (
     <footer className="relative z-10 motion-fade-up">
-      <div className="border-t border-white/10 bg-blue-900/90 px-10 py-12 text-white backdrop-blur-2xl">
+      <div className="border-t border-white/10 bg-[#327cf3] px-10 py-12 text-white backdrop-blur-2xl">
         <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-3">
           <div>
-            <h3 className="mb-4 text-4xl font-semibold text-yellow-400">C2E</h3>
-            <p className="text-sm leading-relaxed opacity-80">
+            <h3 className="font-Montserrat mb-4 text-4xl font-bold text-yellow-400">C2E</h3>
+            <p className="text-sm leading-relaxed opacity-85">
               {t.footer.description}
             </p>
           </div>
 
           <div>
-            <h3 className="mb-4 text-[1.7rem] font-semibold">
+            <h3 className="font-Montserrat mb-4 text-[1.45rem] font-bold text-white">
               {t.footer.navigation}
             </h3>
             <ul className="space-y-2 text-sm opacity-90">
@@ -45,7 +45,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-4 text-[1.7rem] font-semibold">
+            <h3 className="font-Montserrat mb-4 text-[1.45rem] font-bold text-white">
               {t.footer.contact}
             </h3>
             <div className="space-y-4 text-sm">

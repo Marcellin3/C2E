@@ -205,25 +205,25 @@ export default function GaleriePage() {
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-800/10 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-900">
+            <span className="inline-flex items-center gap-2 rounded-2xl border border-emerald-800/10 bg-white/70 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-emerald-900">
               <Sparkles className="h-3.5 w-3.5" />
               {copy.badge}
             </span>
 
             <div className="space-y-4">
-              <h1 className="max-w-3xl text-4xl font-bold leading-tight text-slate-900 sm:text-5xl">
+              <h1 className="font-Montserrat max-w-3xl text-4xl font-bold leading-tight text-slate-900 sm:text-5xl">
                 {copy.title}
               </h1>
-              <p className="max-w-2xl text-base leading-8 text-slate-700 sm:text-lg">
+              <p className="max-w-2xl text-sm leading-8 text-slate-600 sm:text-base">
                 {copy.intro}
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-3 text-sm font-semibold text-slate-700">
+            <div className="flex flex-wrap gap-3 text-xs font-bold text-slate-700">
               {[copy.chipOne, copy.chipTwo, copy.chipThree].map((chip) => (
                 <span
                   key={chip}
-                  className="rounded-full border border-slate-900/8 bg-white/80 px-4 py-2 shadow-[0_10px_30px_rgba(15,23,42,0.06)]"
+                  className="rounded-2xl border border-slate-900/8 bg-white/80 px-4 py-2 shadow-[0_8px_30px_rgba(15,23,42,0.04)]"
                 >
                   {chip}
                 </span>
@@ -237,29 +237,29 @@ export default function GaleriePage() {
             transition={{ duration: 0.6, delay: 0.08 }}
             className="grid gap-4 sm:grid-cols-2"
           >
-            <div className="rounded-[2rem] bg-white/85 p-5 shadow-[0_24px_50px_rgba(15,23,42,0.12)] backdrop-blur">
+            <div className="rounded-2xl bg-white/85 p-5 shadow-[0_8px_30px_rgba(15,23,42,0.04)] backdrop-blur">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-700">
                 <Camera className="h-6 w-6" />
               </div>
-              <p className="text-sm uppercase tracking-[0.18em] text-slate-500">
+              <p className="text-xs uppercase tracking-[0.18em] text-slate-500 font-semibold">
                 {copy.statOne}
               </p>
-              <p className="mt-2 text-4xl font-bold text-slate-900">
+              <p className="mt-2 text-4xl font-bold text-slate-900 font-display">
                 {galleryItems.length}
               </p>
             </div>
 
-            <div className="rounded-[2rem] bg-[#0d5fd6] p-5 text-white shadow-[0_24px_50px_rgba(13,95,214,0.26)]">
+            <div className="rounded-2xl bg-[#0d5fd6] p-5 text-white shadow-[0_12px_36px_rgba(13,95,214,0.15)]">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-white">
                 <ImageIcon className="h-6 w-6" />
               </div>
-              <p className="text-sm uppercase tracking-[0.18em] text-white/70">
+              <p className="text-xs uppercase tracking-[0.18em] text-white/70 font-semibold">
                 {copy.statTwo}
               </p>
-              <p className="mt-2 text-4xl font-bold">Mosaic</p>
+              <p className="mt-2 text-4xl font-bold font-display">Mosaic</p>
             </div>
 
-            <div className="overflow-hidden rounded-[2rem] sm:col-span-2">
+            <div className="overflow-hidden rounded-2xl sm:col-span-2">
               <img
                 src="/photos/projet.jpg"
                 alt="Illustration de la galerie C2E"
@@ -274,7 +274,7 @@ export default function GaleriePage() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
-              <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
+              <h2 className="font-Montserrat text-3xl font-bold text-slate-900 sm:text-4xl">
                 {copy.sectionTitle}
               </h2>
               <p className="mt-3 text-base leading-8 text-slate-600">
@@ -305,7 +305,7 @@ export default function GaleriePage() {
                         duration: 0.45,
                         delay: absoluteIndex * 0.03,
                       }}
-                      className={`group relative overflow-hidden rounded-[0.35rem] border bg-white shadow-[0_18px_38px_rgba(15,23,42,0.08)] md:min-h-0 ${isSelected ? "border-sky-500 ring-4 ring-sky-200" : "border-slate-200"} ${layoutPattern[imageIndex]}`}
+                      className={`group relative overflow-hidden rounded-2xl border bg-white shadow-[0_8px_30px_rgba(15,23,42,0.03)] md:min-h-0 ${isSelected ? "border-sky-500 ring-4 ring-sky-200" : "border-slate-200"} ${layoutPattern[imageIndex]}`}
                     >
                       <button
                         type="button"
@@ -320,8 +320,8 @@ export default function GaleriePage() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-slate-950/5 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
                         {isSelected ? (
-                          <div className="absolute inset-x-3 bottom-3 rounded-md bg-white/95 p-3 text-slate-900 shadow-[0_14px_35px_rgba(15,23,42,0.22)]">
-                            <h3 className="text-sm font-bold leading-tight">
+                          <div className="absolute inset-x-3 bottom-3 rounded-2xl bg-white/95 p-3 text-slate-900 shadow-[0_12px_35px_rgba(15,23,42,0.15)] border border-slate-100">
+                            <h3 className="font-Montserrat text-sm font-bold leading-tight text-slate-900">
                               {item.title}
                             </h3>
                             <p className="mt-1 text-xs leading-5 text-slate-600">

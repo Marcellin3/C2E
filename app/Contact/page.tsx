@@ -115,14 +115,14 @@ export default function Contact() {
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-sm font-black uppercase tracking-widest text-blue-600"
+              className="text-xs font-bold uppercase tracking-widest text-blue-600"
             >
               {t.contactPage.eyebrow}
             </motion.span>
             <motion.h1
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              className="mt-4 font-display text-[2.4rem] font-semibold text-black sm:text-[3rem] md:text-[4.2rem]"
+              className="font-Montserrat mt-4 text-[2.4rem] font-bold text-slate-900 sm:text-[3rem] md:text-[4.2rem]"
             >
               {t.contactPage.title}
             </motion.h1>
@@ -137,17 +137,17 @@ export default function Contact() {
             >
               <motion.div
                 variants={itemVariants}
-                className="interactive-lift group rounded-[2rem] border border-slate-100 bg-white p-6 shadow-sm transition-all hover:border-blue-200 sm:p-8"
+                className="interactive-lift group rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.03)] transition-all hover:border-blue-200 sm:p-8"
               >
                 <div className="flex items-start gap-5">
                   <div className="rounded-2xl bg-blue-50 p-4 text-blue-600 transition-colors group-hover:bg-blue-600 group-hover:text-white">
                     <FaMapMarkerAlt size={24} />
                   </div>
                   <div>
-                    <h3 className="mb-1 text-lg font-bold">
+                    <h3 className="font-Montserrat mb-1 text-lg font-bold text-slate-900">
                       {t.contactPage.officeTitle}
                     </h3>
-                    <p className="leading-relaxed text-slate-500">
+                    <p className="leading-relaxed text-slate-500 text-sm">
                       {t.contactPage.officeAddress}
                     </p>
                   </div>
@@ -156,19 +156,19 @@ export default function Contact() {
 
               <motion.div
                 variants={itemVariants}
-                className="interactive-lift group rounded-[2rem] border border-slate-100 bg-white p-6 shadow-sm transition-all hover:border-blue-200 sm:p-8"
+                className="interactive-lift group rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.03)] transition-all hover:border-blue-200 sm:p-8"
               >
                 <div className="flex items-start gap-5">
                   <div className="rounded-2xl bg-blue-50 p-4 text-blue-600 transition-colors group-hover:bg-blue-600 group-hover:text-white">
                     <FaEnvelope size={24} />
                   </div>
                   <div>
-                    <h3 className="mb-1 text-lg font-bold">
+                    <h3 className="font-Montserrat mb-1 text-lg font-bold text-slate-900">
                       {t.contactPage.officialEmail}
                     </h3>
                     <a
                       href={`mailto:${contactEmail}`}
-                      className="text-slate-500 transition-colors hover:text-blue-600"
+                      className="text-slate-500 text-sm transition-colors hover:text-blue-600"
                     >
                       {contactEmail}
                     </a>
@@ -178,28 +178,28 @@ export default function Contact() {
 
               <motion.div
                 variants={itemVariants}
-                className="relative overflow-hidden rounded-[2.5rem] bg-slate-900 p-6 text-white shadow-xl sm:p-8"
+                className="relative overflow-hidden rounded-2xl bg-slate-950 p-6 text-white shadow-xl sm:p-8"
               >
                 <div className="absolute right-0 top-0 h-24 w-24 translate-x-10 -translate-y-10 rounded-full bg-blue-500/10" />
-                <h3 className="mb-6 flex items-center gap-2 text-xl font-bold">
+                <h3 className="font-Montserrat mb-6 flex items-center gap-2 text-xl font-bold">
                   <FaPhoneAlt size={18} className="text-blue-400" />
                   {t.contactPage.phoneTitle}
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-4 text-sm">
                   <div className="flex items-center justify-between border-b border-white/5 pb-3">
-                    <span className="text-sm text-slate-400">
+                    <span className="text-slate-400">
                       {t.contactPage.phoneLocal}
                     </span>
                     <span className="font-medium">+243 997 674 407</span>
                   </div>
                   <div className="flex items-center justify-between border-b border-white/5 pb-3">
-                    <span className="text-sm text-slate-400">
+                    <span className="text-slate-400">
                       {t.contactPage.phoneInternational}
                     </span>
                     <span className="font-medium">+1(581) 446-1977</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-400">
+                    <span className="text-slate-400">
                       {t.contactPage.phoneSupport}
                     </span>
                     <span className="font-medium">+243 997 125 196</span>
@@ -210,7 +210,7 @@ export default function Contact() {
                     href="https://wa.me/243997674407"
                     target="_blank"
                     rel="noreferrer"
-                    className="glass-hover interactive-lift flex flex-1 items-center justify-center gap-2 rounded-xl bg-green-600 py-3 font-bold hover:bg-green-700"
+                    className="glass-hover interactive-lift flex flex-1 items-center justify-center gap-2 rounded-xl bg-green-600 py-3 text-sm font-bold hover:bg-green-700"
                   >
                     <FaWhatsapp size={20} /> {t.common.whatsapp}
                   </a>
@@ -233,15 +233,15 @@ export default function Contact() {
               transition={{ duration: 0.8 }}
               className="lg:col-span-7"
             >
-              <div className="rounded-[2.4rem] border border-slate-100 bg-white p-6 shadow-[0_32px_64px_-15px_rgba(0,0,0,0.05)] sm:rounded-[3rem] sm:p-8 md:p-12">
-                <h2 className="mb-8 font-display text-[2.2rem] font-semibold">
+              <div className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_12px_40px_rgba(15,23,42,0.04)] sm:rounded-2xl sm:p-8 md:p-12">
+                <h2 className="font-Montserrat mb-8 text-[2rem] font-bold text-slate-900">
                   {t.contactPage.formTitle}
                 </h2>
 
                 <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid gap-6 md:grid-cols-2">
                     <div className="space-y-2">
-                      <label className="ml-1 text-sm font-semibold text-slate-700">
+                      <label className="ml-1 text-xs font-semibold uppercase tracking-wider text-slate-500">
                         {t.contactPage.fullName}
                       </label>
                       <input
@@ -255,11 +255,11 @@ export default function Contact() {
                             fullName: event.target.value,
                           }))
                         }
-                        className="w-full rounded-2xl border border-slate-100 bg-slate-50 px-6 py-4 outline-none transition-all focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="ml-1 text-sm font-semibold text-slate-700">
+                      <label className="ml-1 text-xs font-semibold uppercase tracking-wider text-slate-500">
                         {t.contactPage.workEmail}
                       </label>
                       <input
@@ -273,13 +273,13 @@ export default function Contact() {
                             email: event.target.value,
                           }))
                         }
-                        className="w-full rounded-2xl border border-slate-100 bg-slate-50 px-6 py-4 outline-none transition-all focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <label className="ml-1 text-sm font-semibold text-slate-700">
+                    <label className="ml-1 text-xs font-semibold uppercase tracking-wider text-slate-500">
                       {t.contactPage.subject}
                     </label>
                     <select
@@ -291,7 +291,7 @@ export default function Contact() {
                           subject: event.target.value,
                         }))
                       }
-                      className="w-full appearance-none rounded-2xl border border-slate-100 bg-slate-50 px-6 py-4 outline-none transition-all focus:border-blue-500 focus:bg-white"
+                      className="w-full appearance-none rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
                     >
                       {subjectOptions.map((subject) => (
                         <option key={subject} value={subject}>
@@ -302,7 +302,7 @@ export default function Contact() {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="ml-1 text-sm font-semibold text-slate-700">
+                    <label className="ml-1 text-xs font-semibold uppercase tracking-wider text-slate-500">
                       {t.contactPage.message}
                     </label>
                     <textarea
@@ -316,37 +316,37 @@ export default function Contact() {
                           message: event.target.value,
                         }))
                       }
-                      className="w-full resize-none rounded-2xl border border-slate-100 bg-slate-50 px-6 py-4 outline-none transition-all focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+                      className="w-full resize-none rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
                     />
                   </div>
 
                   <motion.button
                     type="submit"
                     disabled={submitStatus === "sending"}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="glass-hover interactive-lift flex w-full items-center justify-center gap-3 rounded-2xl bg-blue-600 py-5 text-lg font-bold text-white shadow-xl shadow-blue-200 hover:bg-blue-700"
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                    className="glass-hover interactive-lift flex w-full items-center justify-center gap-3 rounded-2xl bg-blue-600 py-4 text-base font-bold text-white shadow-lg shadow-blue-500/25 hover:bg-blue-700"
                   >
                     {submitStatus === "sending"
                       ? "Envoi en cours..."
                       : t.contactPage.submit}{" "}
-                    <Send size={20} />
+                    <Send size={18} />
                   </motion.button>
 
                   {submitStatus === "sent" ? (
-                    <p className="rounded-2xl bg-emerald-50 px-5 py-4 text-sm font-semibold text-emerald-700">
+                    <p className="rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
                       Message envoye directement a {contactEmail}.
                     </p>
                   ) : null}
 
                   {submitStatus === "fallback" ? (
-                    <p className="rounded-2xl bg-amber-50 px-5 py-4 text-sm font-semibold text-amber-700">
+                    <p className="rounded-2xl bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-700">
                       La messagerie s'ouvre pour finaliser l'envoi a {contactEmail}.
                     </p>
                   ) : null}
 
                   {submitStatus === "error" ? (
-                    <p className="rounded-2xl bg-red-50 px-5 py-4 text-sm font-semibold text-red-700">
+                    <p className="rounded-2xl bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
                       L'envoi a echoue. Veuillez reessayer ou ecrire a {contactEmail}.
                     </p>
                   ) : null}
@@ -359,7 +359,7 @@ export default function Contact() {
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
-            className="relative mt-16 h-[280px] overflow-hidden rounded-[2rem] border-4 border-white shadow-2xl sm:mt-20 sm:h-[400px] sm:rounded-[3rem] sm:border-8"
+            className="relative mt-16 h-[280px] overflow-hidden rounded-2xl border border-slate-200 shadow-lg sm:mt-20 sm:h-[400px]"
           >
             <div className="absolute inset-0 flex animate-pulse items-center justify-center bg-slate-200">
               <p className="font-medium text-slate-500">{t.contactPage.mapLabel}</p>

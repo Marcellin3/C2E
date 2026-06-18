@@ -109,7 +109,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
+      <span className="ml-1 text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
         {label}
       </span>
       <div className="mt-2">{children}</div>
@@ -121,7 +121,7 @@ function TextInput(props: InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
       {...props}
-      className="w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
+      className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-500/10"
     />
   );
 }
@@ -130,7 +130,7 @@ function TextArea(props: TextareaHTMLAttributes<HTMLTextAreaElement>) {
   return (
     <textarea
       {...props}
-      className="min-h-28 w-full resize-y rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
+      className="min-h-28 w-full resize-y rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-500/10"
     />
   );
 }
@@ -163,7 +163,7 @@ function ImagePicker({
           placeholder="/photos/image.jpg ou https://..."
         />
       </Field>
-      <label className="inline-flex h-[46px] cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">
+      <label className="inline-flex h-[46px] cursor-pointer items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">
         <Upload className="h-4 w-4" />
         Fichier
         <input
@@ -179,7 +179,7 @@ function ImagePicker({
 
 function EmptyState({ text }: { text: string }) {
   return (
-    <div className="rounded-lg border border-dashed border-slate-200 bg-slate-50 px-4 py-6 text-sm text-slate-500">
+    <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 px-4 py-6 text-sm text-slate-500">
       {text}
     </div>
   );
@@ -340,17 +340,17 @@ export default function AdminPage() {
 
   if (!isAuthenticated) {
     return (
-      <main className="min-h-screen bg-[#f6f8fb] px-4 py-12 text-slate-900 sm:px-6">
+      <main className="min-h-screen bg-[#f8fafc] px-4 py-12 text-slate-900 sm:px-6">
         <div className="mx-auto flex min-h-[75vh] max-w-7xl items-center justify-center">
-          <div className="w-full max-w-md rounded-lg border border-slate-200 bg-white p-6 shadow-[0_24px_70px_rgba(15,23,42,0.12)]">
-            <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-sky-100 text-sky-700">
+          <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-[0_24px_70px_rgba(15,23,42,0.08)]">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-50 text-sky-700">
               <LockKeyhole className="h-6 w-6" />
             </div>
-            <p className="mt-6 text-sm font-bold uppercase tracking-[0.2em] text-sky-700">
+            <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-sky-600">
               Acces admin
             </p>
-            <h1 className="mt-3 text-3xl font-bold">Connexion</h1>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
+            <h1 className="font-display mt-3 text-3xl font-bold">Connexion</h1>
+            <p className="mt-3 text-sm leading-6 text-slate-500">
               Entrez vos identifiants pour gerer les contenus du site.
             </p>
 
@@ -379,12 +379,12 @@ export default function AdminPage() {
               </Field>
 
               {loginError ? (
-                <p className="rounded-lg bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
+                <p className="rounded-2xl bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
                   {loginError}
                 </p>
               ) : null}
 
-              <button className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-slate-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-slate-800">
+              <button className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-slate-800 cursor-pointer">
                 <LockKeyhole className="h-4 w-4" />
                 Se connecter
               </button>
@@ -396,18 +396,18 @@ export default function AdminPage() {
   }
 
   return (
-    <main className="bg-[#f6f8fb] text-slate-900">
-      <section className="border-b border-slate-200 bg-white px-4 py-12 sm:px-6">
+    <main className="bg-[#f8fafc] text-slate-900 selection:bg-blue-100">
+      <section className="border-b border-slate-200/60 bg-white px-4 py-12 sm:px-6">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <p className="text-sm font-bold uppercase tracking-[0.24em] text-sky-700">
+              <p className="text-xs font-bold uppercase tracking-[0.24em] text-sky-600">
                 Administration C2E
               </p>
-              <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
+              <h1 className="font-display mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
                 Ajouter du contenu au site
               </h1>
-              <p className="mt-4 max-w-2xl text-base leading-8 text-slate-600">
+              <p className="mt-4 max-w-2xl text-base leading-8 text-slate-500">
                 Les ajouts sont sauvegardes dans ce navigateur et apparaissent
                 sur les pages publiques correspondantes.
               </p>
@@ -416,7 +416,7 @@ export default function AdminPage() {
             <button
               type="button"
               onClick={handleLogout}
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50 cursor-pointer"
             >
               <LogOut className="h-4 w-4" />
               Deconnexion
@@ -427,7 +427,7 @@ export default function AdminPage() {
             <button
               type="button"
               onClick={resetAll}
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-red-200 bg-white px-5 py-3 text-sm font-bold text-red-700 transition hover:bg-red-50"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-red-200 bg-white px-5 py-3 text-sm font-bold text-red-700 transition hover:bg-red-50 cursor-pointer"
             >
               <RotateCcw className="h-4 w-4" />
               Reinitialiser les ajouts
@@ -441,13 +441,13 @@ export default function AdminPage() {
               return (
                 <div
                   key={card.label}
-                  className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm"
+                  className="rounded-2xl border border-slate-200/60 bg-white p-5 shadow-[0_8px_30px_rgba(15,23,42,0.02)]"
                 >
-                  <div className={`flex h-11 w-11 items-center justify-center rounded-lg ${card.tone}`}>
+                  <div className={`flex h-11 w-11 items-center justify-center rounded-2xl ${card.tone}`}>
                     <Icon className="h-5 w-5" />
                   </div>
-                  <p className="mt-5 text-3xl font-bold">{card.value}</p>
-                  <p className="mt-1 text-sm text-slate-500">{card.label}</p>
+                  <p className="font-display mt-5 text-3xl font-bold">{card.value}</p>
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-slate-400">{card.label}</p>
                 </div>
               );
             })}
@@ -463,9 +463,9 @@ export default function AdminPage() {
                 setGalleryForm(initialGallery)
               )
             }
-            className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm"
+            className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8"
           >
-            <h2 className="flex items-center gap-2 text-2xl font-bold">
+            <h2 className="font-display flex items-center gap-2 text-2xl font-bold text-slate-900">
               <Camera className="h-5 w-5 text-sky-700" />
               Galerie
             </h2>
@@ -499,7 +499,7 @@ export default function AdminPage() {
                 />
               </Field>
             </div>
-            <button className="mt-5 inline-flex items-center gap-2 rounded-lg bg-sky-700 px-5 py-3 text-sm font-bold text-white transition hover:bg-sky-800">
+            <button className="mt-5 inline-flex items-center gap-2 rounded-2xl bg-sky-700 px-5 py-3 text-sm font-bold text-white transition hover:bg-sky-800 cursor-pointer shadow-sm hover:shadow-md">
               <Plus className="h-4 w-4" />
               Ajouter la photo
             </button>
@@ -511,9 +511,9 @@ export default function AdminPage() {
                 setProjectForm(initialProject)
               )
             }
-            className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm"
+            className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8"
           >
-            <h2 className="flex items-center gap-2 text-2xl font-bold">
+            <h2 className="font-display flex items-center gap-2 text-2xl font-bold text-slate-900">
               <FolderKanban className="h-5 w-5 text-emerald-700" />
               Realisations
             </h2>
@@ -530,22 +530,40 @@ export default function AdminPage() {
               </Field>
               <div className="grid gap-4 sm:grid-cols-2">
                 <Field label="Categorie">
-                  <select
-                    value={projectForm.categoryKey}
-                    onChange={(event) =>
-                      setProjectForm({
-                        ...projectForm,
-                        categoryKey: event.target.value as AdminProject["categoryKey"],
-                      })
-                    }
-                    className="w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-                  >
-                    {categories.map((category) => (
-                      <option key={category.value} value={category.value}>
-                        {category.label}
-                      </option>
-                    ))}
-                  </select>
+                  <div className="relative">
+                    <select
+                      value={projectForm.categoryKey}
+                      onChange={(event) =>
+                        setProjectForm({
+                          ...projectForm,
+                          categoryKey: event.target.value as AdminProject["categoryKey"],
+                        })
+                      }
+                      className="w-full appearance-none rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition-all focus:border-sky-500 focus:ring-4 focus:ring-sky-500/10"
+                    >
+                      {categories.map((category) => (
+                        <option key={category.value} value={category.value}>
+                          {category.label}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        className="h-4 w-4"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                        />
+                      </svg>
+                    </div>
+                  </div>
                 </Field>
                 <Field label="Date">
                   <TextInput
@@ -587,7 +605,7 @@ export default function AdminPage() {
                 />
               </Field>
             </div>
-            <button className="mt-5 inline-flex items-center gap-2 rounded-lg bg-emerald-700 px-5 py-3 text-sm font-bold text-white transition hover:bg-emerald-800">
+            <button className="mt-5 inline-flex items-center gap-2 rounded-2xl bg-emerald-700 px-5 py-3 text-sm font-bold text-white transition hover:bg-emerald-800 cursor-pointer shadow-sm hover:shadow-md">
               <Plus className="h-4 w-4" />
               Ajouter le projet
             </button>
@@ -599,9 +617,9 @@ export default function AdminPage() {
                 setArticleForm(initialArticle)
               )
             }
-            className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm"
+            className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8"
           >
-            <h2 className="flex items-center gap-2 text-2xl font-bold">
+            <h2 className="font-display flex items-center gap-2 text-2xl font-bold text-slate-900">
               <FileText className="h-5 w-5 text-violet-700" />
               Blog & actualites
             </h2>
@@ -655,7 +673,7 @@ export default function AdminPage() {
                 />
               </Field>
             </div>
-            <button className="mt-5 inline-flex items-center gap-2 rounded-lg bg-violet-700 px-5 py-3 text-sm font-bold text-white transition hover:bg-violet-800">
+            <button className="mt-5 inline-flex items-center gap-2 rounded-2xl bg-violet-700 px-5 py-3 text-sm font-bold text-white transition hover:bg-violet-800 cursor-pointer shadow-sm hover:shadow-md">
               <Plus className="h-4 w-4" />
               Ajouter l'article
             </button>
@@ -667,9 +685,9 @@ export default function AdminPage() {
                 setOpportunityForm(initialOpportunity)
               )
             }
-            className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm"
+            className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8"
           >
-            <h2 className="flex items-center gap-2 text-2xl font-bold">
+            <h2 className="font-display flex items-center gap-2 text-2xl font-bold text-slate-900">
               <BriefcaseBusiness className="h-5 w-5 text-amber-700" />
               Carrieres & opportunites
             </h2>
@@ -782,7 +800,7 @@ export default function AdminPage() {
                 />
               </Field>
             </div>
-            <button className="mt-5 inline-flex items-center gap-2 rounded-lg bg-amber-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-amber-700">
+            <button className="mt-5 inline-flex items-center gap-2 rounded-2xl bg-amber-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-amber-700 cursor-pointer shadow-sm hover:shadow-md">
               <Plus className="h-4 w-4" />
               Ajouter l'offre
             </button>
@@ -794,9 +812,9 @@ export default function AdminPage() {
                 setPartnerForm(initialPartner)
               )
             }
-            className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm lg:col-span-2"
+            className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8 lg:col-span-2"
           >
-            <h2 className="flex items-center gap-2 text-2xl font-bold">
+            <h2 className="font-display flex items-center gap-2 text-2xl font-bold text-slate-900">
               <Building2 className="h-5 w-5 text-rose-700" />
               Partenaires
             </h2>
@@ -817,7 +835,7 @@ export default function AdminPage() {
                 onChange={(logo) => setPartnerForm({ ...partnerForm, logo })}
               />
             </div>
-            <button className="mt-5 inline-flex items-center gap-2 rounded-lg bg-rose-700 px-5 py-3 text-sm font-bold text-white transition hover:bg-rose-800">
+            <button className="mt-5 inline-flex items-center gap-2 rounded-2xl bg-rose-700 px-5 py-3 text-sm font-bold text-white transition hover:bg-rose-800 cursor-pointer shadow-sm hover:shadow-md">
               <Plus className="h-4 w-4" />
               Ajouter le partenaire
             </button>
@@ -827,8 +845,8 @@ export default function AdminPage() {
 
       <section className="px-4 pb-14 sm:px-6">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-2">
-          <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-            <h2 className="text-xl font-bold">Photos ajoutees</h2>
+          <div className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8">
+            <h2 className="font-display text-xl font-bold text-slate-900">Photos ajoutees</h2>
             <div className="mt-4 space-y-3">
               {content.gallery.length ? (
                 content.gallery.map((item, index) => (
@@ -846,8 +864,8 @@ export default function AdminPage() {
             </div>
           </div>
 
-          <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-            <h2 className="text-xl font-bold">Projets ajoutes</h2>
+          <div className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8">
+            <h2 className="font-display text-xl font-bold text-slate-900">Projets ajoutes</h2>
             <div className="mt-4 space-y-3">
               {content.projects.length ? (
                 content.projects.map((item, index) => (
@@ -865,8 +883,8 @@ export default function AdminPage() {
             </div>
           </div>
 
-          <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-            <h2 className="text-xl font-bold">Articles ajoutes</h2>
+          <div className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8">
+            <h2 className="font-display text-xl font-bold text-slate-900">Articles ajoutes</h2>
             <div className="mt-4 space-y-3">
               {content.articles.length ? (
                 content.articles.map((item, index) => (
@@ -883,8 +901,8 @@ export default function AdminPage() {
             </div>
           </div>
 
-          <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-            <h2 className="text-xl font-bold">Offres ajoutees</h2>
+          <div className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8">
+            <h2 className="font-display text-xl font-bold text-slate-900">Offres ajoutees</h2>
             <div className="mt-4 space-y-3">
               {content.opportunities.length ? (
                 content.opportunities.map((item, index) => (
@@ -901,8 +919,8 @@ export default function AdminPage() {
             </div>
           </div>
 
-          <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm lg:col-span-2">
-            <h2 className="text-xl font-bold">Candidatures recues</h2>
+          <div className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8 lg:col-span-2">
+            <h2 className="font-display text-xl font-bold text-slate-900">Candidatures recues</h2>
             <div className="mt-4 grid gap-3 md:grid-cols-2">
               {content.applications.length ? (
                 content.applications.map((item, index) => (
@@ -918,8 +936,8 @@ export default function AdminPage() {
             </div>
           </div>
 
-          <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm lg:col-span-2">
-            <h2 className="text-xl font-bold">Partenaires ajoutes</h2>
+          <div className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8 lg:col-span-2">
+            <h2 className="font-display text-xl font-bold text-slate-900">Partenaires ajoutes</h2>
             <div className="mt-4 grid gap-3 md:grid-cols-2">
               {content.partners.length ? (
                 content.partners.map((item, index) => (
@@ -952,32 +970,45 @@ function ApplicationRow({
   onRemove: () => void;
 }) {
   return (
-    <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+    <div className="rounded-2xl border border-slate-200/60 bg-slate-50/50 p-5 transition-all hover:bg-slate-50">
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="text-sm font-bold text-slate-900">
             {application.fullName}
           </p>
-          <p className="mt-1 text-xs text-slate-500">
+          <p className="mt-1 text-xs font-semibold text-slate-500 uppercase tracking-wider">
             {application.opportunityTitle}
           </p>
         </div>
         <button
           type="button"
           onClick={onRemove}
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-red-600 transition hover:bg-red-50"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl text-red-600 transition hover:bg-red-50 hover:text-red-700 cursor-pointer"
           aria-label={`Supprimer la candidature de ${application.fullName}`}
         >
           <Trash2 className="h-4 w-4" />
         </button>
       </div>
-      <div className="mt-3 space-y-1 text-xs leading-5 text-slate-600">
-        <p>{application.email}</p>
+      <div className="mt-3 space-y-1 text-xs leading-relaxed text-slate-500">
+        <p className="font-semibold text-slate-700">{application.email}</p>
         <p>{application.phone}</p>
-        {application.portfolio ? <p>{application.portfolio}</p> : null}
-        <p className="line-clamp-3">{application.message}</p>
+        {application.portfolio ? (
+          <p>
+            <a
+              href={application.portfolio}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sky-600 hover:underline"
+            >
+              {application.portfolio}
+            </a>
+          </p>
+        ) : null}
+        <p className="mt-2 line-clamp-3 rounded-xl bg-white p-3 border border-slate-100 italic text-slate-600">
+          "{application.message}"
+        </p>
       </div>
-      <div className="mt-3 flex flex-wrap gap-2">
+      <div className="mt-4 flex flex-wrap gap-2">
         {application.cv ? (
           <ApplicationFileLink label="CV" file={application.cv} />
         ) : null}
@@ -1010,7 +1041,7 @@ function ApplicationFileLink({
     <a
       href={file.dataUrl}
       download={file.name}
-      className="inline-flex max-w-full items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-sky-700 transition hover:bg-sky-50"
+      className="inline-flex max-w-full items-center gap-2 rounded-2xl border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-sky-700 transition hover:bg-sky-50"
       title={file.name}
     >
       <FileText className="h-3.5 w-3.5 shrink-0" />
@@ -1031,24 +1062,24 @@ function AdminRow({
   onRemove: () => void;
 }) {
   return (
-    <div className="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 p-3">
+    <div className="flex items-center gap-4 rounded-2xl border border-slate-200/60 bg-slate-50/50 p-4 transition-all hover:bg-slate-50">
       {image ? (
         <img
           src={image}
           alt={title}
-          className="h-14 w-16 shrink-0 rounded-md object-cover"
+          className="h-14 w-16 shrink-0 rounded-xl object-cover"
         />
       ) : null}
       <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-bold text-slate-900">{title}</p>
-        <p className="mt-1 line-clamp-2 text-xs leading-5 text-slate-500">
+        <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-500">
           {meta}
         </p>
       </div>
       <button
         type="button"
         onClick={onRemove}
-        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-red-600 transition hover:bg-red-50"
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl text-red-600 transition hover:bg-red-50 hover:text-red-700 cursor-pointer"
         aria-label={`Supprimer ${title}`}
       >
         <Trash2 className="h-4 w-4" />

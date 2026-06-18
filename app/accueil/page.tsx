@@ -8,6 +8,8 @@ import {
   BarChart3,
   BriefcaseBusiness,
   CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
   Globe2,
   GraduationCap,
   Handshake,
@@ -112,6 +114,16 @@ export default function Accueil() {
 
   const [activeStudy, setActiveStudy] = useState(0);
   const [activeImage, setActiveImage] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -151,13 +163,13 @@ export default function Accueil() {
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-2xl py-8 text-white"
+            className="max-w-2xl py-8 text-white "
           >
             <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-5 py-2 text-sm font-semibold text-white/95 backdrop-blur-md">
               {t.accueil.badge}
             </span>
 
-            <h1 className="hero-main-title mt-6 max-w-[850px] font-sans text-[2.35rem] font-black leading-none tracking-normal text-white sm:text-[3.45rem] md:text-[4.9rem]">
+            <h1 className="mt-6 max-w-[850px] font-Montserrat  text-6xl tracking-normal text-white  ">
               {t.accueil.heroTitle}
             </h1>
 
@@ -234,10 +246,10 @@ export default function Accueil() {
 
           <div className="relative">
             <div className="relative">
-              <p className="text-3xl font-bold uppercase tracking-[0.22em] text-black">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-600">
                 {t.accueil.aboutLabel}
               </p>
-              <h2 className="mt-4 max-w-2xl text-[2.45rem] font-semibold leading-[1.1] text-blue-900/90">
+              <h2 className="font-Montserrat mt-4 max-w-2xl text-[2.45rem] font-bold leading-[1.15] text-slate-900">
                 {t.accueil.aboutTitle}
               </h2>
             </div>
@@ -254,36 +266,36 @@ export default function Accueil() {
           <div className="grid gap-8 lg:grid-cols-2">
             <motion.div
               whileHover={{ y: -6 }}
-              className="rounded-[2rem] border border-sky-100 bg-white px-8 py-10 shadow-[0_18px_45px_rgba(59,130,246,0.10)]"
+              className="rounded-2xl border border-slate-100 bg-white px-8 py-10 shadow-[0_12px_30px_rgba(15,23,42,0.04)]"
             >
               <div className="flex items-center gap-4">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-sky-100 text-sky-700">
-                  <Target className="h-7 w-7" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 text-blue-600">
+                  <Target className="h-6 w-6" />
                 </div>
-                <h3 className="text-[2rem] font-semibold text-blue-700">
+                <h3 className="font-Montserrat text-2xl font-bold text-slate-900">
                   {t.accueil.missionTitle}
                 </h3>
               </div>
 
-              <p className="mt-8 text-[17px] leading-8 text-slate-600 md:text-[18px]">
+              <p className="mt-6 text-[15px] leading-7 text-slate-500">
                 {t.accueil.missionText}
               </p>
             </motion.div>
 
             <motion.div
               whileHover={{ y: -6 }}
-              className="rounded-[2rem] border border-yellow-200 bg-white px-8 py-10 shadow-[0_18px_45px_rgba(217,70,239,0.10)]"
+              className="rounded-2xl border border-slate-100 bg-white px-8 py-10 shadow-[0_12px_30px_rgba(15,23,42,0.04)]"
             >
               <div className="flex items-center gap-4">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-yellow-200 text-yellow-500">
-                  <Globe2 className="h-7 w-7" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-50 text-amber-600">
+                  <Globe2 className="h-6 w-6" />
                 </div>
-                <h3 className="text-[2rem] font-semibold text-yellow-400">
+                <h3 className="font-Montserrat text-2xl font-bold text-slate-900">
                   {t.accueil.visionTitle}
                 </h3>
               </div>
 
-              <p className="mt-8 text-[17px] leading-8 text-slate-600 md:text-[18px]">
+              <p className="mt-6 text-[15px] leading-7 text-slate-500">
                 {t.accueil.visionText}
               </p>
             </motion.div>
@@ -294,11 +306,11 @@ export default function Accueil() {
       <section className="bg-white px-14 py-24">
         <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div className="max-w-xl">
-            <p className="text-[2.4rem] font-semibold leading-[1.08] text-blue-900 md:text-[3.2rem]">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-600">
               {t.accueil.objectivesLabel}
             </p>
 
-            <h2 className="mt-6 text-[2.4rem] font-semibold leading-[1.08] text-slate-900 md:text-[3.2rem]">
+            <h2 className="font-Montserrat mt-4 text-[2.4rem] font-bold leading-[1.15] text-slate-900 md:text-[3.2rem]">
               {t.accueil.objectivesTitle}
             </h2>
 
@@ -313,24 +325,24 @@ export default function Accueil() {
                 const Icon = item.icon;
                 const cardClass =
                   index === 0
-                    ? "bg-[linear-gradient(135deg,#0f79ff_0%,#123f87_100%)] text-white shadow-[0_24px_55px_rgba(15,121,255,0.22)]"
-                    : "border border-slate-100 bg-white text-slate-900 shadow-[0_18px_38px_rgba(15,23,42,0.08)]";
+                    ? "bg-[linear-gradient(135deg,#1e3a8a_0%,#0f172a_100%)] text-white shadow-[0_16px_36px_rgba(30,58,138,0.15)]"
+                    : "border border-slate-100 bg-white text-slate-900 shadow-[0_12px_30px_rgba(15,23,42,0.04)]";
                 const textClass =
                   index === 0 ? "text-white/80" : "text-slate-500";
                 const iconClass =
-                  index === 0 ? "text-white/85" : "text-sky-600";
+                  index === 0 ? "text-sky-300" : "text-blue-600";
 
                 return (
                   <motion.div
                     key={item.title}
                     whileHover={{ y: -6 }}
-                    className={`rounded-[2rem] px-7 py-8 md:px-8 md:py-9 ${cardClass}`}
+                    className={`rounded-2xl px-7 py-8 md:px-8 md:py-9 ${cardClass}`}
                   >
-                    <Icon className={`mb-6 h-10 w-10 ${iconClass}`} />
-                    <h3 className="text-[1.45rem] font-semibold leading-tight">
+                    <Icon className={`mb-6 h-8 w-8 ${iconClass}`} />
+                    <h3 className="font-Montserrat text-[1.35rem] font-bold leading-tight">
                       {item.title}
                     </h3>
-                    <p className={`mt-4 text-sm leading-7 ${textClass}`}>
+                    <p className={`mt-3 text-sm leading-6 ${textClass}`}>
                       {item.description}
                     </p>
                   </motion.div>
@@ -347,20 +359,20 @@ export default function Accueil() {
                   <motion.div
                     key={item.title}
                     whileHover={{ y: -6 }}
-                    className={`rounded-[2rem] px-7 py-8 md:px-8 md:py-9 ${isBlue
-                      ? "bg-[linear-gradient(135deg,#0f79ff_0%,#123f87_100%)] text-white shadow-[0_24px_55px_rgba(15,121,255,0.22)]"
-                      : "border border-slate-100 bg-white text-slate-900 shadow-[0_18px_38px_rgba(15,23,42,0.08)]"
+                    className={`rounded-2xl px-7 py-8 md:px-8 md:py-9 ${isBlue
+                      ? "bg-[linear-gradient(135deg,#1e3a8a_0%,#0f172a_100%)] text-white shadow-[0_16px_36px_rgba(30,58,138,0.15)]"
+                      : "border border-slate-100 bg-white text-slate-900 shadow-[0_12px_30px_rgba(15,23,42,0.04)]"
                       }`}
                   >
                     <Icon
-                      className={`mb-6 h-10 w-10 ${isBlue ? "text-white/85" : "text-sky-600"
+                      className={`mb-6 h-8 w-8 ${isBlue ? "text-sky-300" : "text-blue-600"
                         }`}
                     />
-                    <h3 className="text-[1.45rem] font-semibold leading-tight">
+                    <h3 className="font-Montserrat text-[1.35rem] font-bold leading-tight">
                       {item.title}
                     </h3>
                     <p
-                      className={`mt-4 text-sm leading-7 ${isBlue ? "text-white/80" : "text-slate-500"
+                      className={`mt-3 text-sm leading-6 ${isBlue ? "text-white/80" : "text-slate-500"
                         }`}
                     >
                       {item.description}
@@ -421,7 +433,7 @@ export default function Accueil() {
               (partner, index) => (
                 <div
                   key={`${partner.name}-${index}`}
-                  className="mx-5 flex h-[78px] w-[250px] shrink-0 items-center gap-3 overflow-hidden rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm transition-shadow hover:shadow-md"
+                  className="mx-5 flex h-[78px] w-[250px] shrink-0 items-center gap-3 overflow-hidden rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm transition-shadow hover:shadow-md"
                 >
                   <img
                     src={partner.logo}
@@ -472,9 +484,9 @@ export default function Accueil() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.2 }}
-            className="relative rounded-[2.2rem] border border-sky-100 bg-white px-5 pb-6 pt-12 shadow-[0_24px_60px_rgba(34,120,255,0.12)] sm:px-8 sm:pb-8 sm:pt-14"
+            className="relative rounded-2xl border border-slate-100 bg-white px-5 pb-6 pt-12 shadow-[0_12px_36px_rgba(15,23,42,0.04)] sm:px-8 sm:pb-8 sm:pt-14"
           >
-            <div className="absolute left-6 top-0 -translate-y-1/2 rounded-full bg-[linear-gradient(135deg,#0666db_0%,#1495ff_100%)] px-6 py-3 text-base font-semibold text-white shadow-[0_12px_28px_rgba(6,102,219,0.28)]">
+            <div className="absolute left-6 top-0 -translate-y-1/2 rounded-full bg-[linear-gradient(135deg,#1e3a8a_0%,#3b82f6_100%)] px-6 py-3 text-base font-semibold text-white shadow-[0_8px_20px_rgba(30,58,138,0.2)]">
               {valuesContent.cardLabel}
             </div>
 
@@ -482,7 +494,7 @@ export default function Accueil() {
               {valuesContent.items.map((item) => (
                 <div
                   key={item}
-                  className="flex items-start gap-4 rounded-[1.5rem] px-2 py-1 sm:gap-5"
+                  className="flex items-start gap-4 rounded-2xl px-2 py-1 sm:gap-5"
                 >
                   <div className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sky-50 text-sky-700">
                     <CheckCircle2 className="h-6 w-6" />
@@ -497,169 +509,135 @@ export default function Accueil() {
         </div>
       </section>
 
-      <section className="overflow-hidden bg-white px-4 py-20 sm:px-6 lg:px-20">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
-          <div className="max-w-md">
-            <p className="text-sm font-bold uppercase tracking-[0.24em] text-sky-600">
-              {recentStudiesContent.label}
-            </p>
-            <h2 className="mt-4 text-[2.8rem] font-semibold leading-[0.95] text-slate-900 sm:text-[3.5rem] md:text-[4.4rem]">
-              Etudes
-            </h2>
-            <p className="mt-5 text-[16px] leading-7 text-slate-600">
+      <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 px-4 py-24 sm:px-6 lg:px-20">
+        {/* Decorative background shapes */}
+        <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-blue-500/5 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-yellow-500/5 blur-3xl pointer-events-none" />
+
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.38fr_0.62fr] lg:items-center relative z-10">
+          {/* Left content block */}
+          <div className="max-w-md space-y-6">
+            <div className="space-y-3">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-blue-600">
+                <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
+                {recentStudiesContent.label}
+              </span>
+              <h2 className="font-Montserrat text-4xl sm:text-5xl font-extrabold leading-[1.15] text-slate-900 tracking-tight">
+                Études de <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Terrain</span>
+              </h2>
+            </div>
+            
+            <p className="text-base leading-relaxed text-slate-500 md:text-[16px]">
               {recentStudiesContent.title}
             </p>
 
-            <Link
-              href="/realisation"
-              className="mt-7 inline-flex items-center rounded-[0.6rem] bg-slate-900 px-5 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:bg-slate-800"
-            >
-              {recentStudiesContent.cta}
-            </Link>
-
-            <div className="mt-8 flex items-center gap-3">
-              {recentStudies.map((study, index) => (
+            <div className="pt-4 flex items-center justify-between gap-6 border-t border-slate-100">
+              <Link
+                href="/realisation"
+                className="group inline-flex items-center text-sm font-bold uppercase tracking-[0.12em] text-blue-600 hover:text-blue-700 transition-colors"
+              >
+                {recentStudiesContent.cta}{" "}
+                <ArrowRight size={16} className="ml-2 transform group-hover:translate-x-1.5 transition-transform duration-300 text-yellow-500" />
+              </Link>
+              
+              {/* Carousel controls */}
+              <div className="flex items-center gap-3">
                 <button
-                  key={study.title}
+                  type="button"
+                  onClick={() => setActiveStudy((current) => (current === 0 ? recentStudies.length - 1 : current - 1))}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-blue-100 bg-white text-blue-600 shadow-[0_4px_12px_rgba(30,58,138,0.04)] hover:bg-blue-50 hover:border-blue-200 transition-all hover:scale-105 active:scale-95"
+                  aria-label="Étude précédente"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveStudy((current) => (current === recentStudies.length - 1 ? 0 : current + 1))}
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-[0_4px_16px_rgba(37,99,235,0.2)] hover:from-blue-700 hover:to-blue-800 transition-all hover:scale-105 active:scale-95"
+                  aria-label="Étude suivante"
+                >
+                  <ChevronRight size={18} />
+                </button>
+              </div>
+            </div>
+
+            {/* Dots indicators */}
+            <div className="flex items-center gap-2 pt-2">
+              {recentStudies.map((_, index) => (
+                <button
+                  key={index}
                   type="button"
                   onClick={() => setActiveStudy(index)}
                   aria-label={`${recentStudiesContent.label} ${index + 1}`}
-                  className={`h-2.5 rounded-full transition-all ${activeStudy === index
-                    ? "w-10 bg-slate-900"
-                    : "w-2.5 bg-slate-400 hover:bg-slate-600"
-                    }`}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    activeStudy === index ? "w-8 bg-blue-600" : "w-1.5 bg-slate-300 hover:bg-slate-400"
+                  }`}
                 />
               ))}
             </div>
           </div>
 
-          <div className="relative overflow-hidden">
-            <div className="flex items-stretch gap-4 sm:gap-5">
-              {recentStudies.map((_, offset) => {
-                const study =
-                  recentStudies[(activeStudy + offset) % recentStudies.length];
-                const isActive = offset === 0;
+          {/* Smooth Carousel Container */}
+          <div className="relative w-full px-2 py-4">
+            {/* Soft fade-out overlay on the right edge to feel endless */}
+            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white via-white/50 to-transparent pointer-events-none z-20 hidden md:block" />
 
-                return (
-                  <motion.article
-                    key={`${study.title}-${offset}`}
-                    className={`relative shrink-0 overflow-hidden rounded-[1.6rem] bg-white ${isActive
-                      ? "h-[25rem] w-[18rem] sm:h-[28rem] sm:w-[20rem]"
-                      : "mt-6 h-[20rem] w-[13rem] sm:mt-8 sm:h-[23rem] sm:w-[15rem]"
-                      }`}
-                    initial={{ opacity: 0.7, y: 18 }}
-                    animate={{
-                      opacity: isActive ? 1 : 0.82,
-                      scale: isActive ? 1 : 0.96,
-                      y: isActive ? 0 : 18,
-                    }}
-                    transition={{ duration: 0.45, ease: "easeOut" }}
-                  >
-                    <div
-                      className="absolute inset-0 bg-cover bg-center"
-                      style={{
-                        backgroundImage: `linear-gradient(180deg, rgba(15,23,42,0.04) 0%, rgba(15,23,42,0.18) 35%, rgba(15,23,42,0.88) 100%), url('${study.image}')`,
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(15,23,42,0.05)_48%,rgba(15,23,42,0.90)_100%)]" />
+            <div className="overflow-hidden w-full">
+              <motion.div
+                animate={{ x: -activeStudy * (isMobile ? 312 : 344) }}
+                transition={{ type: "spring", stiffness: 180, damping: 25 }}
+                className="flex gap-6 items-center"
+              >
+                {recentStudies.map((study) => {
+                  return (
+                    <motion.article
+                      key={study.title}
+                      className="group relative shrink-0 overflow-hidden rounded-[2rem] bg-slate-900 h-[26rem] w-[18rem] sm:h-[28rem] sm:w-[20rem] shadow-[0_12px_40px_rgba(15,23,42,0.08)] hover:shadow-[0_20px_50px_rgba(15,23,42,0.18)] transition-all duration-500"
+                    >
+                      {/* Top Accent Line that lights up on hover */}
+                      <div className="absolute top-0 left-0 right-0 h-1.5 bg-yellow-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-20" />
 
-                    <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-6">
-                      <div className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/75">
-                        <span>{study.client}</span>
-                        <span className="h-1 w-1 rounded-full bg-white/45" />
-                        <span>{study.date}</span>
+                      {/* Full card background image */}
+                      <div
+                        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out scale-100 group-hover:scale-110"
+                        style={{
+                          backgroundImage: `url('${study.image}')`,
+                        }}
+                      />
+                      {/* Overlay gradients for high-end cinematic style */}
+                      <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-slate-950/20 transition-all duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent z-10" />
+
+                      {/* Content overlay inside the card */}
+                      <div className="absolute inset-x-0 bottom-0 p-6 text-white flex flex-col justify-end min-h-[60%] z-20">
+                        {/* Client / Partner Category Pill */}
+                        <div className="flex">
+                          <span className="inline-block bg-yellow-400 text-slate-950 text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-md mb-3 shadow-sm">
+                            {study.client}
+                          </span>
+                        </div>
+                        
+                        {/* Title */}
+                        <h3 className="text-[1.2rem] font-bold leading-tight text-white group-hover:text-yellow-300 transition-colors duration-300">
+                          {study.title}
+                        </h3>
+
+                        {/* Card footer divider & date */}
+                        <div className="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-xs text-slate-300">
+                          <span>{study.date}</span>
+                          <span className="text-[10px] font-bold uppercase text-yellow-400/90 group-hover:underline">
+                            {locale === "fr" ? "Voir l'étude" : "View study"}
+                          </span>
+                        </div>
                       </div>
-
-                      <h3 className="mt-3 text-[1.2rem] font-semibold leading-tight sm:text-[1.45rem]">
-                        {study.title}
-                      </h3>
-
-                      {isActive ? (
-                        <p className="mt-3 text-sm leading-7 text-white/78">
-                          {study.description}
-                        </p>
-                      ) : null}
-                    </div>
-                  </motion.article>
-                );
-              })}
+                    </motion.article>
+                  );
+                })}
+              </motion.div>
             </div>
           </div>
         </div>
       </section>
-      {/*
-      <section className="overflow-hidden bg-[#fefefe] px-4 py-14 text-blue-900 sm:px-6 lg:px-16">
-        <div className="relative mx-auto max-w-7xl">
-          <Globe2
-            aria-hidden="true"
-            className="pointer-events-none absolute -bottom-56 right-[-7rem] hidden h-[36rem] w-[36rem] text-[#021332] opacity-[0.18] xl:block"
-            strokeWidth={1}
-          />
-
-          <div className="relative grid gap-10 xl:grid-cols-3 xl:grid-rows-2 xl:gap-x-10 xl:gap-y-12">
-            <div className="relative flex min-h-[320px] flex-col xl:pr-10">
-              <h2 className="mt-5 max-w-[22rem] text-[2.1rem] font-semibold leading-[1.18] text-[#053692] sm:text-[2.55rem] md:text-[3.15rem] xl:text-[3.55rem]">
-                {t.accueil.trustTitle}
-              </h2>
-
-              <motion.div
-                whileHover={{ x: 3 }}
-                className="mt-6 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#062764] xl:absolute xl:bottom-6 xl:left-[21.5rem]"
-                aria-label={t.accueil.trustArrowLabel}
-              >
-                <ArrowRight className="h-5 w-5" />
-              </motion.div>
-            </div>
-
-            {partners.slice(0, 2).map((partner, index) => {
-              const Icon = partner.icon;
-
-              return (
-                <motion.div
-                  key={partner.name}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.55, delay: index * 0.08 }}
-                  viewport={{ once: true }}
-                  className="min-h-[260px] rounded-[4px] border-2 border-blue-900 bg-transparent px-5 pb-4 pt-4 sm:min-h-[310px] sm:px-6"
-                >
-                  <Icon className="h-14 w-14 text-[#0623c6]" strokeWidth={1.7} />
-                  <h3 className="mt-10 text-[2.1rem] font-semibold leading-none text-yellow-500">
-                    {partner.name}
-                  </h3>
-                  <p className="mt-6 max-w-[20rem] text-[1.05rem] leading-[1.9] text-[#0623c6]">
-                    {partner.description}
-                  </p>
-                </motion.div>
-              );
-            })}
-
-            {partners.slice(2).map((partner, index) => {
-              const Icon = partner.icon;
-
-              return (
-                <motion.div
-                  key={partner.name}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.55, delay: 0.16 + index * 0.08 }}
-                  viewport={{ once: true }}
-                  className="min-h-[260px] rounded-[4px] border-2 border-blue-900 bg-transparent px-5 pb-8 pt-6 sm:min-h-[310px] sm:px-9 sm:pb-10 sm:pt-8"
-                >
-                  <Icon className="relative z-10 h-14 w-14 text-[#0623c6]" strokeWidth={1.7} />
-                  <h3 className="relative z-10 mt-10 text-[2.1rem] font-semibold leading-none text-yellow-500">
-                    {partner.name}
-                  </h3>
-                  <p className="relative z-10 mt-6 max-w-[20rem] text-[1.05rem] leading-[1.9] text-[#0623c6]">
-                    {partner.description}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>*/}
-
       <Footer />
     </main>
   );

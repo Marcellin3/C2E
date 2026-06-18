@@ -66,11 +66,11 @@ export default function RessourcesPage() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-3xl space-y-4"
           >
-            <span className="inline-flex rounded-full bg-white/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-sky-800 shadow-sm">
+            <span className="inline-flex rounded-2xl bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-sky-800 shadow-sm border border-slate-200/40">
               {t.nav.resources}
             </span>
-            <h1 className="text-4xl font-bold sm:text-5xl">{t.nav.resources}</h1>
-            <p className="text-base leading-8 text-slate-700 sm:text-lg">
+            <h1 className="font-Montserrat text-4xl font-bold text-slate-900 sm:text-5xl">{t.nav.resources}</h1>
+            <p className="text-sm leading-8 text-slate-600 sm:text-base">
               {intro}
             </p>
           </motion.div>
@@ -89,18 +89,19 @@ export default function RessourcesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="rounded-[1.8rem] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(15,23,42,0.06)]"
+                whileHover={{ y: -4 }}
+                className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_36px_rgba(15,23,42,0.06)]"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-100 text-sky-700">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
                   <Icon className="h-5 w-5" />
                 </div>
-                <h2 className="mt-5 text-2xl font-bold">{section.title}</h2>
-                <p className="mt-3 text-sm leading-7 text-slate-600">
+                <h2 className="font-Montserrat mt-5 text-2xl font-bold text-slate-900">{section.title}</h2>
+                <p className="mt-3 text-sm leading-6 text-slate-500">
                   {section.text}
                 </p>
                 <Link
                   href={section.href}
-                  className="mt-6 inline-flex items-center gap-2 font-semibold text-sky-700 hover:text-sky-900"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-800"
                 >
                   Ouvrir
                   <ArrowRight className="h-4 w-4" />

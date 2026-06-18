@@ -119,12 +119,12 @@ export default function BlogActualitesPage() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-3xl space-y-5"
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-sky-800 shadow-sm">
+            <span className="inline-flex items-center gap-2 rounded-2xl bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-sky-800 shadow-sm border border-slate-200/40">
               <Newspaper className="h-3.5 w-3.5" />
               {copy.badge}
             </span>
-            <h1 className="text-4xl font-bold sm:text-5xl">{copy.title}</h1>
-            <p className="text-base leading-8 text-slate-700 sm:text-lg">
+            <h1 className="font-Montserrat text-4xl font-bold text-slate-900 sm:text-5xl">{copy.title}</h1>
+            <p className="text-sm leading-8 text-slate-600 sm:text-base">
               {copy.intro}
             </p>
           </motion.div>
@@ -140,22 +140,23 @@ export default function BlogActualitesPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="rounded-[1.8rem] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(15,23,42,0.06)]"
+              whileHover={{ y: -4 }}
+              className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_36px_rgba(15,23,42,0.06)]"
             >
               <div className="flex items-center justify-between gap-3">
-                <span className="inline-flex items-center gap-2 rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">
+                <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-600">
                   <Tag className="h-3.5 w-3.5" />
                   {article.category}
                 </span>
-                <span className="inline-flex items-center gap-2 text-sm text-slate-500">
+                <span className="inline-flex items-center gap-2 text-xs text-slate-400">
                   <CalendarDays className="h-4 w-4" />
                   {article.date}
                 </span>
               </div>
-              <h2 className="mt-5 text-2xl font-bold text-slate-900">
+              <h2 className="font-Montserrat mt-5 text-2xl font-bold text-slate-900 leading-tight">
                 {article.title}
               </h2>
-              <p className="mt-3 text-sm leading-7 text-slate-600">
+              <p className="mt-3 text-sm leading-6 text-slate-500">
                 {article.excerpt}
               </p>
             </motion.article>
@@ -165,7 +166,7 @@ export default function BlogActualitesPage() {
         <div className="mx-auto mt-10 flex max-w-7xl justify-start">
           <Link
             href="/Contact"
-            className="inline-flex items-center gap-2 rounded-full bg-[#0d5fd6] px-6 py-3 font-semibold text-white shadow-[0_16px_36px_rgba(13,95,214,0.22)] hover:bg-[#0b54c0]"
+            className="glass-hover interactive-lift inline-flex items-center gap-2 rounded-2xl bg-[#0d5fd6] px-6 py-3.5 font-bold text-white shadow-lg shadow-blue-500/20 hover:bg-[#0b54c0]"
           >
             {copy.cta}
             <ArrowRight className="h-4 w-4" />
