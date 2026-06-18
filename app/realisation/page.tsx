@@ -188,7 +188,7 @@ export default function Realisation() {
   return (
     <main className="bg-[#f6f8ff] font-sans text-slate-900">
       <section 
-        className="relative px-4 py-20 text-white sm:px-6 sm:py-24 md:py-32 overflow-hidden bg-cover bg-center bg-no-repeat"
+        className="relative px-4 py-20 text-white sm:px-6 sm:py-24 md:py-16 overflow-hidden bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/photos/plant.jpg')" }}
       >
         {/* Dark blue/indigo overlay to provide contrast for white text and fit the blue/yellow graphic charter */}
@@ -205,11 +205,6 @@ export default function Realisation() {
             transition={{ duration: 0.8 }}
             className="relative pl-6 py-8 md:pl-10 md:py-10 max-w-4xl"
           >
-            {/* Custom open bracket border (yellow) as in the user's mockup image */}
-            <div className="absolute top-0 left-0 w-24 h-1 bg-yellow-500 rounded-r" />
-            <div className="absolute bottom-0 left-0 w-24 h-1 bg-yellow-500 rounded-r" />
-            <div className="absolute top-0 bottom-0 left-0 w-1 bg-yellow-500 rounded-b rounded-t" />
-
             <div className="space-y-4">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-yellow-400">
                 {t.realisation.eyebrow}
@@ -419,7 +414,7 @@ export default function Realisation() {
             </div>
 
             <div className="rounded-2xl border border-blue-100 bg-[#F4F7FF] p-6 shadow-sm">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[#022762]">
                 <Users className="text-white" size={20} />
               </div>
               <h4 className="font-Montserrat mb-2 text-xl font-bold text-slate-900">
@@ -431,7 +426,7 @@ export default function Realisation() {
               <div className="space-y-3">
                 <Link
                   href="/Contact"
-                  className="block w-full rounded-2xl bg-blue-600 px-4 py-3 text-center font-bold text-white transition-colors hover:bg-blue-700"
+                  className="block w-full rounded-2xl bg-[#022762] px-4 py-3 text-center font-bold text-white transition-colors hover:bg-blue-700"
                 >
                   {t.realisation.sideCtaTwo}
                 </Link>
@@ -444,7 +439,7 @@ export default function Realisation() {
               </div>
             </div>
 
-            <div className="rounded-2xl bg-[#0c66f7] p-5 text-white shadow-[0_18px_40px_rgba(15,23,42,0.22)]">
+            <div className="rounded-2xl bg-[#022762] p-5 text-white shadow-[0_18px_40px_rgba(15,23,42,0.22)]">
               <h4 className="mb-4 text-lg font-semibold">{t.realisation.statsTitle}</h4>
               <div className="space-y-4">
                 <CircularStat

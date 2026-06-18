@@ -17,7 +17,7 @@ export default function Footer() {
 
   return (
     <footer className="relative z-10 motion-fade-up">
-      <div className="border-t border-white/10 bg-[#327cf3] px-4 py-12 text-white backdrop-blur-2xl sm:px-6 lg:px-10">
+      <div className="border-t border-white/10 bg-[#022762] px-4 py-12 text-white backdrop-blur-2xl sm:px-6 lg:px-10">
         <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-3">
           <div>
             <h3 className="font-Montserrat mb-4 text-4xl font-bold text-yellow-400">C2E</h3>

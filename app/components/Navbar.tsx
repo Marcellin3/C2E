@@ -151,7 +151,7 @@ export default function Navbar() {
         transition={{ duration: 0.55, delay: 0.08 }}
         className={`px-4 transition-all duration-300 md:px-6 ${isScrolled ? "py-2" : "pb-4 pt-2 md:pt-4"}`}
       >
-        <div className="mx-auto max-w-7xl rounded-2xl bg-[#327cf3] px-4 py-3 text-white shadow-[0_12px_36px_rgba(8,118,239,0.18)] md:px-6">
+        <div className="mx-auto max-w-7xl rounded-2xl bg-[#022762] px-4 py-3 text-white shadow-[0_12px_36px_rgba(8,118,239,0.18)] md:px-6">
           <div className="flex items-center justify-between gap-4">
           <Link
             href="/accueil"
