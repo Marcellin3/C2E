@@ -56,7 +56,7 @@ export default function Services() {
     {
       number: "03",
       image: "/photos/violance.jpg",
-      name: "Violence basée sur le genre VBG",
+      name: "Violence basée sur le genre (VBG)",
       bullets: [
         "Contribuer à la réduction des violences basées sur le genre.",
         "Promouvoir des normes socioculturelles respectant l'égalité des sexes.",
@@ -65,8 +65,18 @@ export default function Services() {
     },
     {
       number: "04",
+      image: "/photos/violance.jpg",
+      name: "Santé reproductive",
+      bullets: [
+        "Améliorer les conditions de vie de la population (femmes et adolescents).",
+        "Promouvoir l'approche multisectorielle visant l’amélioration de la fourniture de services de santé reproductive (SDSR) sensibles au genre.",
+        "Promouvoir l’utilisation équitable de services de santé reproductive par la population.",
+      ],
+    },
+    {
+      number: "05",
       image: "/photos/environnement.jpg",
-      name: "Environnement et Développement",
+      name: "Environnement et Développement Durable",
       bullets: [
         "Promouvoir le pouvoir socioéconomique des populations locales.",
         "Restaurer durablement les moyens d'existence.",
@@ -74,7 +84,7 @@ export default function Services() {
       ],
     },
     {
-      number: "05",
+      number: "06",
       image: "/photos/gouvernace et paix.jpg",
       name: "Gouvernance et Paix",
       bullets: [
@@ -156,6 +166,19 @@ export default function Services() {
         id="services-grid"
         className="relative overflow-hidden bg-gray-50 px-4 py-16 md:px-20"
       >
+        <div className="mx-auto max-w-7xl mb-12 grid gap-6 md:grid-cols-[1.2fr_0.8fr] md:items-end border-b border-slate-200/60 pb-8">
+          <div>
+            <span className="text-[0.75rem] font-bold uppercase tracking-[0.16em] text-blue-600">
+              {locale === "fr" ? "Nos Services" : "Our services"}
+            </span>
+            <h2 className="font-Montserrat mt-2 text-[2.2rem] font-extrabold leading-tight text-slate-900 sm:text-[2.8rem]">
+              Secteurs d'intervention
+            </h2>
+            <p className="text-sm leading-relaxed text-slate-500">
+            {t.servicesPage.actionTextOne}
+          </p>
+          </div>
+        </div>
         <div className="relative mx-auto max-w-6xl">
           <div className="grid items-center gap-7 md:grid-cols-2 xl:grid-cols-3">
             {services.map((service, index) => {
@@ -199,7 +222,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="bg-gray-50/50 px-4 py-20 text-slate-700 sm:px-6 lg:px-16 border-t border-slate-100">
+      <section className="bg-gray-50/50 px-4 py-10 text-slate-700 sm:px-6 lg:px-16 border-t border-slate-100">
         {/* Mockup-style 2-column header layout */}
         <div className="mx-auto max-w-7xl mb-12 grid gap-6 md:grid-cols-[1.2fr_0.8fr] md:items-end border-b border-slate-200/60 pb-8">
           <div>
@@ -209,10 +232,10 @@ export default function Services() {
             <h2 className="font-Montserrat mt-2 text-[2.2rem] font-extrabold leading-tight text-slate-900 sm:text-[2.8rem]">
               Secteurs d'intervention
             </h2>
-          </div>
-          <p className="text-sm leading-relaxed text-slate-500">
+            <p className="text-sm leading-relaxed text-slate-500">
             {t.servicesPage.actionTextOne}
           </p>
+          </div>
         </div>
 
         {/* Mockup-style Grid Cards layout */}

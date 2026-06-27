@@ -1048,7 +1048,7 @@ export default function PlanStrategique() {
                 </div>
 
                 {/* Final Callout: Perspectives */}
-                <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-700 p-8 text-white shadow-xl md:p-12">
+                <div className="relative overflow-hidden rounded-2xl bg-blue-950 p-8 text-white shadow-xl md:p-12">
                   <div className="absolute -right-20 -bottom-20 h-64 w-64 rounded-full bg-white/5 blur-3xl pointer-events-none" />
                   <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.05),transparent)] pointer-events-none" />
                   
