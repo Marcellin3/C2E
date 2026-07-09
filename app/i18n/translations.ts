@@ -410,8 +410,8 @@ export const translations: Record<Locale, Translations> = {
       consultants: [
         {
           name: "Philemon MBARAMBARA",
-          image: "/photos/projet.jpg",
-          desc: "Chercheur en santé communautaire et expert en conception de plans stratégiques institutionnels pour les organisations publiques et privées.",
+          image: "/photos/philemon.jpeg",
+          desc: " Analyste de politique et systemes de santé, expert en genre et assurance-qualité. Chercheur en santé communautaire et expert en conception de plans stratégiques institutionnels pour les organisations publiques et privées.",
         },
         {
           name: "Dr Patrick MUTUTA | PhD Sciences Environnementales",

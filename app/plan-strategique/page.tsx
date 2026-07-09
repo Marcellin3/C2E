@@ -777,7 +777,7 @@ export default function PlanStrategique() {
                   {content.sec2.title}
                 </h2>
 
-                <div className="grid gap-6 md:grid-cols-2">
+                <div className="grid gap-6 md:grid-row-2">
                   <div className="space-y-4 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">
                     <p>{content.sec2.p1}</p>
                     <p>{content.sec2.p2}</p>

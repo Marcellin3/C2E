@@ -165,7 +165,7 @@ export default function Navbar() {
               height={52}
               className="object-contain md:h-[60px] md:w-[60px]"
             />
-            <p className="font-Montserrat text-[1.7rem] font-bold leading-none text-white md:text-[2rem]">
+            <p className="font-Montserrat text-[1.7rem] font-bold leading-none text-yellow-400 md:text-[2rem]">
               {t.common.brand}
             </p>
           </Link>

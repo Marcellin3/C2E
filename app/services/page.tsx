@@ -171,12 +171,9 @@ export default function Services() {
             <span className="text-[0.75rem] font-bold uppercase tracking-[0.16em] text-blue-600">
               {locale === "fr" ? "Nos Services" : "Our services"}
             </span>
-            <h2 className="font-Montserrat mt-2 text-[2.2rem] font-extrabold leading-tight text-slate-900 sm:text-[2.8rem]">
-              Secteurs d'intervention
+            <h2 className="font-Montserrat text-2xl font-extrabold  text-slate-900 ">
+              C2E offre plusierus services aux organisations publics et privées
             </h2>
-            <p className="text-sm leading-relaxed text-slate-500">
-            {t.servicesPage.actionTextOne}
-          </p>
           </div>
         </div>
         <div className="relative mx-auto max-w-6xl">
@@ -229,12 +226,9 @@ export default function Services() {
             <span className="text-[0.75rem] font-bold uppercase tracking-[0.16em] text-blue-600">
               {locale === "fr" ? "Nos domaines d'action" : "Our areas of action"}
             </span>
-            <h2 className="font-Montserrat mt-2 text-[2.2rem] font-extrabold leading-tight text-slate-900 sm:text-[2.8rem]">
-              Secteurs d'intervention
+            <h2 className="font-Montserrat text-2xl  text-slate-900">
+              C2E intervien dans plusieures Secteurs, telque:
             </h2>
-            <p className="text-sm leading-relaxed text-slate-500">
-            {t.servicesPage.actionTextOne}
-          </p>
           </div>
         </div>
 
@@ -363,7 +357,7 @@ export default function Services() {
               whileHover={{ y: -10 }}
               className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-[0_8px_30px_rgba(15,23,42,0.03)] transition duration-300 hover:shadow-[0_12px_36px_rgba(15,23,42,0.06)]"
             >
-              <div className="relative h-60 w-full">
+              <div className="relative h-80 w-full">
                 <Image
                   src={consultant.image}
                   alt={consultant.name}
