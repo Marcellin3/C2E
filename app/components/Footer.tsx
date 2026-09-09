@@ -35,7 +35,7 @@ export default function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="interactive-lift w-fit transition-colors hover:text-yellow-400"
+                    className="footer-link interactive-lift w-fit transition-colors hover:text-yellow-400"
                   >
                     {item.name}
                   </Link>
@@ -51,7 +51,7 @@ export default function Footer() {
             <div className="space-y-4 text-sm">
               <a
                 href="mailto:c2experteval@gmail.com"
-                className="interactive-lift flex items-center gap-3 transition-colors hover:text-yellow-400"
+                className="footer-link interactive-lift flex items-center gap-3 transition-colors hover:text-yellow-400"
               >
                 <MdEmail className="text-yellow-400" size={20} />
                 <span>c2experteval@gmail.com</span>
@@ -60,7 +60,7 @@ export default function Footer() {
                 href="https://wa.me/243997674407"
                 target="_blank"
                 rel="noreferrer"
-                className="interactive-lift flex items-center gap-3 transition-colors hover:text-yellow-400"
+                className="footer-link interactive-lift flex items-center gap-3 transition-colors hover:text-yellow-400"
               >
                 <FaWhatsapp className="text-yellow-400" size={20} />
                 <span>+243 997 674 407</span>
@@ -69,7 +69,7 @@ export default function Footer() {
                 href="https://www.linkedin.com"
                 target="_blank"
                 rel="noreferrer"
-                className="interactive-lift flex items-center gap-3 transition-colors hover:text-yellow-400"
+                className="footer-link interactive-lift flex items-center gap-3 transition-colors hover:text-yellow-400"
               >
                 <FaLinkedin className="text-yellow-400" size={20} />
                 <span>{t.common.linkedin}</span>

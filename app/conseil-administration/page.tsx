@@ -335,7 +335,7 @@ export default function ConseilAdministration() {
 
       {/* Main Members Display Section */}
       <section className="mx-auto max-w-7xl px-6 py-12 md:py-20 min-h-[450px]">
-        <AnimatePresence mode="wait">
+        <AnimatePresence initial={false} mode="wait">
           {layoutMode === "grid" ? (
             
             /* 1. GRID CARDS MODE */
@@ -353,7 +353,7 @@ export default function ConseilAdministration() {
                 return (
                   <motion.div
                     key={member.number}
-                    whileHover={{ y: -6 }}
+                    whileHover={{ y: -3 }}
                     className={`relative rounded-3xl bg-white p-6 dark:bg-slate-900 border transition-all duration-300 shadow-[0_8px_30px_rgba(15,23,42,0.01)] hover:shadow-[0_12px_40px_rgba(15,23,42,0.04)] flex flex-col items-center text-center ${
                       isPresident
                         ? "border-yellow-200 dark:border-yellow-950/40 bg-gradient-to-b from-yellow-50/5 via-white to-white dark:from-yellow-950/5"

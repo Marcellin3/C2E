@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   Filter,
@@ -13,12 +13,14 @@ import {
   Zap,
 } from "lucide-react";
 import Footer from "../components/Footer";
+import { motionTokens } from "../components/motion";
 import { getProjectsWithFeaturedStudies } from "../data/featuredStudies";
 import { useAdminContent } from "../data/adminContent";
 import { useTranslation } from "../i18n/TranslationProvider";
 
 function AnimatedStatValue({ value }: { value: string }) {
   const [displayValue, setDisplayValue] = useState(0);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     const numericValue = Number.parseInt(value.replace(/\D/g, ""), 10);
@@ -28,7 +30,12 @@ function AnimatedStatValue({ value }: { value: string }) {
       return;
     }
 
-    const duration = 1400;
+    if (shouldReduceMotion) {
+      setDisplayValue(numericValue);
+      return;
+    }
+
+    const duration = 800;
     const startTime = performance.now();
     let animationFrame = 0;
 
@@ -47,11 +54,11 @@ function AnimatedStatValue({ value }: { value: string }) {
     animationFrame = window.requestAnimationFrame(updateValue);
 
     return () => window.cancelAnimationFrame(animationFrame);
-  }, [value]);
+  }, [shouldReduceMotion, value]);
 
   const prefix = value.startsWith("+") ? "+" : "";
 
-  return <>{`${prefix}${displayValue}`}</>;
+  return <span aria-label={value}><span aria-hidden="true">{`${prefix}${displayValue}`}</span></span>;
 }
 
 function CircularStat({
@@ -202,7 +209,7 @@ export default function Realisation() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: motionTokens.duration.slow, ease: motionTokens.ease }}
             className="relative pl-6 py-8 md:pl-10 md:py-10 max-w-4xl"
           >
             <div className="space-y-4">
@@ -238,7 +245,7 @@ export default function Realisation() {
               {t.realisation.impactStats.map((stat) => (
                 <motion.div
                   key={stat.label}
-                  whileHover={{ y: -4 }}
+                  whileHover={{ y: -2 }}
                   className="rounded-xl border border-white/10 bg-slate-950/45 p-5 backdrop-blur-md hover:bg-slate-950/60 hover:border-white/20 transition-all duration-300"
                 >
                   <div className="text-3xl font-extrabold tracking-tight text-yellow-400">

@@ -14,6 +14,7 @@ import {
   Users,
 } from "lucide-react";
 import Footer from "../components/Footer";
+import { motionTokens } from "../components/motion";
 import { useTranslation } from "../i18n/TranslationProvider";
 
 
@@ -123,9 +124,9 @@ export default function Services() {
 
         <div className="relative z-10 mx-auto max-w-4xl text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: motionTokens.duration.slow, ease: motionTokens.ease }}
             className="space-y-6"
           >
             {/* Eyebrow / Badge */}
@@ -184,11 +185,11 @@ export default function Services() {
               return (
                 <motion.div
                   key={service.title}
-                  initial={{ opacity: 0, y: 28 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay: index * 0.08 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -6 }}
+                  transition={{ duration: motionTokens.duration.normal, delay: index * motionTokens.stagger, ease: motionTokens.ease }}
+                  viewport={motionTokens.viewport}
+                  whileHover={{ y: -3 }}
                   className={`relative overflow-hidden rounded-2xl px-8 py-8 shadow-[0_8px_30px_rgba(15,23,42,0.03)] transition duration-300 hover:shadow-[0_12px_36px_rgba(15,23,42,0.06)] ${highlighted
                     ? "border border-sky-200 bg-[linear-gradient(135deg,#e0f2fe_0%,#bae6fd_100%)]"
                     : "border border-slate-100 bg-white"
@@ -239,11 +240,11 @@ export default function Services() {
               return (
                 <motion.div
                   key={sector.name}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -6 }}
+                  transition={{ duration: motionTokens.duration.normal, delay: index * motionTokens.stagger, ease: motionTokens.ease }}
+                  viewport={motionTokens.viewport}
+                  whileHover={{ y: -3 }}
                   className="flex flex-col overflow-hidden rounded-2xl border border-slate-200/50 bg-white shadow-[0_8px_30px_rgba(15,23,42,0.03)] transition duration-300 hover:shadow-[0_12px_40px_rgba(15,23,42,0.06)]"
                 >
                   {/* Top Image Container */}
@@ -253,7 +254,7 @@ export default function Services() {
                       alt={sector.name}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover transition-transform duration-500 hover:scale-105"
+                      className="object-cover transition-transform duration-500 hover:scale-[1.03]"
                     />
                     
                     {/* Badge Overlay (Bottom-Right, like mockup category badge) */}
@@ -298,9 +299,10 @@ export default function Services() {
       <section className="bg-gray-50 py-28">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-20 md:grid-cols-2">
           <motion.div
-            initial={{ opacity: 0, x: -80 }}
+            initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: motionTokens.duration.slow, ease: motionTokens.ease }}
+            viewport={motionTokens.viewport}
             className="order-2 relative md:justify-self-end"
           >
             <img
@@ -311,9 +313,10 @@ export default function Services() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 80 }}
+            initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: motionTokens.duration.slow, ease: motionTokens.ease }}
+            viewport={motionTokens.viewport}
             className="order-1"
           >
             <h2 className="font-Montserrat text-3xl font-bold leading-snug text-slate-900 md:text-[2.8rem]">
@@ -350,11 +353,11 @@ export default function Services() {
           {consultants.map((consultant, index) => (
             <motion.div
               key={`${consultant.name}-${consultant.image}-${index}`}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -10 }}
+              transition={{ duration: motionTokens.duration.normal, delay: index * motionTokens.stagger, ease: motionTokens.ease }}
+              viewport={motionTokens.viewport}
+              whileHover={{ y: -3 }}
               className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-[0_8px_30px_rgba(15,23,42,0.03)] transition duration-300 hover:shadow-[0_12px_36px_rgba(15,23,42,0.06)]"
             >
               <div className="relative h-80 w-full">

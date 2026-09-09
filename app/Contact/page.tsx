@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import { Send } from "lucide-react";
 import Footer from "../components/Footer";
+import { motionTokens } from "../components/motion";
 import { useTranslation } from "../i18n/TranslationProvider";
 
 const contactEmail = "c2experteval@gmail.com";
@@ -49,12 +50,12 @@ export default function Contact() {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+    visible: { opacity: 1, transition: { staggerChildren: motionTokens.stagger } },
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1 },
+    hidden: { y: motionTokens.distance.standard, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: motionTokens.duration.normal, ease: motionTokens.ease } },
   };
 
   const openMailClient = () => {
@@ -228,9 +229,9 @@ export default function Contact() {
             </motion.div>
 
             <motion.div
-              initial={{ x: 50, opacity: 0 }}
+              initial={{ x: 24, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: motionTokens.duration.slow, ease: motionTokens.ease }}
               className="lg:col-span-7"
             >
               <div className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_12px_40px_rgba(15,23,42,0.04)] sm:rounded-2xl sm:p-8 md:p-12">
@@ -323,8 +324,8 @@ export default function Contact() {
                   <motion.button
                     type="submit"
                     disabled={submitStatus === "sending"}
-                    whileHover={{ scale: 1.01 }}
-                    whileTap={{ scale: 0.99 }}
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.96 }}
                     className="glass-hover interactive-lift flex w-full items-center justify-center gap-3 rounded-2xl bg-blue-600 py-4 text-base font-bold text-white shadow-lg shadow-blue-500/25 hover:bg-blue-700"
                   >
                     {submitStatus === "sending"
@@ -356,12 +357,13 @@ export default function Contact() {
           </div>
 
           <motion.div
-            initial={{ y: 50, opacity: 0 }}
+            initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={motionTokens.viewport}
+            transition={{ duration: motionTokens.duration.normal, ease: motionTokens.ease }}
             className="relative mt-16 h-[280px] overflow-hidden rounded-2xl border border-slate-200 shadow-lg sm:mt-20 sm:h-[400px]"
           >
-            <div className="absolute inset-0 flex animate-pulse items-center justify-center bg-slate-200">
+            <div className="absolute inset-0 flex items-center justify-center bg-slate-200">
               <p className="font-medium text-slate-500">{t.contactPage.mapLabel}</p>
             </div>
             <iframe

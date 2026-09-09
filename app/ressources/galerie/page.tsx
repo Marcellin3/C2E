@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Camera, ImageIcon, Sparkles } from "lucide-react";
 import { useState } from "react";
 import Footer from "../../components/Footer";
+import { motionTokens } from "../../components/motion";
 import { useAdminContent, type AdminGalleryItem } from "../../data/adminContent";
 import { useTranslation } from "../../i18n/TranslationProvider";
 
@@ -200,9 +201,9 @@ export default function GaleriePage() {
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: motionTokens.duration.slow, ease: motionTokens.ease }}
             className="space-y-6"
           >
             <span className="inline-flex items-center gap-2 rounded-2xl border border-emerald-800/10 bg-white/70 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-emerald-900">
@@ -232,9 +233,9 @@ export default function GaleriePage() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={{ opacity: 0, scale: 0.985 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.08 }}
+            transition={{ duration: motionTokens.duration.slow, delay: 0.07, ease: motionTokens.ease }}
             className="grid gap-4 sm:grid-cols-2"
           >
             <div className="rounded-2xl bg-white/85 p-5 shadow-[0_8px_30px_rgba(15,23,42,0.04)] backdrop-blur">
@@ -298,12 +299,13 @@ export default function GaleriePage() {
                   return (
                     <motion.article
                       key={`${item.image}-${groupIndex}-${imageIndex}`}
-                      initial={{ opacity: 0, y: 24 }}
+                      initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.2 }}
+                      viewport={motionTokens.viewport}
                       transition={{
-                        duration: 0.45,
-                        delay: absoluteIndex * 0.03,
+                        duration: motionTokens.duration.normal,
+                        delay: Math.min(absoluteIndex, 7) * 0.025,
+                        ease: motionTokens.ease,
                       }}
                       className={`group relative overflow-hidden rounded-2xl border bg-white shadow-[0_8px_30px_rgba(15,23,42,0.03)] md:min-h-0 ${isSelected ? "border-sky-500 ring-4 ring-sky-200" : "border-slate-200"} ${layoutPattern[imageIndex]}`}
                     >
@@ -316,7 +318,7 @@ export default function GaleriePage() {
                         <img
                           src={item.image}
                           alt={item.title}
-                          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                          className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-slate-950/5 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
                         {isSelected ? (

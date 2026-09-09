@@ -4,6 +4,10 @@
   --background: #ffffff;
   --foreground: #171717;
   color-scheme: light;
+  --motion-fast: 180ms;
+  --motion-normal: 260ms;
+  --motion-slow: 460ms;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
@@ -121,6 +125,7 @@ body {
   font-size: 16px;
   line-height: 1.7;
   letter-spacing: -0.008em;
+  -webkit-font-smoothing: antialiased;
 }
 
 html {
@@ -169,12 +174,20 @@ input,
 textarea,
 select {
   transition:
-    transform 220ms ease,
-    box-shadow 220ms ease,
-    background-color 220ms ease,
-    border-color 220ms ease,
-    color 220ms ease,
-    opacity 220ms ease;
+    transform var(--motion-normal) var(--motion-ease),
+    box-shadow var(--motion-normal) var(--motion-ease),
+    background-color var(--motion-fast) ease,
+    border-color var(--motion-fast) ease,
+    color var(--motion-fast) ease,
+    opacity var(--motion-fast) ease;
+}
+
+/* Several existing Tailwind utilities use transition-all. Keep their visual intent
+   while restricting animation to composited or feedback-related properties. */
+[class~="transition-all"] {
+  transition-property: transform, box-shadow, background-color, border-color, color, opacity, filter;
+  transition-duration: var(--motion-normal);
+  transition-timing-function: var(--motion-ease);
 }
 
 button:focus-visible,
@@ -187,15 +200,15 @@ select:focus-visible {
 }
 
 .motion-fade-up {
-  animation: fade-up 700ms ease both;
+  animation: fade-up var(--motion-slow) var(--motion-ease) both;
 }
 
 .motion-reveal {
-  animation: fade-up 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: fade-up var(--motion-slow) var(--motion-ease) both;
 }
 
 .motion-reveal-soft {
-  animation: fade-scale 820ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: fade-scale var(--motion-slow) var(--motion-ease) both;
 }
 
 .motion-float-soft {
@@ -207,14 +220,14 @@ select:focus-visible {
 }
 
 .interactive-lift:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
   box-shadow:
     0 18px 42px rgba(15, 23, 42, 0.12),
     0 4px 12px rgba(37, 99, 235, 0.08);
 }
 
 .interactive-lift:active {
-  transform: translateY(-1px) scale(0.99);
+  transform: translateY(-1px) scale(0.96);
 }
 
 .glass-hover {
@@ -233,7 +246,7 @@ select:focus-visible {
     transparent 70%
   );
   transform: translateX(-120%);
-  transition: transform 500ms ease;
+  transition: transform 420ms var(--motion-ease);
   pointer-events: none;
 }
 
@@ -241,18 +254,50 @@ select:focus-visible {
   transform: translateX(120%);
 }
 
-@supports (animation-timeline: view()) {
-  main > section:not(:first-child) {
-    animation: section-rise both;
-    animation-timeline: view();
-    animation-range: entry 6% cover 24%;
-  }
+.footer-link {
+  position: relative;
+}
 
-  main > section:not(:first-child) > .mx-auto {
-    animation: fade-up both;
-    animation-timeline: view();
-    animation-range: entry 8% cover 26%;
-  }
+.footer-link::after {
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  left: 0;
+  height: 1px;
+  content: "";
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--motion-normal) var(--motion-ease);
+}
+
+.footer-link:hover::after,
+.footer-link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  position: absolute;
+  right: 0;
+  bottom: -6px;
+  left: 0;
+  height: 1px;
+  content: "";
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--motion-normal) var(--motion-ease);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -264,12 +309,26 @@ select:focus-visible {
     scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
   }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .interactive-lift:hover {
+    transform: translateY(-2px);
+  }
+
+  .animate-marquee {
+    animation-duration: 52s;
+  }
 }
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(22px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -280,7 +339,7 @@ select:focus-visible {
 @keyframes fade-scale {
   from {
     opacity: 0;
-    transform: translateY(18px) scale(0.985);
+    transform: translateY(14px) scale(0.985);
   }
   to {
     opacity: 1;
@@ -306,5 +365,83 @@ select:focus-visible {
   }
   50% {
     transform: translateY(-8px);
+  }
+}
+
+.site-loader {
+  position: fixed;
+  z-index: 100;
+  display: grid;
+  width: 100%;
+  min-height: 100dvh;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(11, 65, 132, 0.28),
+      transparent 28rem
+    ),
+    #010f25;
+  opacity: 1;
+  transition: opacity 480ms cubic-bezier(0.2, 0, 0, 1), visibility 480ms linear;
+}
+
+.site-loader--leaving {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.site-loader__glow {
+  position: absolute; width: min(66vw, 680px); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 207, 54, 0.11), transparent 67%); filter: blur(12px);
+}
+
+.site-loader__orb {
+  position: relative; width: clamp(218px, 42vw, 360px); aspect-ratio: 1; display: grid; place-items: center;
+  filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.32));
+}
+
+.site-loader__orbit {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.site-loader__orbit--fine {
+  inset: 8%; border: 1px solid rgba(255, 255, 255, 0.46); border-left-color: transparent; border-bottom-color: rgba(255, 207, 54, 0.72);
+  animation: loader-spin 4.8s linear infinite reverse;
+}
+
+.site-loader__orbit--outer {
+  border: clamp(10px, 1.9vw, 17px) solid transparent; border-top-color: #ffcf36; border-right-color: #ffcf36; border-bottom-color: #ffffff;
+  transform: rotate(-24deg); animation: loader-spin 2.45s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.site-loader__orbit--inner {
+  inset: 13%; border: clamp(9px, 1.6vw, 14px) solid rgba(202, 214, 230, 0.23); border-top-color: transparent;
+  border-left-color: rgba(255, 207, 54, 0.86); border-bottom-color: rgba(255, 255, 255, 0.72); transform: rotate(33deg);
+  animation: loader-spin 3.2s linear infinite reverse;
+}
+
+.site-loader__core {
+  position: relative; z-index: 1; display: grid; width: 39%; aspect-ratio: 1; place-items: center; border-radius: 50%; background: #022762;
+  box-shadow: 0 0 0 7px rgba(1, 15, 37, 0.82), 0 0 0 8px rgba(255, 255, 255, 0.14), 0 0 30px rgba(255, 207, 54, 0.2);
+  animation: loader-breathe 1.8s ease-in-out infinite;
+}
+
+.site-loader__core img { width: 76%; height: auto; object-fit: contain; }
+
+@keyframes loader-spin {
+  to {
+    transform: rotate(336deg);
+  }
+}
+
+@keyframes loader-breathe {
+  50% {
+    transform: scale(1.055);
+    box-shadow: 0 0 0 7px rgba(1, 15, 37, 0.82), 0 0 0 8px rgba(255, 255, 255, 0.2), 0 0 42px rgba(255, 207, 54, 0.34);
   }
 }

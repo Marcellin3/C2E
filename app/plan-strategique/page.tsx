@@ -732,7 +732,7 @@ export default function PlanStrategique() {
             {/* Section 1: Presentation */}
             <motion.section
               id="sec1"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -766,7 +766,7 @@ export default function PlanStrategique() {
             {/* Section 2: Contexte & Justification */}
             <motion.section
               id="sec2"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -795,7 +795,7 @@ export default function PlanStrategique() {
             {/* Section 3: Vision, Mission & Valeurs */}
             <motion.section
               id="sec3"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -838,7 +838,7 @@ export default function PlanStrategique() {
                     {content.sec3.valuesList.map((val, idx) => (
                       <motion.div
                         key={val.name}
-                        whileHover={{ y: -4 }}
+                        whileHover={{ y: -2 }}
                         className="p-4 rounded-2xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:shadow-md transition dark:border-slate-800 dark:bg-slate-900/50 dark:hover:bg-slate-800/50"
                       >
                         <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-blue-50 text-xs font-bold text-blue-600 dark:bg-blue-950 dark:text-blue-400 mb-2">
@@ -860,7 +860,7 @@ export default function PlanStrategique() {
             {/* Section 4: SWOT */}
             <motion.section
               id="sec4"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -966,7 +966,7 @@ export default function PlanStrategique() {
             {/* Section 5: Objectives */}
             <motion.section
               id="sec5"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -987,7 +987,7 @@ export default function PlanStrategique() {
                   {content.sec5.objectives.map((obj, index) => (
                     <motion.div
                       key={index}
-                      whileHover={{ y: -6 }}
+                      whileHover={{ y: -3 }}
                       transition={{ duration: 0.2 }}
                       className={`p-6 rounded-2xl border transition-all flex flex-col ${getObjectiveColors(
                         index
@@ -1013,7 +1013,7 @@ export default function PlanStrategique() {
             {/* Section 6: Approaches & Perspectives */}
             <motion.section
               id="sec6"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true, margin: "-100px" }}

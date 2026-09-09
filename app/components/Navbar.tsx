@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { useTranslation } from "../i18n/TranslationProvider";
 import type { Locale } from "../i18n/translations";
+import { motionTokens } from "./motion";
 
 export default function Navbar() {
   const { locale, setLocale, t } = useTranslation();
@@ -69,14 +70,14 @@ export default function Navbar() {
 
   const resourceItems = [
     {
-      name: t.nav.blogNews,
+      name: t.nav.publicationsResearch,
       description:
         locale === "fr"
-          ? "Articles, analyses, publications environnementales, recherches"
+          ? "Travaux de recherche, analyses, études, évaluations et publications institutionnelles"
           : locale === "en"
-          ? "Articles, analyses, environmental publications, research"
-          : "Makala, uchambuzi, machapisho ya mazingira na tafiti",
-      link: "/ressources/blog-actualites",
+          ? "Research work, analyses, studies, evaluations, and institutional publications"
+          : "Kazi za utafiti, uchambuzi, masomo, tathmini na machapisho ya taasisi",
+      link: "/publications",
       icon: Newspaper,
     },
     {
@@ -108,11 +109,11 @@ export default function Navbar() {
     theme === "dark" ? t.common.lightMode : t.common.darkMode;
 
   return (
-    <header className={`sticky top-0 z-50 bg-white transition-all duration-300 ${isScrolled ? "shadow-md" : ""}`}>
+    <header className={`sticky top-0 z-50 bg-white transition-[background-color,box-shadow] duration-300 ${isScrolled ? "shadow-md" : ""}`}>
       <motion.div
-        initial={{ y: -40, opacity: 0 }}
+        initial={{ y: -16, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.55 }}
+        transition={{ duration: motionTokens.duration.normal, ease: motionTokens.ease }}
         className={`transition-all duration-300 overflow-hidden border-b border-slate-200 ${
           isScrolled ? "max-h-0 opacity-0 border-none pointer-events-none py-0" : "max-h-20 opacity-100"
         }`}
@@ -146,9 +147,9 @@ export default function Navbar() {
       </motion.div>
 
       <motion.div
-        initial={{ y: -30, opacity: 0 }}
+        initial={{ y: -12, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.55, delay: 0.08 }}
+        transition={{ duration: motionTokens.duration.normal, delay: 0.06, ease: motionTokens.ease }}
         className={`px-4 transition-all duration-300 md:px-6 ${isScrolled ? "py-2" : "pb-4 pt-2 md:pt-4"}`}
       >
         <div className="mx-auto max-w-7xl rounded-2xl bg-[#022762] px-4 py-3 text-white shadow-[0_12px_36px_rgba(8,118,239,0.18)] md:px-6">
@@ -175,7 +176,7 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.link}
-                className="interactive-lift transition hover:text-sky-200"
+                className="nav-link interactive-lift transition hover:text-sky-200"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.name}
@@ -190,7 +191,7 @@ export default function Navbar() {
               <div className="flex items-center gap-1">
                 <Link
                   href="/ressources"
-                  className="interactive-lift transition hover:text-sky-200"
+                  className="nav-link interactive-lift transition hover:text-sky-200"
                   onClick={closeMenus}
                 >
                   {t.nav.resources}
@@ -248,7 +249,7 @@ export default function Navbar() {
 
             <Link
               href="/Contact"
-              className="interactive-lift transition hover:text-sky-200"
+              className="nav-link interactive-lift transition hover:text-sky-200"
               onClick={() => setMobileOpen(false)}
             >
               {t.nav.contact}

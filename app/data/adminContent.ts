@@ -13,6 +13,8 @@ import {
   type AdminOpportunity,
   type AdminPartner,
   type AdminProject,
+  type AdminPublication,
+  type AdminPublicationType,
 } from "./adminTypes";
 
 export type {
@@ -25,6 +27,8 @@ export type {
   AdminOpportunity,
   AdminPartner,
   AdminProject,
+  AdminPublication,
+  AdminPublicationType,
 };
 
 export const adminStorageKey = "c2e-admin-content-v1";

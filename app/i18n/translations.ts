@@ -29,7 +29,7 @@ type Translations = {
     services: string;
     realisations: string;
     resources: string;
-    blogNews: string;
+    publicationsResearch: string;
     mediaGallery: string;
     opportunitiesCareers: string;
     contact: string;
@@ -45,6 +45,12 @@ type Translations = {
     badge: string;
     heroTitle: string;
     heroText: string;
+    heroSlides: Array<{
+      title: string;
+      text: string;
+      cta: string;
+      link: string;
+    }>;
     aboutLabel: string;
     aboutTitle: string;
     aboutText: string;
@@ -189,6 +195,34 @@ type Translations = {
       other: string;
     };
   };
+  publications: {
+    heroTitle: string;
+    heroSubtitle: string;
+    heroText: string;
+    articlesScientific: string;
+    articlesScientificDesc: string;
+    articlesScientificCta: string;
+    analysesPerspectives: string;
+    analysesPerspectivesDesc: string;
+    analysesPerspectivesCta: string;
+    studiesReports: string;
+    studiesReportsDesc: string;
+    studiesReportsCta: string;
+    scientificHeroSubtitle: string;
+    analysesHeroSubtitle: string;
+    studiesHeroSubtitle: string;
+    readArticle: string;
+    downloadPdf: string;
+    share: string;
+    copyCitation: string;
+    similarArticles: string;
+    view: string;
+    download: string;
+    emptyState: string;
+    emptyStateDesc: string;
+    errorState: string;
+    errorStateDesc: string;
+  };
 };
 
 export const translations: Record<Locale, Translations> = {
@@ -220,7 +254,7 @@ export const translations: Record<Locale, Translations> = {
       services: "Services",
       realisations: "Réalisations",
       resources: "Ressources",
-      blogNews: "Blog & Actualités",
+      publicationsResearch: "Publications & Recherche",
       mediaGallery: "Galerie",
       opportunitiesCareers: "Opportunités & Carrières",
       contact: "Contact",
@@ -240,6 +274,26 @@ export const translations: Record<Locale, Translations> = {
         "Nous créons des solutions stratégiques durables pour les organisations",
       heroText:
         "Nous accompagnons les institutions publiques et privées dans le suivi-évaluation, la recherche et la gestion axée sur les résultats.",
+      heroSlides: [
+        {
+          title: "Nous créons des solutions stratégiques durables pour les organisations",
+          text: "Nous accompagnons les institutions publiques et privées dans le suivi-évaluation, la recherche et la gestion axée sur les résultats.",
+          cta: "Contactez-nous",
+          link: "/Contact",
+        },
+        {
+          title: "L'action humanitaire au cœur de notre engagement",
+          text: "Au-delà de l'expertise, nous nous mobilisons sur le terrain pour apporter des réponses concrètes, solidaires et durables aux communautés les plus vulnérables.",
+          cta: "Découvrir nos interventions",
+          link: "/realisation",
+        },
+        {
+          title: "Allier la rigueur de l'expertise à la force de l'impact social",
+          text: "Nous transformons les données et les évaluations en actions humanitaires concrètes pour bâtir un avenir plus juste et résilient.",
+          cta: "Voir nos interventions",
+          link: "/realisation",
+        },
+      ],
       aboutLabel: "À propos de nous",
       aboutTitle: "Le Centre d'Expertise et d'Évaluation (C2E)",
       aboutText:
@@ -461,7 +515,7 @@ export const translations: Record<Locale, Translations> = {
           author: "Responsable de projet",
           role: "Organisation partenaire - Nord-Kivu",
           accent: "bg-[linear-gradient(135deg,#eaf7ff_0%,#d8efff_100%)]",
-          image: "/photos/Prince.jpg",
+          image: "/photos/tem01.png",
         },
         {
           quote:
@@ -469,7 +523,7 @@ export const translations: Record<Locale, Translations> = {
           author: "Coordonnateur",
           role: "Programme communautaire - RDC",
           accent: "bg-[linear-gradient(135deg,#edf8ff_0%,#dcefff_100%)]",
-          image: "/photos/Charmant.jpg",
+          image: "/photos/tem02.png",
         },
         {
           quote:
@@ -477,7 +531,7 @@ export const translations: Record<Locale, Translations> = {
           author: "Partenaire institutionnel",
           role: "Programme de développement - RDC",
           accent: "bg-[linear-gradient(135deg,#eef8ff_0%,#d7f0ff_100%)]",
-          image: "/photos/téléchargé 4.jpg",
+          image: "/photos/tem01.png",
         },
       ],
     },
@@ -628,6 +682,34 @@ export const translations: Record<Locale, Translations> = {
         other: "Autre",
       },
     },
+    publications: {
+      heroTitle: "Publications & Recherche",
+      heroSubtitle: "Découvrez les travaux de recherche, analyses, études et publications du Centre d'Expertise et d'Évaluation.",
+      heroText: "Le C2E produit et valorise des connaissances fondées sur les données, la recherche et l'évaluation afin d'éclairer les décisions et les politiques.",
+      articlesScientific: "Articles scientifiques",
+      articlesScientificDesc: "Travaux de recherche originaux fondés sur des méthodes scientifiques rigoureuses, des données et une analyse approfondie.",
+      articlesScientificCta: "Explorer les articles scientifiques",
+      analysesPerspectives: "Analyses & Perspectives",
+      analysesPerspectivesDesc: "Analyses, réflexions et éclairages d'experts sur les enjeux de développement, d'environnement, de gouvernance, d'action humanitaire et de transformation sociale.",
+      analysesPerspectivesCta: "Explorer les analyses",
+      studiesReports: "Études & Rapports",
+      studiesReportsDesc: "Études, évaluations, rapports techniques et productions réalisées par le C2E ou en collaboration avec ses partenaires.",
+      studiesReportsCta: "Explorer les études & rapports",
+      scientificHeroSubtitle: "Des recherches fondées sur les données pour produire des connaissances utiles à la décision.",
+      analysesHeroSubtitle: "Comprendre les enjeux actuels, analyser les tendances et faire émerger de nouvelles perspectives.",
+      studiesHeroSubtitle: "Des données, analyses et évaluations au service de la compréhension des réalités et de la prise de décision.",
+      readArticle: "Lire l'article",
+      downloadPdf: "Télécharger le PDF",
+      share: "Partager",
+      copyCitation: "Copier la citation",
+      similarArticles: "Articles similaires",
+      view: "Consulter",
+      download: "Télécharger",
+      emptyState: "Aucune publication disponible",
+      emptyStateDesc: "Les publications de cette catégorie seront bientôt disponibles.",
+      errorState: "Impossible de charger les publications",
+      errorStateDesc: "Une erreur est survenue. Veuillez réessayer.",
+    },
   },
   en: {
     meta: {
@@ -657,7 +739,7 @@ export const translations: Record<Locale, Translations> = {
       services: "Services",
       realisations: "Projects",
       resources: "Resources",
-      blogNews: "Blog & News",
+      publicationsResearch: "Publications & Research",
       mediaGallery: "Gallery",
       opportunitiesCareers: "Opportunities & Careers",
       contact: "Contact",
@@ -677,6 +759,26 @@ export const translations: Record<Locale, Translations> = {
         "We build lasting strategic solutions for organizations",
       heroText:
         "We support public and private institutions in monitoring and evaluation, research, and results-based management.",
+      heroSlides: [
+        {
+          title: "We build lasting strategic solutions for organizations",
+          text: "We support public and private institutions in monitoring and evaluation, research, and results-based management.",
+          cta: "Contact us",
+          link: "/Contact",
+        },
+        {
+          title: "Humanitarian action at the heart of our commitment",
+          text: "Beyond expertise, we mobilize on the ground to provide concrete, solidary, and sustainable responses to the most vulnerable communities.",
+          cta: "Discover our interventions",
+          link: "/realisation",
+        },
+        {
+          title: "Combining the rigor of expertise with the power of social impact",
+          text: "We transform data and evaluations into concrete humanitarian actions to build a fairer and more resilient future.",
+          cta: "View our interventions",
+          link: "/realisation",
+        },
+      ],
       aboutLabel: "About us",
       aboutTitle: "The Center for Expertise and Evaluation (C2E)",
       aboutText:
@@ -1047,6 +1149,34 @@ export const translations: Record<Locale, Translations> = {
         other: "Other",
       },
     },
+    publications: {
+      heroTitle: "Publications & Research",
+      heroSubtitle: "Discover the research, analyses, studies, and publications of the Center for Expertise and Evaluation.",
+      heroText: "C2E produces and promotes knowledge based on data, research, and evaluation to inform decisions and policies.",
+      articlesScientific: "Scientific Articles",
+      articlesScientificDesc: "Original research based on rigorous scientific methods, data, and in-depth analysis.",
+      articlesScientificCta: "Explore scientific articles",
+      analysesPerspectives: "Analyses & Perspectives",
+      analysesPerspectivesDesc: "Analyses, reflections, and expert insights on development, environment, governance, humanitarian action, and social transformation issues.",
+      analysesPerspectivesCta: "Explore analyses",
+      studiesReports: "Studies & Reports",
+      studiesReportsDesc: "Studies, evaluations, technical reports, and productions by C2E or in collaboration with its partners.",
+      studiesReportsCta: "Explore studies & reports",
+      scientificHeroSubtitle: "Data-driven research to produce actionable knowledge for decision-making.",
+      analysesHeroSubtitle: "Understand current issues, analyze trends, and bring forth new perspectives.",
+      studiesHeroSubtitle: "Data, analyses, and evaluations serving the understanding of realities and decision-making.",
+      readArticle: "Read article",
+      downloadPdf: "Download PDF",
+      share: "Share",
+      copyCitation: "Copy citation",
+      similarArticles: "Similar articles",
+      view: "View",
+      download: "Download",
+      emptyState: "No publications available",
+      emptyStateDesc: "Publications in this category will be available soon.",
+      errorState: "Unable to load publications",
+      errorStateDesc: "An error occurred. Please try again.",
+    },
   },
   sw: {
     meta: {
@@ -1076,7 +1206,7 @@ export const translations: Record<Locale, Translations> = {
       services: "Huduma",
       realisations: "Miradi",
       resources: "Rasilimali",
-      blogNews: "Blogu na Habari",
+      publicationsResearch: "Machapisho na Utafiti",
       mediaGallery: "Galeri",
       opportunitiesCareers: "Fursa na Kazi",
       contact: "Mawasiliano",
@@ -1096,6 +1226,26 @@ export const translations: Record<Locale, Translations> = {
         "Tunaunda suluhisho za kimkakati na endelevu kwa mashirika",
       heroText:
         "Tunasaidia taasisi za umma na binafsi katika ufuatiliaji na tathmini, utafiti, na usimamizi unaolenga matokeo.",
+      heroSlides: [
+        {
+          title: "Tunaunda suluhisho za kimkakati na endelevu kwa mashirika",
+          text: "Tunasaidia taasisi za umma na binafsi katika ufuatiliaji na tathmini, utafiti, na usimamizi unaolenga matokeo.",
+          cta: "Wasiliana nasi",
+          link: "/Contact",
+        },
+        {
+          title: "Hatua za kibinadamu katika moyo wa ahadi yetu",
+          text: "Zaidi ya utaalamu, tunahamahama uwanjani kutoa majibu thabiti, ya mshikamano na endelevu kwa jamii zilizo katika mazingira magumu zaidi.",
+          cta: "Gundua hatua zetu",
+          link: "/realisation",
+        },
+        {
+          title: "Kuchanganya umakini wa utaalamu na nguvu ya athari ya kijamii",
+          text: "Tunabadilisha takwimu na tathmini kuwa vitendo thabiti vya kibinadamu ili kujenga mustakabali wa haki na uthabiti zaidi.",
+          cta: "Tazama hatua zetu",
+          link: "/realisation",
+        },
+      ],
       aboutLabel: "Kuhusu sisi",
       aboutTitle: "Kituo cha Utaalamu na Tathmini (C2E)",
       aboutText:
@@ -1466,6 +1616,34 @@ export const translations: Record<Locale, Translations> = {
         strategicPartnership: "Ushirikiano wa kimkakati",
         other: "Nyingine",
       },
+    },
+    publications: {
+      heroTitle: "Machapisho na Utafiti",
+      heroSubtitle: "Gundua tafiti, uchambuzi, masomo na machapisho ya Kituo cha Utaalamu na Tathmini.",
+      heroText: "C2E inazalisha na kukuza maarifa yanayotokana na data, utafiti na tathmini ili kuangazia maamuzi na sera.",
+      articlesScientific: "Makala za Kisayansi",
+      articlesScientificDesc: "Kazi za utafiti wa asili zinazotokana na mbinu kali za kisayansi, data na uchambuzi wa kina.",
+      articlesScientificCta: "Chunguza makala za kisayansi",
+      analysesPerspectives: "Uchambuzi na Mitazamo",
+      analysesPerspectivesDesc: "Uchambuzi, tafakari na ufahamu wa wataalamu kuhusu masuala ya maendeleo, mazingira, utawala, hatua za kibinadamu na mabadiliko ya kijamii.",
+      analysesPerspectivesCta: "Chunguza uchambuzi",
+      studiesReports: "Masomo na Ripoti",
+      studiesReportsDesc: "Masomo, tathmini, ripoti za kiufundi na kazi zilizofanywa na C2E au kwa ushirikiano na washirika wake.",
+      studiesReportsCta: "Chunguza masomo na ripoti",
+      scientificHeroSubtitle: "Utafiti unaoongozwa na data kuzalisha maarifa muhimu kwa kufanya maamuzi.",
+      analysesHeroSubtitle: "Kuelewa masuala ya sasa, kuchambua mienendo na kuleta mitazamo mipya.",
+      studiesHeroSubtitle: "Data, uchambuzi na tathmini zinazotumika kuelewa ukweli na kufanya maamuzi.",
+      readArticle: "Soma makala",
+      downloadPdf: "Pakua PDF",
+      share: "Shiriki",
+      copyCitation: "Nakili nukuu",
+      similarArticles: "Makala zinazofanana",
+      view: "Tazama",
+      download: "Pakua",
+      emptyState: "Hakuna machapisho",
+      emptyStateDesc: "Machapisho katika kategoria hii yatapatikana hivi karibuni.",
+      errorState: "Imeshindwa kupakia machapisho",
+      errorStateDesc: "Hitilafu imetokea. Tafadhali jaribu tena.",
     },
   },
 };

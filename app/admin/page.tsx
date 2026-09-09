@@ -38,6 +38,8 @@ import {
   type AdminOpportunity,
   type AdminPartner,
   type AdminProject,
+  type AdminPublication,
+  type AdminPublicationType,
 } from "../data/adminContent";
 
 const categories: Array<{
@@ -71,6 +73,32 @@ const initialArticle: AdminArticle = {
   date: "",
   category: "",
   excerpt: "",
+};
+
+const initialPublication: AdminPublication = {
+  id: "",
+  title: "",
+  slug: "",
+  type: "article-scientifique",
+  category: "",
+  excerpt: "",
+  content: "",
+  coverImage: "",
+  authors: "",
+  affiliation: "",
+  publishedAt: "",
+  updatedAt: "",
+  domain: "",
+  tags: "",
+  language: "fr",
+  readingTime: "",
+  location: "",
+  year: "",
+  pdfUrl: "",
+  doi: "",
+  references: "",
+  featured: false,
+  status: "published",
 };
 
 const initialOpportunity: AdminOpportunity = {
@@ -193,6 +221,7 @@ export default function AdminPage() {
   const [galleryForm, setGalleryForm] = useState(initialGallery);
   const [projectForm, setProjectForm] = useState(initialProject);
   const [articleForm, setArticleForm] = useState(initialArticle);
+  const [publicationForm, setPublicationForm] = useState(initialPublication);
   const [opportunityForm, setOpportunityForm] = useState(initialOpportunity);
   const [partnerForm, setPartnerForm] = useState(initialPartner);
 
@@ -313,8 +342,8 @@ export default function AdminPage() {
       tone: "bg-emerald-100 text-emerald-700",
     },
     {
-      label: "Articles",
-      value: content.articles.length,
+      label: "Publications",
+      value: content.publications?.length || 0,
       icon: FileText,
       tone: "bg-violet-100 text-violet-700",
     },
@@ -613,69 +642,123 @@ export default function AdminPage() {
 
           <form
             onSubmit={(event) =>
-              addItem(event, "articles", articleForm, () =>
-                setArticleForm(initialArticle)
+              addItem(event, "publications", publicationForm, () =>
+                setPublicationForm(initialPublication)
               )
             }
             className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.02)] sm:p-8"
           >
             <h2 className="font-Montserrat flex items-center gap-2 text-2xl font-bold text-slate-900">
               <FileText className="h-5 w-5 text-violet-700" />
-              Blog & actualites
+              Publications & Recherche
             </h2>
             <div className="mt-6 grid gap-4">
               <Field label="Titre">
                 <TextInput
                   required
-                  value={articleForm.title}
+                  value={publicationForm.title}
                   onChange={(event) =>
-                    setArticleForm({ ...articleForm, title: event.target.value })
+                    setPublicationForm({ ...publicationForm, title: event.target.value, slug: event.target.value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '') })
                   }
-                  placeholder="Titre de l'article"
+                  placeholder="Titre de la publication"
                 />
               </Field>
               <div className="grid gap-4 sm:grid-cols-2">
-                <Field label="Categorie">
-                  <TextInput
-                    required
-                    value={articleForm.category}
-                    onChange={(event) =>
-                      setArticleForm({
-                        ...articleForm,
-                        category: event.target.value,
-                      })
-                    }
-                    placeholder="Analyse, terrain..."
-                  />
+                <Field label="Type">
+                  <div className="relative">
+                    <select
+                      value={publicationForm.type}
+                      onChange={(event) =>
+                        setPublicationForm({
+                          ...publicationForm,
+                          type: event.target.value as AdminPublicationType,
+                        })
+                      }
+                      className="w-full appearance-none rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition-all focus:border-sky-500 focus:ring-4 focus:ring-sky-500/10"
+                    >
+                      <option value="article-scientifique">Article Scientifique</option>
+                      <option value="analyse-perspective">Analyse & Perspective</option>
+                      <option value="etude-rapport">Étude & Rapport</option>
+                    </select>
+                  </div>
                 </Field>
-                <Field label="Date">
+                <Field label="Domaine / Catégorie">
                   <TextInput
-                    required
-                    value={articleForm.date}
+                    value={publicationForm.category}
                     onChange={(event) =>
-                      setArticleForm({ ...articleForm, date: event.target.value })
+                      setPublicationForm({ ...publicationForm, category: event.target.value })
                     }
-                    placeholder="Avril 2026"
+                    placeholder="Ex: Santé publique, Gouvernance..."
                   />
                 </Field>
               </div>
-              <Field label="Extrait">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <Field label="Auteur(s)">
+                  <TextInput
+                    required
+                    value={publicationForm.authors}
+                    onChange={(event) =>
+                      setPublicationForm({ ...publicationForm, authors: event.target.value })
+                    }
+                    placeholder="Noms des auteurs"
+                  />
+                </Field>
+                <Field label="Date de publication">
+                  <TextInput
+                    required
+                    value={publicationForm.publishedAt}
+                    onChange={(event) =>
+                      setPublicationForm({ ...publicationForm, publishedAt: event.target.value })
+                    }
+                    placeholder="Ex: 12 Janvier 2026"
+                  />
+                </Field>
+              </div>
+              <ImagePicker
+                label="Image de couverture"
+                value={publicationForm.coverImage}
+                onChange={(image) => setPublicationForm({ ...publicationForm, coverImage: image })}
+              />
+              <Field label="Lien PDF">
+                <TextInput
+                  value={publicationForm.pdfUrl || ""}
+                  onChange={(event) =>
+                    setPublicationForm({ ...publicationForm, pdfUrl: event.target.value })
+                  }
+                  placeholder="URL du document PDF (Optionnel)"
+                />
+              </Field>
+              <Field label="Résumé (Excerpt)">
                 <TextArea
                   required
-                  value={articleForm.excerpt}
+                  value={publicationForm.excerpt}
                   onChange={(event) =>
-                    setArticleForm({
-                      ...articleForm,
+                    setPublicationForm({
+                      ...publicationForm,
                       excerpt: event.target.value,
                     })
                   }
-                  placeholder="Court resume de l'article"
+                  placeholder="Court résumé de la publication"
+                />
+              </Field>
+              <Field label="Contenu détaillé">
+                <TextArea
+                  required
+                  value={publicationForm.content}
+                  onChange={(event) =>
+                    setPublicationForm({
+                      ...publicationForm,
+                      content: event.target.value,
+                    })
+                  }
+                  placeholder="Texte complet, structure, méthodologie..."
+                  style={{ minHeight: "192px" }}
                 />
               </Field>
             </div>
             <button className="mt-5 inline-flex items-center gap-2 rounded-2xl bg-violet-700 px-5 py-3 text-sm font-bold text-white transition hover:bg-violet-800 cursor-pointer shadow-sm hover:shadow-md">
               <Plus className="h-4 w-4" />
-              Ajouter l'article
+              Ajouter la publication
             </button>
           </form>
 

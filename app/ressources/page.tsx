@@ -9,6 +9,7 @@ import {
   Newspaper,
 } from "lucide-react";
 import Footer from "../components/Footer";
+import { motionTokens } from "../components/motion";
 import { useTranslation } from "../i18n/TranslationProvider";
 
 export default function RessourcesPage() {
@@ -23,14 +24,14 @@ export default function RessourcesPage() {
 
   const sections = [
     {
-      title: t.nav.blogNews,
+      title: t.nav.publicationsResearch,
       text:
         locale === "en"
-          ? "Articles, notes and field perspectives."
+          ? "Research work, analyses, studies and institutional publications."
           : locale === "sw"
-          ? "Makala, maelezo na mitazamo ya uwanjani."
-          : "Articles, notes et regards de terrain.",
-      href: "/ressources/blog-actualites",
+          ? "Kazi za utafiti, uchambuzi, masomo na machapisho ya taasisi."
+          : "Travaux de recherche, analyses, études et publications institutionnelles.",
+      href: "/publications",
       icon: Newspaper,
     },
     {
@@ -87,9 +88,9 @@ export default function RessourcesPage() {
                 key={section.title}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                whileHover={{ y: -4 }}
+                viewport={motionTokens.viewport}
+                transition={{ duration: motionTokens.duration.normal, delay: index * motionTokens.stagger, ease: motionTokens.ease }}
+                whileHover={{ y: -2 }}
                 className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_36px_rgba(15,23,42,0.06)]"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">

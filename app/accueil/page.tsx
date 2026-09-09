@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   BarChart3,
@@ -19,12 +19,14 @@ import {
   Users,
 } from "lucide-react";
 import Footer from "../components/Footer";
+import { motionTokens, revealUp, scaleReveal, staggerContainer } from "../components/motion";
 import { useAdminContent } from "../data/adminContent";
 import { useTranslation } from "../i18n/TranslationProvider";
 
 export default function Accueil() {
   const { t, locale } = useTranslation();
   const adminContent = useAdminContent();
+  const shouldReduceMotion = useReducedMotion();
 
   const objectives = [
     { icon: BarChart3, ...t.accueil.objectives[0] },
@@ -115,20 +117,22 @@ export default function Accueil() {
   const [activeImage, setActiveImage] = useState(0);
 
   useEffect(() => {
+    if (shouldReduceMotion) return;
     const interval = window.setInterval(() => {
       setActiveImage((current) => (current + 1) % heroImages.length);
     }, 4500);
 
     return () => window.clearInterval(interval);
-  }, [heroImages.length]);
+  }, [heroImages.length, shouldReduceMotion]);
 
   useEffect(() => {
+    if (shouldReduceMotion) return;
     const interval = window.setInterval(() => {
       setActiveStudy((current) => (current + 1) % recentStudies.length);
     }, 4200);
 
     return () => window.clearInterval(interval);
-  }, [recentStudies.length]);
+  }, [recentStudies.length, shouldReduceMotion]);
 
   const showPreviousStudy = () => {
     setActiveStudy((current) =>
@@ -163,37 +167,37 @@ export default function Accueil() {
         <div className="absolute right-[8%] top-[18%] hidden h-40 w-72 rounded-full bg-sky-400/10 blur-3xl md:block" />
         <div className="relative mx-auto min-h-[500px] max-w-7xl px-4 py-14 sm:px-6 md:min-h-[620px] md:py-10 lg:px-14">
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            key={activeImage}
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
             className="max-w-2xl py-8 text-white "
           >
-            <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-5 py-2 text-sm font-semibold text-white/95 backdrop-blur-md">
+            <motion.span variants={revealUp} className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-5 py-2 text-sm font-semibold text-white/95 backdrop-blur-md">
               {t.accueil.badge}
-            </span>
+            </motion.span>
 
-            <h1 className="mt-6 max-w-[850px] font-Montserrat text-[2.5rem] font-bold leading-[1.08] tracking-normal text-white sm:text-5xl md:text-6xl">
-              {t.accueil.heroTitle}
-            </h1>
+            <motion.h1 variants={revealUp} className="mt-6 max-w-[850px] font-Montserrat text-[2.5rem] font-bold leading-[1.08] tracking-normal text-white sm:text-5xl md:text-6xl">
+              {t.accueil.heroSlides?.[activeImage]?.title || t.accueil.heroTitle}
+            </motion.h1>
 
-            <p className="mt-6 max-w-2xl text-[17px] leading-8 text-slate-200 md:text-[18px]">
-              {t.accueil.heroText}
-            </p>
+            <motion.p variants={revealUp} className="mt-6 max-w-2xl text-[17px] leading-8 text-slate-200 md:text-[18px]">
+              {t.accueil.heroSlides?.[activeImage]?.text || t.accueil.heroText}
+            </motion.p>
 
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              variants={revealUp}
               className="mt-10 inline-flex"
             >
               <Link
-                href="/Contact"
+                href={t.accueil.heroSlides?.[activeImage]?.link || "/Contact"}
                 className="glass-hover interactive-lift rounded-full bg-[#1ca8ff] px-8 py-4 text-sm font-bold text-white shadow-[0_20px_45px_rgba(28,168,255,0.36)] transition hover:bg-sky-400"
               >
-                {t.common.contactUs}
+                {t.accueil.heroSlides?.[activeImage]?.cta || t.common.contactUs}
               </Link>
             </motion.div>
 
-            <div className="mt-10 flex items-center gap-3">
+            <motion.div variants={scaleReveal} className="mt-10 flex items-center gap-3">
               {heroImages.map((image, index) => (
                 <button
                   key={image}
@@ -206,7 +210,7 @@ export default function Accueil() {
                     }`}
                 />
               ))}
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -268,7 +272,7 @@ export default function Accueil() {
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 lg:grid-cols-2">
             <motion.div
-              whileHover={{ y: -6 }}
+              whileHover={{ y: -3 }}
               className="rounded-2xl border border-slate-100 bg-white px-8 py-10 shadow-[0_12px_30px_rgba(15,23,42,0.04)]"
             >
               <div className="flex items-center gap-4">
@@ -284,7 +288,7 @@ export default function Accueil() {
             </motion.div>
 
             <motion.div
-              whileHover={{ y: -6 }}
+              whileHover={{ y: -3 }}
               className="rounded-2xl border border-slate-100 bg-white px-8 py-10 shadow-[0_12px_30px_rgba(15,23,42,0.04)]"
             >
               <div className="flex items-center gap-4">
@@ -334,7 +338,7 @@ export default function Accueil() {
                 return (
                   <motion.div
                     key={item.title}
-                    whileHover={{ y: -6 }}
+                    whileHover={{ y: -3 }}
                     className={`rounded-2xl px-7 py-8 md:px-8 md:py-9 ${cardClass}`}
                   >
                     <Icon className={`mb-6 h-8 w-8 ${iconClass}`} />
@@ -357,7 +361,7 @@ export default function Accueil() {
                 return (
                   <motion.div
                     key={item.title}
-                    whileHover={{ y: -6 }}
+                    whileHover={{ y: -3 }}
                     className={`rounded-2xl px-7 py-8 md:px-8 md:py-9 ${isBlue
                       ? "bg-[linear-gradient(135deg,#1e3a8a_0%,#0f172a_100%)] text-white shadow-[0_16px_36px_rgba(30,58,138,0.15)]"
                       : "border border-slate-100 bg-white text-slate-900 shadow-[0_12px_30px_rgba(15,23,42,0.04)]"
@@ -396,7 +400,7 @@ export default function Accueil() {
             {t.accueil.reasons.map((reason) => (
               <motion.div
                 key={reason.number}
-                whileHover={{ y: -4 }}
+                whileHover={{ y: -2 }}
                 className="group"
               >
                 <div className="flex items-center gap-3 text-slate-400">
@@ -427,7 +431,7 @@ export default function Accueil() {
         </div>
 
         <div className="group relative flex overflow-x-hidden">
-          <div className="flex animate-marquee whitespace-nowrap py-2">
+          <div className={`flex ${shouldReduceMotion ? "" : "animate-marquee"} whitespace-nowrap py-2`}>
             {[...adminContent.partners, ...t.accueil.actualPartners, ...adminContent.partners, ...t.accueil.actualPartners].map(
               (partner, index) => (
                 <div
@@ -459,7 +463,10 @@ export default function Accueil() {
           }
           .animate-marquee {
             display: flex;
-            animation: marquee 30s linear infinite;
+            animation: marquee 42s linear infinite;
+          }
+          .group:hover .animate-marquee {
+            animation-play-state: paused;
           }
         `}</style>
       </section>

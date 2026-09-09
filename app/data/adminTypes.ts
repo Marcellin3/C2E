@@ -20,6 +20,34 @@ export type AdminArticle = {
   excerpt: string;
 };
 
+export type AdminPublicationType = "article-scientifique" | "analyse-perspective" | "etude-rapport";
+
+export type AdminPublication = {
+  id: string;
+  title: string;
+  slug: string;
+  type: AdminPublicationType;
+  category: string;
+  excerpt: string;
+  content: string;
+  coverImage: string;
+  authors: string;
+  affiliation?: string;
+  publishedAt: string;
+  updatedAt?: string;
+  domain?: string;
+  tags?: string;
+  language?: string;
+  readingTime?: string;
+  location?: string;
+  year?: string;
+  pdfUrl?: string;
+  doi?: string;
+  references?: string;
+  featured?: boolean;
+  status: "draft" | "published" | "archived";
+};
+
 export type AdminOpportunity = {
   title: string;
   type: string;
@@ -62,6 +90,7 @@ export type AdminContent = {
   opportunities: AdminOpportunity[];
   partners: AdminPartner[];
   applications: AdminApplication[];
+  publications: AdminPublication[];
 };
 
 export type AdminCollectionName = keyof AdminContent;
@@ -73,6 +102,7 @@ export const emptyAdminContent: AdminContent = {
   opportunities: [],
   partners: [],
   applications: [],
+  publications: [],
 };
 
 export function normalizeContent(value: unknown): AdminContent {
@@ -89,6 +119,7 @@ export function normalizeContent(value: unknown): AdminContent {
     applications: Array.isArray(content?.applications)
       ? content.applications
       : [],
+    publications: Array.isArray(content?.publications) ? content.publications : [],
   };
 }
 

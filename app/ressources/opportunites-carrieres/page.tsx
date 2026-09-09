@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, BriefcaseBusiness, Clock3, GraduationCap } from "lucide-react";
 import Footer from "../../components/Footer";
+import { motionTokens } from "../../components/motion";
 import { useAdminContent } from "../../data/adminContent";
 import { createOpportunitySlug, opportunities } from "../../data/opportunities";
 import { useTranslation } from "../../i18n/TranslationProvider";
@@ -76,9 +77,9 @@ export default function OpportunitesCarrieresPage() {
                 key={item.title}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                whileHover={{ y: -4 }}
+                viewport={motionTokens.viewport}
+                transition={{ duration: motionTokens.duration.normal, delay: index * motionTokens.stagger, ease: motionTokens.ease }}
+                whileHover={{ y: -2 }}
                 className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.03)] transition-all duration-300 hover:shadow-[0_12px_36px_rgba(15,23,42,0.06)]"
               >
                 <div className="flex flex-wrap items-center gap-3 text-xs">

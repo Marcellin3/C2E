@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import SiteLoader from "./components/SiteLoader";
+import { MotionProvider } from "./components/motion";
 import { TranslationProvider } from "./i18n/TranslationProvider";
 
 const geistSans = Geist({
@@ -36,10 +38,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} antialiased`}
       >
-        <TranslationProvider>
-          <Navbar />
-          {children}
-        </TranslationProvider>
+        <MotionProvider>
+          <TranslationProvider>
+            <SiteLoader />
+            <Navbar />
+            {children}
+          </TranslationProvider>
+        </MotionProvider>
       </body>
     </html>
   );
