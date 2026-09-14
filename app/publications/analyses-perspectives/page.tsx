@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Calendar, FileBarChart, User, Tag, Clock } from "lucide-react";
+import { ArrowRight, Calendar, FileBarChart, User, Tag, Clock, ExternalLink } from "lucide-react";
 import Footer from "../../components/Footer";
 import { motionTokens } from "../../components/motion";
 import { useAdminContent } from "../../data/adminContent";
+import { featuredAnalyses } from "../../data/featuredAnalyses";
 import { useTranslation } from "../../i18n/TranslationProvider";
 import { useState, useMemo } from "react";
 
@@ -18,8 +19,8 @@ export default function AnalysesPerspectivesPage() {
     const articles = (adminContent.publications || []).filter(
       (p) => p.type === "analyse-perspective" && p.status === "published"
     );
-    
-    return articles.sort((a, b) => {
+
+    return [...featuredAnalyses, ...articles].sort((a, b) => {
       return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime() || -1;
     });
   }, [adminContent.publications]);
@@ -96,7 +97,8 @@ export default function AnalysesPerspectivesPage() {
           ) : (
             <div className="grid gap-6">
               {filteredAnalyses.map((item, index) => {
-                const detailHref = `/publications/analyses-perspectives/${item.slug}`;
+                const externalUrl = "externalUrl" in item ? item.externalUrl : undefined;
+                const detailHref = externalUrl ?? `/publications/analyses-perspectives/${item.slug}`;
 
                 return (
                   <motion.article
@@ -137,9 +139,20 @@ export default function AnalysesPerspectivesPage() {
                       </div>
                       
                       <h2 className="font-Montserrat text-2xl font-bold text-slate-900 leading-tight mb-2 group-hover:text-amber-600 transition-colors">
-                        <Link href={detailHref} className="before:absolute before:inset-0">
-                          {item.title}
-                        </Link>
+                        {externalUrl ? (
+                          <a
+                            href={detailHref}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="before:absolute before:inset-0"
+                          >
+                            {item.title}
+                          </a>
+                        ) : (
+                          <Link href={detailHref} className="before:absolute before:inset-0">
+                            {item.title}
+                          </Link>
+                        )}
                       </h2>
                       
                       <p className="text-sm leading-6 text-slate-500 mb-4 flex-grow line-clamp-2">
@@ -151,6 +164,11 @@ export default function AnalysesPerspectivesPage() {
                           <User className="h-3 w-3 text-slate-500" />
                         </div>
                         {item.authors}
+                        {externalUrl && (
+                          <span className="ml-auto inline-flex items-center gap-1 text-xs font-bold text-amber-700">
+                            Consulter le document <ExternalLink className="h-3.5 w-3.5" />
+                          </span>
+                        )}
                       </div>
                     </div>
                   </motion.article>

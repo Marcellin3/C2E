@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, Download, Filter, FileText, Calendar, Building, MapPin } from "lucide-react";
+import { ArrowRight, BookOpen, Download, Filter, FileText, Calendar, Building, MapPin, ExternalLink } from "lucide-react";
 import Footer from "../../components/Footer";
 import { motionTokens } from "../../components/motion";
 import { useAdminContent } from "../../data/adminContent";
+import { featuredReportDocuments } from "../../data/featuredReportDocuments";
 import { useTranslation } from "../../i18n/TranslationProvider";
 import { useState, useMemo } from "react";
 
@@ -18,8 +19,8 @@ export default function EtudesRapportsPage() {
     const articles = (adminContent.publications || []).filter(
       (p) => p.type === "etude-rapport" && p.status === "published"
     );
-    
-    return articles.sort((a, b) => {
+
+    return [...featuredReportDocuments, ...articles].sort((a, b) => {
       return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime() || -1;
     });
   }, [adminContent.publications]);
@@ -100,7 +101,8 @@ export default function EtudesRapportsPage() {
           ) : (
             <div className="grid gap-6">
               {filteredStudies.map((item, index) => {
-                const detailHref = `/publications/etudes-rapports/${item.slug}`;
+                const externalUrl = "externalUrl" in item ? item.externalUrl : undefined;
+                const detailHref = externalUrl ?? `/publications/etudes-rapports/${item.slug}`;
 
                 return (
                   <motion.article
@@ -152,12 +154,23 @@ export default function EtudesRapportsPage() {
                     </div>
 
                     <div className="flex sm:flex-col items-center justify-between sm:justify-center gap-3 sm:pl-6 sm:border-l border-slate-100 shrink-0">
-                      <Link
-                        href={detailHref}
-                        className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-50 px-4 py-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-100 sm:w-full"
-                      >
-                        {t.publications.view}
-                      </Link>
+                      {externalUrl ? (
+                        <a
+                          href={detailHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-50 px-4 py-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-100 sm:w-full"
+                        >
+                          Consulter <ExternalLink className="h-4 w-4" />
+                        </a>
+                      ) : (
+                        <Link
+                          href={detailHref}
+                          className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-50 px-4 py-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-100 sm:w-full"
+                        >
+                          {t.publications.view}
+                        </Link>
+                      )}
                       {item.pdfUrl && (
                         <a
                           href={item.pdfUrl}

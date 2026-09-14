@@ -407,10 +407,10 @@ export const translations: Record<Locale, Translations> = {
         { name: "Ephphatha", logo: "/photos/ephaphatha.jpg" },
         { name: "Heal Africa", logo: "/photos/heal.png" },
         { name: "World Vision", logo: "/photos/world.jpg" },
-        { name: "Goma Actif", logo: "/photos/logo ok.png" },
-        { name: "Institut Français", logo: "/photos/logo ok.png" },
-        { name: "Mulezi RDC", logo: "/photos/Mulezi.jpeg" },
-        { name: "360 Congo Invest", logo: "/photos/logo ok.png" },
+        { name: "TPO DRC", logo: "/photos/TPO-LOGO.png" },
+        { name: "ARPDI", logo: "/photos/logo ok.jpg" },
+        { name: "MBOU-MON-TOUR", logo: "/photos/mmt_logo1.png" },
+        { name: "360 Congo Invest", logo: "/photos/logo ok.jpg" },
       ],
     },
     servicesPage: {
@@ -477,7 +477,7 @@ export const translations: Record<Locale, Translations> = {
           image: "/photos/Charmant.jpg",
           desc: "Spécialiste en gestion et coordination de projets.",
         },
-        {
+        /*{
           name: "Etienne BUHURU",
           image: "/photos/Buhuru.jpg",
           desc: "Économiste et spécialiste en administration et finance, plus de 10 ans d'expérience dans la gestion administrative financière et budgétaire de projets humanitaires et développement.Avec une expertise solide en gestion des subventions, contrôle interne, conformité aux exigences des bailleurs, reporting financier et supervision compatable.",
@@ -486,7 +486,7 @@ export const translations: Record<Locale, Translations> = {
           name: "Prince BITAKI",
           image: "/photos/Prince.jpg",
           desc: "Économiste mathématicien et chercheur universitaire, spécialiste en logistique, supply chain, administration et ressources humaines.",
-        },
+        },*/
         {
           name: "Marcellin MULEZI",
           image: "/photos/Mulezi.jpeg",
@@ -966,7 +966,7 @@ export const translations: Record<Locale, Translations> = {
           image: "/photos/Charmant.jpg",
           desc: "Specialist in project management and coordination.",
         },
-        {
+        /*{
           name: "Prince BITAKI",
           image: "/photos/Prince.jpg",
           desc: "Mathematical economist and university researcher specializing in logistics, supply chain, administration, and human resources.",
@@ -975,7 +975,7 @@ export const translations: Record<Locale, Translations> = {
           name: "Etienne BUHURU",
           image: "/photos/Buhuru.jpg",
           desc: "Economist and administration and finance specialist with strong expertise in project administration, budgeting, and financial management.",
-        },
+        },*/
       ],
       testimonials: [
         {
@@ -1434,7 +1434,7 @@ export const translations: Record<Locale, Translations> = {
           image: "/photos/Charmant.jpg",
           desc: "Mtaalamu wa usimamizi na uratibu wa miradi.",
         },
-        {
+        /*{
           name: "Prince BITAKI",
           image: "/photos/Prince.jpg",
           desc: "Mwanauchumi wa hesabu na mtafiti wa chuo kikuu aliyejikita katika logistiki, supply chain, utawala na rasilimali watu.",
@@ -1443,7 +1443,7 @@ export const translations: Record<Locale, Translations> = {
           name: "Etienne BUHURU",
           image: "/photos/Buhuru.jpg",
           desc: "Mwanauchumi na mtaalamu wa utawala na fedha mwenye uzoefu mkubwa katika usimamizi wa miradi, bajeti na fedha.",
-        },
+        },*/
       ],
       testimonials: [
         {
