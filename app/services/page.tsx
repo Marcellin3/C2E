@@ -52,6 +52,7 @@ export default function Services() {
         "Faciliter l'accès des enfants et adolescents à une éducation inclusive de qualité.",
         "Améliorer les infrastructures éducatives et les environnements scolaires protecteurs.",
         "Appuyer les mobiliers, matériels pédagogiques et la formation des enseignants.",
+        "Protection et Encadrement des enfants en situation difficile dans un centre d'enfants.",
       ],
     },
     {

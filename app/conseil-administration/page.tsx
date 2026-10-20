@@ -239,7 +239,7 @@ const boardTranslations = {
 
 export default function ConseilAdministration() {
   const { locale } = useTranslation();
-  
+
   // Guard localized data selection
   const lang: "fr" | "en" | "sw" = (locale === "en" || locale === "sw" || locale === "fr") ? locale : "fr";
   const content = boardTranslations[lang];
@@ -249,12 +249,12 @@ export default function ConseilAdministration() {
 
   return (
     <div className="bg-slate-50 text-slate-800 min-h-screen dark:bg-slate-950 dark:text-slate-200">
-      
+
       {/* Premium Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 px-6 py-20 text-white md:px-20 md:py-28">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.12),transparent_40rem)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.04),transparent_30rem)]" />
-        
+
         {/* Glow ambient background lights */}
         <div className="absolute -top-32 -left-32 w-80 h-80 rounded-full bg-blue-600/10 blur-3xl" />
         <div className="absolute top-1/2 -right-40 w-96 h-96 rounded-full bg-emerald-500/5 blur-3xl" />
@@ -266,20 +266,6 @@ export default function ConseilAdministration() {
             transition={{ duration: 0.6 }}
             className="space-y-4 md:space-y-6"
           >
-            {/* Breadcrumbs */}
-            <nav className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400">
-              <Link href="/accueil" className="hover:text-white transition">{content.hero.breadcrumbHome}</Link>
-              <ChevronIcon />
-              <Link href="/services" className="hover:text-white transition">{content.hero.breadcrumbServices}</Link>
-              <ChevronIcon />
-              <span className="text-yellow-400">{content.hero.breadcrumbCurrent}</span>
-            </nav>
-
-            {/* Governance Badge */}
-            <span className="inline-block rounded-full bg-blue-500/10 border border-blue-500/20 px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-widest text-blue-400 shadow-sm">
-              {content.hero.badge}
-            </span>
-
             {/* Main title */}
             <h1 className="font-Montserrat text-4xl sm:text-5xl md:text-6xl font-black leading-none tracking-tight text-white max-w-4xl">
               {content.hero.title}
@@ -296,7 +282,7 @@ export default function ConseilAdministration() {
       {/* Control bar / Layout switches */}
       <div className="border-b border-slate-200/60 bg-white/70 py-4 backdrop-blur-md sticky top-[64px] z-30 dark:bg-slate-900/70 dark:border-slate-800/60">
         <div className="mx-auto max-w-7xl px-6 flex flex-col sm:flex-row gap-4 sm:gap-0 justify-between items-center">
-          
+
           <Link
             href="/services"
             className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-blue-600 hover:text-blue-700 transition dark:text-blue-400 dark:hover:text-blue-300"
@@ -308,22 +294,20 @@ export default function ConseilAdministration() {
           <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
             <button
               onClick={() => setLayoutMode("grid")}
-              className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold transition-all ${
-                layoutMode === "grid"
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold transition-all ${layoutMode === "grid"
                   ? "bg-white text-blue-600 shadow-sm dark:bg-slate-700 dark:text-white"
                   : "text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200"
-              }`}
+                }`}
             >
               <LayoutGrid size={14} />
               {content.controls.viewGrid}
             </button>
             <button
               onClick={() => setLayoutMode("table")}
-              className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold transition-all ${
-                layoutMode === "table"
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold transition-all ${layoutMode === "table"
                   ? "bg-white text-blue-600 shadow-sm dark:bg-slate-700 dark:text-white"
                   : "text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200"
-              }`}
+                }`}
             >
               <TableIcon size={14} />
               {content.controls.viewTable}
@@ -337,7 +321,7 @@ export default function ConseilAdministration() {
       <section className="mx-auto max-w-7xl px-6 py-12 md:py-20 min-h-[450px]">
         <AnimatePresence initial={false} mode="wait">
           {layoutMode === "grid" ? (
-            
+
             /* 1. GRID CARDS MODE */
             <motion.div
               key="grid-view"
@@ -349,16 +333,15 @@ export default function ConseilAdministration() {
             >
               {content.members.map((member, idx) => {
                 const isPresident = member.role.toLowerCase().includes("président") || member.role.toLowerCase().includes("chair");
-                
+
                 return (
                   <motion.div
                     key={member.number}
                     whileHover={{ y: -3 }}
-                    className={`relative rounded-3xl bg-white p-6 dark:bg-slate-900 border transition-all duration-300 shadow-[0_8px_30px_rgba(15,23,42,0.01)] hover:shadow-[0_12px_40px_rgba(15,23,42,0.04)] flex flex-col items-center text-center ${
-                      isPresident
+                    className={`relative rounded-3xl bg-white p-6 dark:bg-slate-900 border transition-all duration-300 shadow-[0_8px_30px_rgba(15,23,42,0.01)] hover:shadow-[0_12px_40px_rgba(15,23,42,0.04)] flex flex-col items-center text-center ${isPresident
                         ? "border-yellow-200 dark:border-yellow-950/40 bg-gradient-to-b from-yellow-50/5 via-white to-white dark:from-yellow-950/5"
                         : "border-slate-200/60 dark:border-slate-800/60"
-                    }`}
+                      }`}
                   >
                     {/* Position Number Badge */}
                     <span className="absolute top-4 left-4 h-6 px-2.5 rounded-lg bg-slate-100 text-[10px] font-black text-slate-500 flex items-center justify-center dark:bg-slate-800 dark:text-slate-400">
@@ -377,17 +360,16 @@ export default function ConseilAdministration() {
                     </h3>
 
                     {/* Member Role / Function Badge */}
-                    <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest mb-6 ${
-                      isPresident
+                    <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest mb-6 ${isPresident
                         ? "bg-yellow-400/10 border border-yellow-400/20 text-yellow-600 dark:text-yellow-400"
                         : "bg-blue-50 border border-blue-100 text-blue-600 dark:bg-blue-950/30 dark:border-blue-900/30 dark:text-blue-400"
-                    }`}>
+                      }`}>
                       {member.role}
                     </span>
 
                     {/* Properties Info */}
                     <div className="w-full pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2.5 text-xs text-slate-500 dark:text-slate-400">
-                      
+
                       {/* Profession */}
                       <div className="flex items-center justify-center gap-2">
                         <Briefcase size={13} className="text-slate-400" />
@@ -406,7 +388,7 @@ export default function ConseilAdministration() {
               })}
             </motion.div>
           ) : (
-            
+
             /* 2. TABLE MODE */
             <motion.div
               key="table-view"
@@ -439,13 +421,12 @@ export default function ConseilAdministration() {
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800/50">
                   {content.members.map((member) => {
                     const isPresident = member.role.toLowerCase().includes("président") || member.role.toLowerCase().includes("chair");
-                    
+
                     return (
                       <tr
                         key={member.number}
-                        className={`hover:bg-slate-50/80 dark:hover:bg-slate-800/35 transition-colors ${
-                          isPresident ? "bg-yellow-50/5 dark:bg-yellow-950/2" : ""
-                        }`}
+                        className={`hover:bg-slate-50/80 dark:hover:bg-slate-800/35 transition-colors ${isPresident ? "bg-yellow-50/5 dark:bg-yellow-950/2" : ""
+                          }`}
                       >
                         <td className="px-6 py-4.5 font-Montserrat text-xs font-bold text-center text-slate-500">
                           {member.number}
@@ -462,11 +443,10 @@ export default function ConseilAdministration() {
                           </div>
                         </td>
                         <td className="px-6 py-4.5">
-                          <span className={`inline-block px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase tracking-wider ${
-                            isPresident
+                          <span className={`inline-block px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase tracking-wider ${isPresident
                               ? "bg-yellow-400/10 border border-yellow-400/20 text-yellow-600 dark:text-yellow-400"
                               : "bg-blue-50 border border-blue-100 text-blue-600 dark:bg-blue-950/30 dark:border-blue-900/30 dark:text-blue-400"
-                          }`}>
+                            }`}>
                             {member.role}
                           </span>
                         </td>

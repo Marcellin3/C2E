@@ -463,19 +463,19 @@ export const translations: Record<Locale, Translations> = {
       ],
       consultants: [
         {
-          name: "Philemon MBARAMBARA",
+          name: "Philemon MULONGO",
           image: "/photos/philemon.jpeg",
           desc: " Analyste de politique et systemes de santé, expert en genre et assurance-qualité. Chercheur en santé communautaire et expert en conception de plans stratégiques institutionnels pour les organisations publiques et privées.",
         },
         {
-          name: "Dr Patrick MUTUTA | PhD Sciences Environnementales",
+          name: "Dr Patrick MUHUMU  ",
           image: "/photos/Patrick.jpg",
-          desc: "Expert senior avec plus de 15 ans d'expérience en évaluation d'impact, planification stratégique, gestion des organisations et conduite d'études complexes ainsi que d'évaluations finales de projets humanitaires et de développement en RDC.",
+          desc: "PhD Sciences Environnementales | Expert senior avec plus de 15 ans d'expérience en évaluation d'impact, planification stratégique, gestion des organisations et conduite d'études complexes ainsi que d'évaluations finales de projets humanitaires et de développement en RDC.",
         },
         {
           name: "Charmant MUTUTA",
           image: "/photos/Charmant.jpg",
-          desc: "Spécialiste en gestion et coordination de projets.",
+          desc: "Spécialiste en gestion et coordination de projets | Expert avec plus de 15 ans d’expérience dans la coordination et la mise en œuvre de projets d’encadrement et d’accompagnement des personnes sourdes. Engagé dans la protection, la prise en charge et à l’accompagnement des enfants en situation de vulnérabilité.",
         },
         /*{
           name: "Etienne BUHURU",
@@ -493,19 +493,9 @@ export const translations: Record<Locale, Translations> = {
           desc: "Technicien en développement rural, spécialiste en conception et mise en oeuvre des projets de développement, data analyst certifié et Web3 builder.",
         },
         {
-          name: "Maitre Gilbert CIGOLO",
-          image: "/photos/.jpeg",
-          desc: "Technicien en développement rural, spécialiste en conception et mise en oeuvre des projets de développement, data analyst certifié et Web3 builder.",
-        },
-        {
-          name: "Marcellin MULEZI",
-          image: "/photos/Mulezi.jpeg",
-          desc: "Technicien en développement rural, spécialiste en conception et mise en oeuvre des projets de développement, data analyst certifié et Web3 builder.",
-        },
-        {
-          name: "Marcellin MULEZI",
-          image: "/photos/Mulezi.jpeg",
-          desc: "Technicien en développement rural, spécialiste en conception et mise en oeuvre des projets de développement, data analyst certifié et Web3 builder.",
+          name: "Maitre Julien CIGOLO",
+          image: "/photos/julien.jpg",
+          desc: "Conseiller en droits humains et égalité de genre | Expert engagé dans la promotion et la défense des droits humains, la lutte contre les discriminations et la promotion de l’égalité de genre. Il œuvre pour la protection des personnes vulnérables, la promotion de l’inclusion et le renforcement des mécanismes de justice, d’équité et de respect des droits fondamentaux.",
         },
       ],
       testimonials: [

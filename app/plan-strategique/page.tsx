@@ -539,7 +539,7 @@ const pageTranslations = {
 
 export default function PlanStrategique() {
   const { locale } = useTranslation();
-  
+
   // Guard locale value to fall back to 'fr' if not supported in page translations
   const lang: "fr" | "en" | "sw" = (locale === "en" || locale === "sw" || locale === "fr") ? locale : "fr";
   const content = pageTranslations[lang];
@@ -642,7 +642,7 @@ export default function PlanStrategique() {
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 px-6 py-20 text-white md:px-20 md:py-28">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.15),transparent_45rem)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(234,179,8,0.05),transparent_35rem)]" />
-        
+
         {/* Glow ambient background lights */}
         <div className="absolute -top-32 -left-32 w-80 h-80 rounded-full bg-blue-600/10 blur-3xl" />
         <div className="absolute top-1/2 -right-40 w-96 h-96 rounded-full bg-yellow-500/5 blur-3xl" />
@@ -654,14 +654,6 @@ export default function PlanStrategique() {
             transition={{ duration: 0.6 }}
             className="space-y-4 md:space-y-6"
           >
-            {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400">
-              <Link href="/accueil" className="hover:text-white transition">{content.hero.breadcrumbHome}</Link>
-              <ChevronRight size={12} />
-              <Link href="/services" className="hover:text-white transition">{content.hero.breadcrumbServices}</Link>
-              <ChevronRight size={12} />
-              <span className="text-yellow-400">{content.hero.breadcrumbCurrent}</span>
-            </nav>
 
             {/* Badge */}
             <span className="inline-block rounded-full bg-yellow-400/10 border border-yellow-400/20 px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-widest text-yellow-400 shadow-sm">
@@ -681,22 +673,12 @@ export default function PlanStrategique() {
         </div>
       </section>
 
-      {/* Breadcrumb/Back link for sticky layout */}
-      <div className="border-b border-slate-200/60 bg-white/70 py-4 backdrop-blur-md sticky top-[64px] z-30 dark:bg-slate-900/70 dark:border-slate-800/60">
-        <div className="mx-auto max-w-7xl px-6 flex justify-between items-center">
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-blue-600 hover:text-blue-700 transition dark:text-blue-400 dark:hover:text-blue-300"
-          >
-            <ArrowLeft size={14} /> {content.toc.backLink}
-          </Link>
-        </div>
-      </div>
+
 
       {/* Main content grid */}
       <section className="mx-auto max-w-7xl px-6 py-12 md:py-20">
         <div className="grid gap-10 lg:grid-cols-[280px_1fr]">
-          
+
           {/* Left Column: Sticky Summary Navigation (hidden on mobile) */}
           <aside className="hidden lg:block">
             <div className="sticky top-[140px] space-y-6 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 shadow-[0_8px_30px_rgba(15,23,42,0.02)]">
@@ -706,17 +688,16 @@ export default function PlanStrategique() {
                   {content.toc.title}
                 </h3>
               </div>
-              
+
               <ul className="space-y-1.5">
                 {menuItems.map((item) => (
                   <li key={item.id}>
                     <a
                       href={`#${item.id}`}
-                      className={`block rounded-lg px-3 py-2 text-xs font-bold transition-all ${
-                        activeSection === item.id
-                          ? "bg-blue-50 text-blue-700 border-l-4 border-blue-600 pl-2 dark:bg-blue-950/40 dark:text-blue-400 dark:border-blue-500"
-                          : "text-slate-500 hover:bg-slate-50 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-slate-800/50 dark:hover:text-slate-200"
-                      }`}
+                      className={`block rounded-lg px-3 py-2 text-xs font-bold transition-all ${activeSection === item.id
+                        ? "bg-blue-50 text-blue-700 border-l-4 border-blue-600 pl-2 dark:bg-blue-950/40 dark:text-blue-400 dark:border-blue-500"
+                        : "text-slate-500 hover:bg-slate-50 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-slate-800/50 dark:hover:text-slate-200"
+                        }`}
                     >
                       {item.label}
                     </a>
@@ -728,7 +709,7 @@ export default function PlanStrategique() {
 
           {/* Right Column: Content sections */}
           <div className="space-y-16 md:space-y-24">
-            
+
             {/* Section 1: Presentation */}
             <motion.section
               id="sec1"
@@ -742,7 +723,7 @@ export default function PlanStrategique() {
                 <h2 className="font-Montserrat text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white leading-tight">
                   {content.sec1.title}
                 </h2>
-                
+
                 <div className="grid gap-6 md:grid-cols-[1fr_260px] md:items-start">
                   <div className="space-y-4 text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">
                     <p className="font-semibold text-slate-800 dark:text-slate-200">
@@ -751,7 +732,7 @@ export default function PlanStrategique() {
                     <p>{content.sec1.p2}</p>
                     <p>{content.sec1.p3}</p>
                   </div>
-                  
+
                   {/* Callout Box */}
                   <div className="rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 p-5 dark:from-blue-950/20 dark:to-indigo-950/10 dark:border-blue-900/30">
                     <Award className="h-8 w-8 text-blue-600 dark:text-blue-400 mb-3" />
@@ -804,7 +785,7 @@ export default function PlanStrategique() {
               <div className="space-y-8">
                 {/* Vision & Mission Row */}
                 <div className="grid gap-6 md:grid-cols-2">
-                  
+
                   {/* Vision Card */}
                   <div className="bg-gradient-to-br from-blue-900 to-indigo-950 p-8 rounded-3xl text-white shadow-lg relative overflow-hidden group">
                     <div className="absolute -right-10 -bottom-10 h-32 w-32 rounded-full bg-white/5 blur-2xl group-hover:scale-150 transition duration-500" />
@@ -878,7 +859,7 @@ export default function PlanStrategique() {
 
                 {/* SWOT 2x2 Grid */}
                 <div className="grid gap-6 md:grid-cols-2">
-                  
+
                   {/* Strengths */}
                   <div className="p-6 rounded-2xl border border-emerald-200/60 bg-emerald-50/20 dark:border-emerald-950/40 dark:bg-emerald-950/5 space-y-4">
                     <div className="flex items-center gap-3">
@@ -996,11 +977,11 @@ export default function PlanStrategique() {
                       <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow-sm dark:bg-slate-800">
                         {getObjectiveIcon(index)}
                       </div>
-                      
+
                       <h3 className="font-Montserrat text-[15px] font-bold text-slate-900 dark:text-white mb-2 leading-snug">
                         {obj.title}
                       </h3>
-                      
+
                       <p className="text-xs leading-relaxed text-slate-500 dark:text-slate-400 flex-1">
                         {obj.desc}
                       </p>
@@ -1051,7 +1032,7 @@ export default function PlanStrategique() {
                 <div className="relative overflow-hidden rounded-2xl bg-blue-950 p-8 text-white shadow-xl md:p-12">
                   <div className="absolute -right-20 -bottom-20 h-64 w-64 rounded-full bg-white/5 blur-3xl pointer-events-none" />
                   <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.05),transparent)] pointer-events-none" />
-                  
+
                   <div className="relative z-10 space-y-6 max-w-3xl">
                     <div className="flex items-center gap-3">
                       <div className="h-10 w-10 flex items-center justify-center rounded-xl bg-white/10 backdrop-blur-md">
